@@ -34,9 +34,15 @@ class Material
      */
     private $objets;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=CollectionPoint::class, mappedBy="material_has_collectionPoint")
+     */
+    private $collectionPoints;
+
     public function __construct()
     {
         $this->objets = new ArrayCollection();
+        $this->collectionPoints = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -94,6 +100,34 @@ class Material
             if ($objet->getMaterialId() === $this) {
                 $objet->setMaterialId(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CollectionPoint[]
+     */
+    public function getCollectionPoints(): Collection
+    {
+        return $this->collectionPoints;
+    }
+
+    public function addCollectionPoint(CollectionPoint $collectionPoint): self
+    {
+        if (!$this->collectionPoints->contains($collectionPoint)) {
+            $this->collectionPoints[] = $collectionPoint;
+            $collectionPoint->addMaterialHasCollectionPoint($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCollectionPoint(CollectionPoint $collectionPoint): self
+    {
+        if ($this->collectionPoints->contains($collectionPoint)) {
+            $this->collectionPoints->removeElement($collectionPoint);
+            $collectionPoint->removeMaterialHasCollectionPoint($this);
         }
 
         return $this;

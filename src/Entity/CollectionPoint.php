@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CollectionPointRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -82,6 +84,28 @@ class CollectionPoint
      * @ORM\JoinColumn(nullable=false)
      */
     private $collectionPointType;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Material::class, inversedBy="collectionPoints")
+     */
+    private $material_has_collectionPoint;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=objet::class, inversedBy="collectionPoints")
+     */
+    private $objet_has_collectionPoint;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=category::class, inversedBy="collectionPoints")
+     */
+    private $category_has_collectionPoint;
+
+    public function __construct()
+    {
+        $this->material_has_collectionPoint = new ArrayCollection();
+        $this->objet_has_collectionPoint = new ArrayCollection();
+        $this->category_has_collectionPoint = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -240,6 +264,84 @@ class CollectionPoint
     public function setCollectionPointType(?CollectionPointType $collectionPointType): self
     {
         $this->collectionPointType = $collectionPointType;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Material[]
+     */
+    public function getMaterialHasCollectionPoint(): Collection
+    {
+        return $this->material_has_collectionPoint;
+    }
+
+    public function addMaterialHasCollectionPoint(Material $materialHasCollectionPoint): self
+    {
+        if (!$this->material_has_collectionPoint->contains($materialHasCollectionPoint)) {
+            $this->material_has_collectionPoint[] = $materialHasCollectionPoint;
+        }
+
+        return $this;
+    }
+
+    public function removeMaterialHasCollectionPoint(Material $materialHasCollectionPoint): self
+    {
+        if ($this->material_has_collectionPoint->contains($materialHasCollectionPoint)) {
+            $this->material_has_collectionPoint->removeElement($materialHasCollectionPoint);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|objet[]
+     */
+    public function getObjetHasCollectionPoint(): Collection
+    {
+        return $this->objet_has_collectionPoint;
+    }
+
+    public function addObjetHasCollectionPoint(objet $objetHasCollectionPoint): self
+    {
+        if (!$this->objet_has_collectionPoint->contains($objetHasCollectionPoint)) {
+            $this->objet_has_collectionPoint[] = $objetHasCollectionPoint;
+        }
+
+        return $this;
+    }
+
+    public function removeObjetHasCollectionPoint(objet $objetHasCollectionPoint): self
+    {
+        if ($this->objet_has_collectionPoint->contains($objetHasCollectionPoint)) {
+            $this->objet_has_collectionPoint->removeElement($objetHasCollectionPoint);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|category[]
+     */
+    public function getCategoryHasCollectionPoint(): Collection
+    {
+        return $this->category_has_collectionPoint;
+    }
+
+    public function addCategoryHasCollectionPoint(category $categoryHasCollectionPoint): self
+    {
+        if (!$this->category_has_collectionPoint->contains($categoryHasCollectionPoint)) {
+            $this->category_has_collectionPoint[] = $categoryHasCollectionPoint;
+        }
+
+        return $this;
+    }
+
+    public function removeCategoryHasCollectionPoint(category $categoryHasCollectionPoint): self
+    {
+        if ($this->category_has_collectionPoint->contains($categoryHasCollectionPoint)) {
+            $this->category_has_collectionPoint->removeElement($categoryHasCollectionPoint);
+        }
 
         return $this;
     }

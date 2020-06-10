@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ObjetRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -38,6 +40,16 @@ class Objet
      * @ORM\JoinColumn(nullable=false)
      */
     private $Use_id;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=CollectionPoint::class, mappedBy="objet_has_collectionPoint")
+     */
+    private $collectionPoints;
+
+    public function __construct()
+    {
+        $this->collectionPoints = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -88,6 +100,34 @@ class Objet
     public function setUseId(?category $Use_id): self
     {
         $this->Use_id = $Use_id;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CollectionPoint[]
+     */
+    public function getCollectionPoints(): Collection
+    {
+        return $this->collectionPoints;
+    }
+
+    public function addCollectionPoint(CollectionPoint $collectionPoint): self
+    {
+        if (!$this->collectionPoints->contains($collectionPoint)) {
+            $this->collectionPoints[] = $collectionPoint;
+            $collectionPoint->addObjetHasCollectionPoint($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCollectionPoint(CollectionPoint $collectionPoint): self
+    {
+        if ($this->collectionPoints->contains($collectionPoint)) {
+            $this->collectionPoints->removeElement($collectionPoint);
+            $collectionPoint->removeObjetHasCollectionPoint($this);
+        }
 
         return $this;
     }
