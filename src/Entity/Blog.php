@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\BlogRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,22 @@ class Blog
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=tag::class, inversedBy="blogs")
+     */
+    private $blog_has_tag;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=sources::class, inversedBy="blogs")
+     */
+    private $blog_has_sources;
+
+    public function __construct()
+    {
+        $this->blog_has_tag = new ArrayCollection();
+        $this->blog_has_sources = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -86,6 +104,58 @@ class Blog
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|tag[]
+     */
+    public function getBlogHasTag(): Collection
+    {
+        return $this->blog_has_tag;
+    }
+
+    public function addBlogHasTag(tag $blogHasTag): self
+    {
+        if (!$this->blog_has_tag->contains($blogHasTag)) {
+            $this->blog_has_tag[] = $blogHasTag;
+        }
+
+        return $this;
+    }
+
+    public function removeBlogHasTag(tag $blogHasTag): self
+    {
+        if ($this->blog_has_tag->contains($blogHasTag)) {
+            $this->blog_has_tag->removeElement($blogHasTag);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|sources[]
+     */
+    public function getBlogHasSources(): Collection
+    {
+        return $this->blog_has_sources;
+    }
+
+    public function addBlogHasSource(sources $blogHasSource): self
+    {
+        if (!$this->blog_has_sources->contains($blogHasSource)) {
+            $this->blog_has_sources[] = $blogHasSource;
+        }
+
+        return $this;
+    }
+
+    public function removeBlogHasSource(sources $blogHasSource): self
+    {
+        if ($this->blog_has_sources->contains($blogHasSource)) {
+            $this->blog_has_sources->removeElement($blogHasSource);
+        }
 
         return $this;
     }

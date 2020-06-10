@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SourcesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +33,16 @@ class Sources
      * @ORM\Column(type="text", nullable=true)
      */
     private $picture;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Blog::class, mappedBy="blog_has_sources")
+     */
+    private $blogs;
+
+    public function __construct()
+    {
+        $this->blogs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -69,6 +81,34 @@ class Sources
     public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Blog[]
+     */
+    public function getBlogs(): Collection
+    {
+        return $this->blogs;
+    }
+
+    public function addBlog(Blog $blog): self
+    {
+        if (!$this->blogs->contains($blog)) {
+            $this->blogs[] = $blog;
+            $blog->addBlogHasSource($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBlog(Blog $blog): self
+    {
+        if ($this->blogs->contains($blog)) {
+            $this->blogs->removeElement($blog);
+            $blog->removeBlogHasSource($this);
+        }
 
         return $this;
     }
