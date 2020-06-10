@@ -27,6 +27,18 @@ class Objet
      */
     private $avoidProduction;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Material::class, inversedBy="objets")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Material_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=category::class, inversedBy="objets")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Use_id;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +64,30 @@ class Objet
     public function setAvoidProduction(?string $avoidProduction): self
     {
         $this->avoidProduction = $avoidProduction;
+
+        return $this;
+    }
+
+    public function getMaterialId(): ?Material
+    {
+        return $this->Material_id;
+    }
+
+    public function setMaterialId(?Material $Material_id): self
+    {
+        $this->Material_id = $Material_id;
+
+        return $this;
+    }
+
+    public function getUseId(): ?category
+    {
+        return $this->Use_id;
+    }
+
+    public function setUseId(?category $Use_id): self
+    {
+        $this->Use_id = $Use_id;
 
         return $this;
     }

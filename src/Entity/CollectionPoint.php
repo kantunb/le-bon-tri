@@ -77,6 +77,12 @@ class CollectionPoint
      */
     private $email;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=CollectionPointType::class, inversedBy="collectionPoint_id")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $collectionPointType;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -222,6 +228,18 @@ class CollectionPoint
     public function setEmail(?string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getCollectionPointType(): ?CollectionPointType
+    {
+        return $this->collectionPointType;
+    }
+
+    public function setCollectionPointType(?CollectionPointType $collectionPointType): self
+    {
+        $this->collectionPointType = $collectionPointType;
 
         return $this;
     }
