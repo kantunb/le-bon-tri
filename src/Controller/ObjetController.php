@@ -16,6 +16,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class ObjetController extends AbstractController
 {
     /**
+     * Return invalid object ordered by id desc
+     *
+     * @Route("/invalidObjects", name="objet_invalidObjects", methods={"GET"})
+     */
+    public function invalidObjects(ObjetRepository $objetRepository): Response
+    {
+        return $this->render('objet/invalidObjects.html.twig', [
+            'objets' => $objetRepository->findByInvalidObjects(),
+        ]);
+    }
+
+
+    /**
+     * 
+     *
      * @Route("/", name="objet_index", methods={"GET"})
      */
     public function index(ObjetRepository $objetRepository): Response
@@ -24,7 +39,6 @@ class ObjetController extends AbstractController
             'objets' => $objetRepository->findAll(),
         ]);
     }
-
     /**
      * @Route("/new", name="objet_new", methods={"GET","POST"})
      */
@@ -91,4 +105,6 @@ class ObjetController extends AbstractController
 
         return $this->redirectToRoute('objet_index');
     }
+
+    
 }

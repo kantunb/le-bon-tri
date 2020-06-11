@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Objet index{% endblock %}
+{% block title %}unvalid Objets {% endblock %}
 
 {% block body %}
     <h1>Objet index</h1>
@@ -25,7 +25,7 @@
                 <td>
                     <a href="{{ path('objet_show', {'id': objet.id}) }}">show</i></a>
                     <a href="{{ path('objet_edit', {'id': objet.id}) }}">edit</i></a>
-                   
+                   	{{ include('objet/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}
@@ -35,6 +35,6 @@
         {% endfor %}
         </tbody>
     </table>
- <a href="{{ path('objet_invalidObjects') }}">Objets non validés</i></a>
+
     <a href="{{ path('objet_new') }}">Ajouter un objet</a>
 {% endblock %}
