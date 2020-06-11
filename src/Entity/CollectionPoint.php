@@ -91,12 +91,12 @@ class CollectionPoint
     private $material_has_collectionPoint;
 
     /**
-     * @ORM\ManyToMany(targetEntity=objet::class, inversedBy="collectionPoints")
+     * @ORM\ManyToMany(targetEntity=Objet::class, inversedBy="collectionPoints")
      */
     private $objet_has_collectionPoint;
 
     /**
-     * @ORM\ManyToMany(targetEntity=category::class, inversedBy="collectionPoints")
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="collectionPoints")
      */
     private $category_has_collectionPoint;
 

@@ -40,12 +40,12 @@ class Blog
     private $createdAt;
 
     /**
-     * @ORM\ManyToMany(targetEntity=tag::class, inversedBy="blogs")
+     * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="blogs")
      */
     private $blog_has_tag;
 
     /**
-     * @ORM\ManyToMany(targetEntity=sources::class, inversedBy="blogs")
+     * @ORM\ManyToMany(targetEntity=Sources::class, inversedBy="blogs")
      */
     private $blog_has_sources;
 
