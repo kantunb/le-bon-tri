@@ -25,7 +25,7 @@ class CollectionPointType
     private $type;
 
     /**
-     * @ORM\OneToMany(targetEntity=collectionPoint::class, mappedBy="collectionPointType")
+     * @ORM\OneToMany(targetEntity=CollectionPoint::class, mappedBy="collectionPointType")
      */
     private $collectionPoint_id;
 

@@ -36,7 +36,7 @@ class Objet
     private $Material_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=category::class, inversedBy="objets")
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="objets")
      * @ORM\JoinColumn(nullable=false)
      */
     private $Use_id;
