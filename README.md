@@ -1,6 +1,6 @@
 # Le Bon Tri
 
-A simple website to inform people how to recycle their objects and waste.
+A simple website to inform people on how to recycle their objects and waste.
 
 ## Members :
 
