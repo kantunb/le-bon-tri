@@ -51,6 +51,7 @@ class Blog
 
     public function __construct()
     {
+        $this->setCreatedAt(new \DateTime());
         $this->blog_has_tag = new ArrayCollection();
         $this->blog_has_sources = new ArrayCollection();
     }
