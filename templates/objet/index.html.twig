@@ -9,8 +9,8 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>AvoidProduction</th>
+                <th>Nom de l'objet</th>
+                <th>Comment éviter sa production</th>
                 <th>Valide</th>
                 <th>actions</th>
             </tr>
@@ -23,8 +23,8 @@
                 <td>{{ objet.avoidProduction }}</td>
                 <td>{{ objet.valide ? 'Yes' : 'No' }}</td>
                 <td>
-                    <a href="{{ path('objet_show', {'id': objet.id}) }}">show</a>
-                    <a href="{{ path('objet_edit', {'id': objet.id}) }}">edit</a>
+                    <a href="{{ path('objet_show', {'id': objet.id}) }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                    <a href="{{ path('objet_edit', {'id': objet.id}) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}
@@ -35,5 +35,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('objet_new') }}">Create new</a>
+    <a href="{{ path('objet_new') }}">Ajouter un objet</a>
 {% endblock %}
