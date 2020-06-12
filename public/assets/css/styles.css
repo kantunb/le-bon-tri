@@ -48,7 +48,8 @@ li {
 }
 
 footer {
-    position: fixed;
+    position: absolute;
+    display: flex;
     bottom: 10px;
 }
 

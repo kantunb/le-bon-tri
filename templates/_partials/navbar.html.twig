@@ -1,37 +1,42 @@
-		<header id="header">
-			<nav class="navbar navbar-expand-lg navbar-light bg-light">
-				<a class="navbar-brand" href="#">
-					<img src="{{ asset('/assets/img/logo.png') }}">
-				</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
+<header id="header">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="{{ path('app_index') }}">
+			<img src="{{ asset('/assets/img/logo.png') }}">
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item">
-							<a class="nav-link" href="#">Recherche</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Plan</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Le recyclage</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">News</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Kids</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">A propos</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Contact</a>
-						</li>
-					</ul>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('app_index') }}">Recherche</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('map') }}">Plan</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('blog_index') }}">Le recyclage</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">News</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('app_index') }}">Kids</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('app_index') }}">A propos</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('app_index') }}">Contact</a>
+				</li>
+				{% if app.user %}
+					<li>
+						<a class="nav-link" href="/logout">Déconnexion</a>
+					</li>
+				{% endif %}
+			</ul>
 
-				</div>
-			</nav>
-		</header>
+		</div>
+	</nav>
+</header>
