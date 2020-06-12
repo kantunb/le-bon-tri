@@ -1,6 +1,6 @@
 #map {
   width: 100vw;
-  height: 70vh;
+  height: 100%;
 }
 
 button {
@@ -11,7 +11,8 @@ button {
   border-radius: 50%;
 }
 
-.localisation_container {
+#localisation_container {
   margin: 0;
   padding: 0;
+  height: 100vh;
 }
