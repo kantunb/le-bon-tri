@@ -1,25 +1,3 @@
-// ++++++++ Géolocalisation ++++++++
-
-// function geoloc() { // ou tout autre nom de fonction
-//     var geoSuccess = function (position) { // Ceci s'exécutera si l'utilisateur accepte la géolocalisation
-//         startPos = position;
-//         userlat = startPos.coords.latitude;
-//         userlon = startPos.coords.longitude;
-//         console.log("lat: " + userlat + " - lon: " + userlon);
-//     };
-//     var geoFail = function () { // Ceci s'exécutera si l'utilisateur refuse la géolocalisation
-//         console.log("refus");
-//     };
-//     // La ligne ci-dessous cherche la position de l'utilisateur et déclenchera la demande d'accord
-//     navigator.geolocation.getCurrentPosition(geoSuccess, geoFail);
-// }
-
-// let geolocation = geoloc();
-
-
-// ++++++++ Leaflet ++++++++
-
-
 var mapboxTiles = L.tileLayer(
     "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png", {
         attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>',
@@ -76,6 +54,12 @@ function showLayer() {
             categorie: "donnerie",
             url: "https://download.data.grandlyon.com/wfs/grandlyon?SERVICE=WFS&VERSION=2.0.0&request=GetFeature&typename=gip_proprete.gipdonnerie_3_0_0&outputFormat=application/json; subtype=geojson&SRSNAME=EPSG:4171&startIndex=0",
             icon: "https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
+        },
+        {
+            name: "Bornes Vêtements",
+            categorie: "borne",
+            url: assetsBaseDir + "/json/le-relais.json",
+            icon: "https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-black.png",
         }
     ];
 
@@ -156,6 +140,8 @@ function showLayer() {
 
 
     }
+
+    console.log(layers);
     // Gestion des boutons All et Remove grace aux IDs, peut être relier l'ID au layer
 
     $("#all").on("click", function () {
