@@ -2,27 +2,25 @@
 
 namespace App\Form;
 
-use App\Entity\Blog;
+use App\Entity\Tag;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class BlogType extends AbstractType
+class TagType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('short_content')
-            ->add('content')
-            ->add('createdAt')
+            ->add('name')
+            ->add('blogs')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Blog::class,
+            'data_class' => Tag::class,
         ]);
     }
 }
