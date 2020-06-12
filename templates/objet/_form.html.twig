@@ -1,0 +1,9 @@
+{{ form_start(form) }}
+{{form_row(form.name)}}
+{{form_row(form.Material_id)}}
+{{form_row(form.Use_id)}}
+
+{#{{form_row(form.valide)}}   #} 
+ {#{{ form_widget(form) }}#} 
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

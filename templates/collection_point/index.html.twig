@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CollectionPoint index{% endblock %}
+
+{% block body %}
+    <h1>CollectionPoint index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>StreetNumber</th>
+                <th>StreetName</th>
+                <th>City</th>
+                <th>ZipCode</th>
+                <th>CoordinateX</th>
+                <th>CoordinateY</th>
+                <th>OpeningTime</th>
+                <th>Review</th>
+                <th>Phone</th>
+                <th>Website</th>
+                <th>Email</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for collection_point in collection_points %}
+            <tr>
+                <td>{{ collection_point.id }}</td>
+                <td>{{ collection_point.name }}</td>
+                <td>{{ collection_point.streetNumber }}</td>
+                <td>{{ collection_point.streetName }}</td>
+                <td>{{ collection_point.city }}</td>
+                <td>{{ collection_point.zipCode }}</td>
+                <td>{{ collection_point.coordinateX }}</td>
+                <td>{{ collection_point.coordinateY }}</td>
+                <td>{{ collection_point.openingTime }}</td>
+                <td>{{ collection_point.review }}</td>
+                <td>{{ collection_point.phone }}</td>
+                <td>{{ collection_point.website }}</td>
+                <td>{{ collection_point.email }}</td>
+                <td>
+                    <a href="{{ path('collection_point_show', {'id': collection_point.id}) }}">show</a>
+                    <a href="{{ path('collection_point_edit', {'id': collection_point.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('collection_point_new') }}">Create new</a>
+{% endblock %}
