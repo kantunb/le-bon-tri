@@ -1,0 +1,101 @@
+/* General */
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Roboto&display=swap');
+body,
+html {
+    font-family: 'Roboto', sans-serif;
+    color: rgb(34, 31, 31);
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-size: 100%;
+    overflow-x: hidden;
+}
+
+h1:hover {
+    color: green;
+}
+
+p:hover {
+    color: green;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: none;
+    color: green;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+ul.icons {
+    list-style: none;
+}
+
+li {
+    display: inline-block;
+}
+
+footer {
+    position: fixed;
+    bottom: 10px;
+}
+
+.label {
+    font-family: 'Roboto', sans-serif;
+}
+
+
+/* search bar */
+
+.search {
+    width: 100%;
+    position: relative;
+    display: flex;
+}
+
+.searchTerm {
+    width: 100%;
+    border: 3px solid #1e6319;
+    border-right: none;
+    padding: 5px;
+    height: 40px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #9DBFAF;
+}
+
+.searchTerm:focus {
+    color: #1e6319;
+}
+
+.searchButton {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #1e6319;
+    background: #1e6319;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.wrap {
+    width: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

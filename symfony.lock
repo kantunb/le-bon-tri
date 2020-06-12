@@ -103,7 +103,7 @@
         "version": "2.8.0"
     },
     "php": {
-        "version": "7.4"
+        "version": "7.3"
     },
     "phpdocumentor/reflection-common": {
         "version": "2.1.0"
@@ -502,5 +502,11 @@
     },
     "webmozart/assert": {
         "version": "1.8.0"
+    },
+    "zendframework/zend-code": {
+        "version": "3.4.1"
+    },
+    "zendframework/zend-eventmanager": {
+        "version": "3.2.1"
     }
 }

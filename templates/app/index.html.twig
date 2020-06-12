@@ -1,20 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AppController!{% endblock %}
-
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<main>
+		<section id="presentation" class="container-fluid pt-3 pt-md-5">
+			<div class="container">
+				<div class="row">
+					<header class="col-12 text-center pb-3">
+						<h1 class="pb-4">L'appli pour trier comme il faut</h1>
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, aliquid iusto, animi similique fugit voluptate laborum dicta ullam itaque cumque blanditiis repellat. Itaque quas sapiente eius a esse fuga consequatur?</p>
+					</header>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Olivier/Downloads/WF3Formation/Projet de fin/le-bon-tri/src/Controller/AppController.php'|file_link(0) }}">src/Controller/AppController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Olivier/Downloads/WF3Formation/Projet de fin/le-bon-tri/templates/app/index.html.twig'|file_link(0) }}">templates/app/index.html.twig</a></code></li>
-    </ul>
-</div>
+					<div class="wrap">
+						<div class="search">
+							<input type="text" class="searchTerm" placeholder="Entrez l'article à recycler!">
+							<button type="submit" class="searchButton">
+								<a class="fa fa-search" href="searchresult.html"></a>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</section>
+
+	</main>
 {% endblock %}
