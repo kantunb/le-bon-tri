@@ -9,8 +9,12 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
+{% if consignesTriByMaterial.devenir is not null and consignesTriByMaterial.devenir is defined %}
+    <h1>Consigne de tri par Matériaux: {{ consignesTriByMaterial.devenir }}! </h1>
+{% endif %}
+{% if consignesTriByUse.devenir is not null and consignesTriByUse.devenir is defined %}
+    <h1>Consigne de tri par Usage: {{ consignesTriByUse.devenir }}! </h1>
+{% endif %}
     This friendly message is coming from:
     <ul>
         <li>Your controller at <code><a href="{{ 'C:/Users/Olivier/Downloads/WF3Formation/Projet de fin/le-bon-tri/src/Controller/ResultController.php'|file_link(0) }}">src/Controller/ResultController.php</a></code></li>
