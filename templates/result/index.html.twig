@@ -22,7 +22,7 @@
 							<h5 class="card-title">
 								Material.devenir : {{ consignesTriByMaterial.devenir }}</h5>
 							<p class="card-text">Si votre objet "get objet" est hors d'usage, géolocalisez-vous pour trouvez la déchetterie la plus proche</p>
-							<a href="#" class="btn btn-success">Géolocalisez moi!</a>
+							<a href="{{ path('map') }}" class="btn btn-success">Géolocalisez moi!</a>
 						</div>
 					</div>
 				</div>
@@ -40,7 +40,7 @@
 							<h5 class="card-title">
 								Tribyuse.devenir : {{ consignesTriByUse.devenir }}</h5>
 							<p class="card-text">Si votre objet "get objet" peut encore servir, géolocalisez-vous pour trouvez un endroit où lui donner une seconde vie</p>
-							<a href="#" class="btn btn-success">Géolocalisez moi!</a>
+							<a href="{{ path('map') }}" class="btn btn-success">Géolocalisez moi!</a>
 						</div>
 					</div>
 				</div>
