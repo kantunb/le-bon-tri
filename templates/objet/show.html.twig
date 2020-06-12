@@ -15,20 +15,21 @@
                 <th>Nom de l'objet</th>
                 <td>{{ objet.name }}</td>
             </tr>
-            <tr>
+            {#<tr>
                 <th>Comment éviter sa production</th>
                 <td>{{ objet.avoidProduction }}</td>
-            </tr>
+            </tr>#}
             <tr>
                 <th>Valide</th>
                 <td>{{ objet.valide ? 'Yes' : 'No' }}</td>
             </tr>
+          
         </tbody>
     </table>
 
     <a href="{{ path('objet_index') }}">retour à la liste</a>
 
-    <a href="{{ path('objet_edit', {'id': objet.id}) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+    <a href="{{ path('objet_edit', {'id': objet.id}) }}">Edit</a>
 
     {{ include('objet/_delete_form.html.twig') }}
 {% endblock %}

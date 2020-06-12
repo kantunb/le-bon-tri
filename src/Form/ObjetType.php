@@ -6,6 +6,7 @@ use App\Entity\Category;
 use App\Entity\CollectionPoint;
 use App\Entity\Material;
 use App\Entity\Objet;
+use Doctrine\DBAL\Types\BooleanType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -22,16 +23,19 @@ class ObjetType extends AbstractType
             ])
 
             //->add('avoidProduction')
-            ->add('valide')
+           // ->add('valide') 
+            //BooleanType::class, [
+             //   'value' => false
+            //])
             // ->add('Material_id')
             // ->add('Use_id')
             //
-            ->add('Use_id', EntityType::class, [
+            ->add('Material_id', EntityType::class, [
                 'class' => Material::class,
                 'label' => 'Matériaux',
                 'choice_label' => 'name'
             ])
-            ->add('Material_id', EntityType::class, [
+            ->add('Use_id', EntityType::class, [
                 'class' => Category::class,
                 'label' => 'Usage',
                 'choice_label' => 'name',

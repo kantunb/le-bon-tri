@@ -18,7 +18,7 @@ class ObjetController extends AbstractController
     /**
      * Return invalid object ordered by id desc
      *
-     * @Route("/invalidObjects", name="objet_invalidObjects", methods={"GET"})
+     * @Route("/invalidObjects", name="objet_invalidObjects", methods={"GET", "POST"})
      */
     public function invalidObjects(ObjetRepository $objetRepository): Response
     {
@@ -39,16 +39,70 @@ class ObjetController extends AbstractController
             'objets' => $objetRepository->findAll(),
         ]);
     }
+
+
+
+
+    /**
+     * @Route("/validateAllChecked", name="objet_validateAllChecked", methods={"GET","POST"})
+     *
+     */
+    //Récupère les objets invalides par l'id posté par le formulaire
+    //Si le input est true -> update l'objet -> valide=1
+    public function validateAllChecked(Request $request, ObjetRepository $objetRepository)
+    {
+
+        if (isset($_POST['objetValidation'])) {
+            //dd($_POST["objetValidation"]);
+            foreach ($_POST['objetValidation'] as $id) {
+
+                $arrayOfObjet = $objetRepository->findById($id);
+                foreach ($arrayOfObjet as $objet)
+                //  dd($objet);
+                $objet->setValide(1);
+                $this->getDoctrine()->getManager()->flush();
+            } 
+        }
+        if (isset($_POST['objetDelete'])) {
+            //dd($_POST["objetDelete"]);
+            foreach ($_POST['objetDelete'] as $id) {
+
+                $arrayOfObjet = $objetRepository->findById($id);
+                foreach ($arrayOfObjet as $objet){
+         // dd($objet);
+              $entityManager = $this->getDoctrine()->getManager();
+             $entityManager->remove($objet);
+             $entityManager->flush();
+         
+             //   $objet->remove();
+             //   $this->getDoctrine()->getManager()->flush();
+            } }}
+        return $this->redirectToRoute('objet_invalidObjects');
+    }
+    /**
+     * @Route("/{id}/validateObjects", name="objet_validate", methods={"GET"})
+     */
+    public function validateObject(Request $request, Objet $objet)
+    {
+
+        dd($objet);
+        $objet->setValide(1);
+        $this->getDoctrine()->getManager()->flush();
+        return $this->redirectToRoute('objet_invalidObjects');
+    }
+
     /**
      * @Route("/new", name="objet_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
         $objet = new Objet();
+
         $form = $this->createForm(ObjetType::class, $objet);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($objet);
             $entityManager->flush();
@@ -97,7 +151,7 @@ class ObjetController extends AbstractController
      */
     public function delete(Request $request, Objet $objet): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$objet->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $objet->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($objet);
             $entityManager->flush();
@@ -105,6 +159,4 @@ class ObjetController extends AbstractController
 
         return $this->redirectToRoute('objet_index');
     }
-
-    
 }

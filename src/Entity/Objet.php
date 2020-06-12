@@ -54,6 +54,7 @@ class Objet
     public function __construct()
     {
         $this->collectionPoints = new ArrayCollection();
+        $this->setValide(0);
     }
 
     public function getId(): ?int
