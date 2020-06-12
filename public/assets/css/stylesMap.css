@@ -1,0 +1,17 @@
+#map {
+  width: 100vw;
+  height: 70vh;
+}
+
+button {
+  width: 100px;
+}
+
+.pin-effect {
+  border-radius: 50%;
+}
+
+.localisation_container {
+  margin: 0;
+  padding: 0;
+}
