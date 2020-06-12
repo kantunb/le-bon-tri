@@ -1,35 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Objet{% endblock %}
+{% block title %}Objet
+{% endblock %}
 
 {% block body %}
-    <h1>Objet</h1>
+	<h1>Objet</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ objet.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom de l'objet</th>
-                <td>{{ objet.name }}</td>
-            </tr>
-            {#<tr>
-                <th>Comment éviter sa production</th>
-                <td>{{ objet.avoidProduction }}</td>
-            </tr>#}
-            <tr>
-                <th>Valide</th>
-                <td>{{ objet.valide ? 'Yes' : 'No' }}</td>
-            </tr>
-          
-        </tbody>
-    </table>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ objet.id }}</td>
+			</tr>
+			<tr>
+				<th>Nom de l'objet</th>
+				<td>{{ objet.name }}</td>
+			</tr>
+			<tr>
+				<th>Matériaux</th>
+				<td>{{ objet.materialId.name }}</td>
 
-    <a href="{{ path('objet_index') }}">retour à la liste</a>
+			</tr>
+			<tr>
+				<th>Usage</th>
+				<td>{{ objet.useId.name }}</td>
+			</tr>
+			{#<tr>
+			                <th>Comment éviter sa production</th>
+			                <td>{{ objet.avoidProduction }}</td>
+			            </tr>#}
+			<tr>
+				<th>Valide</th>
+				<td>{{ objet.valide ? 'Yes' : 'No' }}</td>
+			</tr>
 
-    <a href="{{ path('objet_edit', {'id': objet.id}) }}">Edit</a>
+		</tbody>
+	</table>
 
-    {{ include('objet/_delete_form.html.twig') }}
+	<a href="{{ path('objet_index') }}">retour à la liste</a>
+
+	<a href="{{ path('objet_edit', {'id': objet.id}) }}">Edit</a>
+
+	{{ include('objet/_delete_form.html.twig') }}
 {% endblock %}

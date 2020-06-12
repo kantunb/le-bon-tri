@@ -10,7 +10,9 @@
             <tr>
                 <th>Id</th>
                 <th>Nom de l'objet</th>
-                <th>Comment éviter sa production</th>
+                {#<th>Comment éviter sa production</th>#}
+                 <th>Matériaux</th>
+               <th>Usage</th>
                 <th>Valide</th>
                 <th>actions</th>
             </tr>
@@ -20,7 +22,9 @@
             <tr>
                 <td>{{ objet.id }}</td>
                 <td>{{ objet.name }}</td>
-                <td>{{ objet.avoidProduction }}</td>
+                 <td>{{ objet.materialId.name }}</td>
+                <td>{{ objet.useId.name }}</td>
+               {# <td>{{ objet.avoidProduction }}</td>#}
                 <td>{{ objet.valide ? 'Yes' : 'No' }}</td>
                 <td>
                     <a href="{{ path('objet_show', {'id': objet.id}) }}">show</i></a>
