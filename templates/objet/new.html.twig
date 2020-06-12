@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvel objet{% endblock %}
+
+{% block body %}
+    <h1>Créer un nouvel objet</h1>
+
+    {{ include('objet/_form.html.twig') }}
+
+    <a href="{{ path('objet_index') }}">Retour à la liste</a>
+{% endblock %}

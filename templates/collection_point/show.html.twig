@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CollectionPoint{% endblock %}
+
+{% block body %}
+    <h1>CollectionPoint</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ collection_point.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ collection_point.name }}</td>
+            </tr>
+            <tr>
+                <th>StreetNumber</th>
+                <td>{{ collection_point.streetNumber }}</td>
+            </tr>
+            <tr>
+                <th>StreetName</th>
+                <td>{{ collection_point.streetName }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ collection_point.city }}</td>
+            </tr>
+            <tr>
+                <th>ZipCode</th>
+                <td>{{ collection_point.zipCode }}</td>
+            </tr>
+            <tr>
+                <th>CoordinateX</th>
+                <td>{{ collection_point.coordinateX }}</td>
+            </tr>
+            <tr>
+                <th>CoordinateY</th>
+                <td>{{ collection_point.coordinateY }}</td>
+            </tr>
+            <tr>
+                <th>OpeningTime</th>
+                <td>{{ collection_point.openingTime }}</td>
+            </tr>
+            <tr>
+                <th>Review</th>
+                <td>{{ collection_point.review }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ collection_point.phone }}</td>
+            </tr>
+            <tr>
+                <th>Website</th>
+                <td>{{ collection_point.website }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ collection_point.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('collection_point_index') }}">back to list</a>
+
+    <a href="{{ path('collection_point_edit', {'id': collection_point.id}) }}">edit</a>
+
+    {{ include('collection_point/_delete_form.html.twig') }}
+{% endblock %}

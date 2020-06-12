@@ -47,4 +47,15 @@ class ObjetRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findByInvalidObjects()
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.valide = false')
+            ->orderBy('a.id', 'DESC')
+            ->setMaxResults(100)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Objet index{% endblock %}
+
+{% block body %}
+    <h1>Objet index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom de l'objet</th>
+                {#<th>Comment éviter sa production</th>#}
+                 <th>Matériaux</th>
+               <th>Usage</th>
+                <th>Valide</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for objet in objets %}
+            <tr>
+                <td>{{ objet.id }}</td>
+                <td>{{ objet.name }}</td>
+                 <td>{{ objet.materialId.name }}</td>
+                <td>{{ objet.useId.name }}</td>
+               {# <td>{{ objet.avoidProduction }}</td>#}
+                <td>{{ objet.valide ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('objet_show', {'id': objet.id}) }}">show</i></a>
+                    <a href="{{ path('objet_edit', {'id': objet.id}) }}">edit</i></a>
+                   
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+ <a href="{{ path('objet_invalidObjects') }}">Objets non validés</i></a>
+    <a href="{{ path('objet_new') }}">Ajouter un objet</a>
+{% endblock %}
