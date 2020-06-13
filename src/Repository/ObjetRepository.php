@@ -58,4 +58,17 @@ class ObjetRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+/**
+ *  @return Objet[] Retourne résultat de la recherche
+*/
+    public function findBySearchString($data){
+        return $this->createQueryBuilder('b')
+        ->andWhere('b.name LIKE :objetName')
+       // ->orderBy('a.name', 'DESC')
+        ->setParameter('objetName', '%'.$data.'%')
+        ->getQuery()
+        ->getResult()
+    ;
+    }
+    
 }
