@@ -41,77 +41,119 @@ class ObjetController extends AbstractController
     }
 
 
-
-
     /**
      * @Route("/validateAllChecked", name="objet_validateAllChecked", methods={"GET","POST"})
      *
      */
-    //Récupère les objets invalides par l'id posté par le formulaire
-    //Si le input est true -> update l'objet -> valide=1
     public function validateAllChecked(Request $request, ObjetRepository $objetRepository)
+
     {
+        $objets= $objetRepository->findAll();
+        //dd($objet);
 
-        if (isset($_POST['objetValidation'])) {
-            //dd($_POST["objetValidation"]);
-            foreach ($_POST['objetValidation'] as $id) {
+        if (isset($_POST['objetValidation']) && isset($_POST['objetDelete']) && !empty(array_intersect($_POST['objetValidation'], $_POST['objetDelete']))) {
 
-                $arrayOfObjet = $objetRepository->findById($id);
-                foreach ($arrayOfObjet as $objet)
-                //  dd($objet);
-                $objet->setValide(1);
-                $this->getDoctrine()->getManager()->flush();
-            } 
+            echo '<script language="javascript">';
+            echo 'alert("Veuillez cocher une seule case par objet")';
+            echo '</script>';
+        } 
+        
+        else {
+
+            if (isset($_POST['objetValidation'])) {
+               // dd($_POST["objetValidation"]);
+
+                foreach ($_POST['objetValidation'] as $id) {
+
+                    $arrayOfNewObjet = $objetRepository->findById($id);
+                   // dd($arrayOfNewObjet);
+    
+                        foreach ($arrayOfNewObjet as $newObjet) {
+                           // dd($newObjet);                            
+                                $newObjet->setValide(1);
+                                $this->getDoctrine()->getManager()->flush();                       
+                    }
+                }
+            }
+
+            if (isset($_POST['objetDelete'])) {
+                //dd($_POST["objetDelete"]);
+
+                foreach ($_POST['objetDelete'] as $id) {
+
+                    $arrayOfNewObjet = $objetRepository->findById($id);
+
+                    foreach ($arrayOfNewObjet as $newObjet) {
+                        // dd($objet);
+                        $entityManager = $this->getDoctrine()->getManager();
+                        $entityManager->remove($newObjet);
+                        $entityManager->flush();
+                    }
+                }
+            }
         }
-        if (isset($_POST['objetDelete'])) {
-            //dd($_POST["objetDelete"]);
-            foreach ($_POST['objetDelete'] as $id) {
-
-                $arrayOfObjet = $objetRepository->findById($id);
-                foreach ($arrayOfObjet as $objet){
-         // dd($objet);
-              $entityManager = $this->getDoctrine()->getManager();
-             $entityManager->remove($objet);
-             $entityManager->flush();
-         
-             //   $objet->remove();
-             //   $this->getDoctrine()->getManager()->flush();
-            } }}
         return $this->redirectToRoute('objet_invalidObjects');
     }
+
+
+
+
     /**
      * @Route("/{id}/validateObjects", name="objet_validate", methods={"GET"})
      */
     public function validateObject(Request $request, Objet $objet)
     {
 
-        dd($objet);
+       // dd($objet);
         $objet->setValide(1);
         $this->getDoctrine()->getManager()->flush();
+
         return $this->redirectToRoute('objet_invalidObjects');
     }
 
     /**
      * @Route("/new", name="objet_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, ObjetRepository $objetRepository): Response
     {
-        $objet = new Objet();
+        $newObjet = new Objet();
 
-        $form = $this->createForm(ObjetType::class, $objet);
+        $objets = $objetRepository->findAll();
+
+        $form = $this->createForm(ObjetType::class, $newObjet);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
+               
+            foreach ($objets as $objet) {
+               
+                $name= $objet->getName();
+                $materialId= $objet->getMaterialId();
+                $useId= $objet->getUseId();
+                $newName= $newObjet->getName();
+                $newMaterialId=$newObjet->getMaterialId();
+                $newUseId=$newObjet->getUseId();
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($objet);
-            $entityManager->flush();
+                   
+                if($name==$newName && $materialId==$newMaterialId && $useId==$newUseId){
+                     
+                    echo "Cet objet existe déjà";
+                    //dd($name);
+                }
+                                    
+                else{
 
-            return $this->redirectToRoute('objet_index');
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $entityManager->persist($newObjet);
+                    $entityManager->flush();
+
+                    return $this->redirectToRoute('objet_index');
+                }
+            }
         }
 
         return $this->render('objet/new.html.twig', [
-            'objet' => $objet,
+            'objet' => $newObjet,
             'form' => $form->createView(),
         ]);
     }
