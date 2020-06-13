@@ -26,11 +26,11 @@
                 <td>{{ objet.name }}</td>
                 <td>{{ objet.materialId.name }}</td>
                 <td>{{ objet.useId.name }}</td>
-                <td>{{ objet.avoidProduction }}</td>
+                {# <td>{{ objet.avoidProduction }}</td> #}
                 <td>{{ objet.valide ? 'Yes' : 'No' }}</td>
-                <td>{#<a href="{{ path('objet_validate', {'id': objet.id}) }}">#}<input type="checkbox" name="objetValidation[]" value={{ objet.id }} id="">
+                <td>{#<a href="{{ path('objet_validate', {'id': objet.id}) }}">#}<input type="checkbox" name="objetValidation[]" value={{ objet.id }} id="objetValidation{{ objet.id }}">
                {# Valider ces objets</a>#}</td>
-                <td>{#<a href="{{ path('objet_delete', {'id': objet.id}) }}">#}<input type="checkbox" name="objetDelete[]" value={{ objet.id }} id="">
+                <td>{#<a href="{{ path('objet_delete', {'id': objet.id}) }}">#}<input type="checkbox" name="objetDelete[]" value={{ objet.id }} id="objetDelete{{ objet.id }}">
                {# Supprimer tout</a>#}</td>
                 <td>
                     <a href="{{ path('objet_show', {'id': objet.id}) }}">show</a>
@@ -53,3 +53,11 @@
     <a href="{{ path('objet_new') }}">Ajouter un objet</a>
     
 {% endblock %}
+
+{% block javascripts %}
+	<script>
+		var assetsBaseDir = "{{ asset('assets/') }}"
+	</script>
+    <script src="{{ asset('/assets/js/invalidObjects.js') }}"></script>
+{% endblock %}
+
