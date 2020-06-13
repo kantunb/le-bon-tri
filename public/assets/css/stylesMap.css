@@ -1,5 +1,5 @@
 #map {
-  width: 100vw;
+  width: 100%;
   height: 100%;
 }
 
@@ -14,5 +14,7 @@ button {
 #localisation_container {
   margin: 0;
   padding: 0;
-  height: 100vh;
+  height: 70vh;
+  width: 70vw;
+  margin: auto;
 }

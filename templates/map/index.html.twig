@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block css %}
+
+	<link rel="stylesheet" href="{{ asset('/assets/plugins/dist/MarkerCluster.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('/assets/plugins/dist/MarkerCluster.Default.css') }}"/>
+	<link rel="stylesheet" href="https://d19vzq90twjlae.cloudfront.net/leaflet-0.7/leaflet.css"/>
 	<link rel="stylesheet" href="https://d19vzq90twjlae.cloudfront.net/leaflet-0.7/leaflet.css"/>
 	<link rel="stylesheet" href="{{ asset('/assets/css/stylesMap.css') }}">
 {% endblock %}
@@ -27,6 +31,7 @@
 		var assetsBaseDir = "{{ asset('assets/') }}"
 	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="{{ asset('/assets/plugins/dist/leaflet.markercluster.js') }}"></script>
 	<script src="https://d19vzq90twjlae.cloudfront.net/leaflet-0.7.3/leaflet.js"></script>
 	<script src="https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.js"></script>
 	<script src="{{ asset('/assets/js/scriptsMap.js') }}"></script>
