@@ -48,30 +48,30 @@ class ObjetController extends AbstractController
     public function validateAllChecked(Request $request, ObjetRepository $objetRepository)
 
     {
-        $objets= $objetRepository->findAll();
+        $objets = $objetRepository->findAll();
         //dd($objet);
 
         if (isset($_POST['objetValidation']) && isset($_POST['objetDelete']) && !empty(array_intersect($_POST['objetValidation'], $_POST['objetDelete']))) {
 
-            echo '<script language="javascript">';
-            echo 'alert("Veuillez cocher une seule case par objet")';
-            echo '</script>';
-        } 
-        
-        else {
+            $this->addFlash(
+                'danger',
+                "Attention à ne cocher qu'une case par objet: valider ou supprimer!"
+            );
+            
+        } else {
 
             if (isset($_POST['objetValidation'])) {
-               // dd($_POST["objetValidation"]);
+                // dd($_POST["objetValidation"]);
 
                 foreach ($_POST['objetValidation'] as $id) {
 
                     $arrayOfNewObjet = $objetRepository->findById($id);
-                   // dd($arrayOfNewObjet);
-    
-                        foreach ($arrayOfNewObjet as $newObjet) {
-                           // dd($newObjet);                            
-                                $newObjet->setValide(1);
-                                $this->getDoctrine()->getManager()->flush();                       
+                    // dd($arrayOfNewObjet);
+
+                    foreach ($arrayOfNewObjet as $newObjet) {
+                        // dd($newObjet);                            
+                        $newObjet->setValide(1);
+                        $this->getDoctrine()->getManager()->flush();
                     }
                 }
             }
@@ -104,7 +104,7 @@ class ObjetController extends AbstractController
     public function validateObject(Request $request, Objet $objet)
     {
 
-       // dd($objet);
+        // dd($objet);
         $objet->setValide(1);
         $this->getDoctrine()->getManager()->flush();
 
@@ -122,34 +122,42 @@ class ObjetController extends AbstractController
 
         $form = $this->createForm(ObjetType::class, $newObjet);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
-               
+            $newName = $newObjet->getName();
+            $newUseId = $newObjet->getUseId();
+            $newMaterialId = $newObjet->getMaterialId();
+            //dd($newName);
             foreach ($objets as $objet) {
-               
-                $name= $objet->getName();
-                $materialId= $objet->getMaterialId();
-                $useId= $objet->getUseId();
-                $newName= $newObjet->getName();
-                $newMaterialId=$newObjet->getMaterialId();
-                $newUseId=$newObjet->getUseId();
 
-                   
-                if($name==$newName && $materialId==$newMaterialId && $useId==$newUseId){
-                     
-                    echo "Cet objet existe déjà";
-                    //dd($name);
-                }
-                                    
-                else{
+                $name = $objet->getName();
+                $materialId = $objet->getMaterialId();
+                $useId = $objet->getUseId();
 
-                    $entityManager = $this->getDoctrine()->getManager();
-                    $entityManager->persist($newObjet);
-                    $entityManager->flush();
+                // dd($newName, $newMaterialId, $materialId);
 
-                    return $this->redirectToRoute('objet_index');
+
+                if ($name == $newName && $materialId == $newMaterialId && $useId == $newUseId) {
+
+                    $this->addFlash(
+                        'invalid',
+                        "Cet objet existe déjà"
+                    );
+
+                    return $this->redirectToRoute('objet_new');
                 }
             }
+
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($newObjet);
+            $entityManager->flush();
+            $this->addFlash(
+                'success',
+                "Votre objet a bien été enregistré. Il sera validé par nos équipes dès que possible."
+            );
+
+            return $this->redirectToRoute('app_index');
         }
 
         return $this->render('objet/new.html.twig', [

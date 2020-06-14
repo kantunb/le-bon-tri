@@ -5,6 +5,12 @@
 
 {% block body %}
 <h1>Objet index</h1>
+
+{% for message in app.flashes('danger') %}
+		<div class="alert alert-danger">
+			{{ message }}
+		</div>
+	{% endfor %}
 <form action="{{ path('objet_validateAllChecked') }}" method="post">
     <table class="table">
         <thead>
