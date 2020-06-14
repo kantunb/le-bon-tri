@@ -134,21 +134,21 @@ window.onload = function () {
                 // Gestion des boutons grace aux IDs, peut être relier l'ID au layer
 
                 $(`#${idCategory}`).click(function () {
-                    const otherCategoriesLayers = layers.filter(function (e) {
-                        return e != markersClusterCategory;
-                    })
-                    for (otherCategoriesLayer of otherCategoriesLayers) {
-                        map.removeLayer(otherCategoriesLayer);
+                    if (map.hasLayer(markersClusterCategory)) {
+                        $(this).removeClass('selected');
+                        map.removeLayer(markersClusterCategory);
+                    } else {
+                        map.addLayer(markersClusterCategory);
+                        $(this).addClass('selected');
                     }
-                    map.addLayer(markersClusterCategory);
                 })
+                console.log(layers);
 
             });
 
 
         }
 
-        console.log(layers);
         // Gestion des boutons All et Remove grace aux IDs, peut être relier l'ID au layer
 
         $("#all").on("click", function () {
