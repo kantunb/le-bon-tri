@@ -12,7 +12,7 @@ window.onload = function () {
         .setView([45.7673014, 4.8315513], 12)
         .locate({
             setView: true,
-            maxZoom: 16
+            maxZoom: 17
         });
 
     function onLocationFound(e) {
@@ -39,9 +39,38 @@ window.onload = function () {
         alert(e.message);
     }
 
-    map.on('locationerror', onLocationError);
+    // map.on('locationerror', onLocationError);
 
     showLayers();
+
+    // Geocoding by adress
+
+    const searchGeocoder = L.Control.geocoder({
+            defaultMarkGeocode: false,
+            position: "topleft",
+            placeholder: "Code postal ou adresse...",
+        })
+        .on('markgeocode', function (e) {
+            map.flyTo(e.geocode.center, 16);
+        })
+        .addTo(map);
+
+    // Geocoding by button
+
+    var centerButton = L.control({
+        position: 'topleft'
+    });
+
+    centerButton.onAdd = function (map) {
+            this._div = L.DomUtil.create('div', 'leaflet-control-geocoder leaflet-bar leaflet-control');
+            var img_log = "<button id=\"centerButton\"class=\"leaflet-control-geocoder-icon\"></button>";
+            this._div.innerHTML = img_log;
+            return this._div;
+        }
+        
+    centerButton.addTo(map);
+
+    $("#centerButton").on("click", /*TODO : add function*/)
 
     function showLayers() {
 
@@ -124,17 +153,22 @@ window.onload = function () {
 
                 markersClusterCategory.addTo(map);
 
-                // Créer automatiquement un bouton avec un id qui utilise lyonJSON.categorie et le texte lyonJSON.name
+                // Création des boutons avec un id qui utilise lyonJSON.categorie et le texte lyonJSON.name
 
                 const buttonsContainer = document.getElementById('buttonsContainer');
 
-
-                const buttonCategory = document.createElement("BUTTON"); // Créer un élément <button>
+                const buttonCategory = document.createElement('BUTTON'); // Créer un élément <button>
                 const labelButton = document.createTextNode(lyonJSON.name); // Créer un noeud textuel
+                const checkboxCategory = document.createElement('input'); // Créer un élément <button>
+                checkboxCategory.type = 'checkbox';
+
                 buttonCategory.appendChild(labelButton); // Ajouter le texte au bouton
                 buttonsContainer.appendChild(buttonCategory);
+                buttonCategory.appendChild(checkboxCategory);
                 buttonCategory.id = idCategory;
-                buttonCategory.className = "mapButton btn m-1 btn-success btn-sm";
+                buttonCategory.className = "mapButton";
+                checkboxCategory.className = "mapButton";
+                checkboxCategory.checked = true;
 
                 layers.push(markersClusterCategory);
 
@@ -142,11 +176,11 @@ window.onload = function () {
 
                 $(`#${idCategory}`).click(function () {
                     if (map.hasLayer(markersClusterCategory)) {
-                        $(this).removeClass('btn-success');
+                        $(this).children().prop("checked", false)
                         map.removeLayer(markersClusterCategory);
                     } else {
                         map.addLayer(markersClusterCategory);
-                        $(this).addClass('btn-success');
+                        $(this).children().prop("checked", true)
                     }
                 })
             });
@@ -166,21 +200,22 @@ window.onload = function () {
         //         map.removeLayer(layer)
         //     }
         // });
-
+        
         $("#addAll").click(function () {
             for (const layer of layers) {
                 map.addLayer(layer);
-                $(".mapButton").addClass('btn-success');
+                $(".mapButton").prop("checked", true);
             }
         })
+
+
 
         $("#removeAll").click(function () {
             for (const layer of layers) {
                 map.removeLayer(layer);
-                $(".mapButton").removeClass('btn-success');
+                $(".mapButton").prop("checked", false);
             }
         })
-
 
     }
 }
