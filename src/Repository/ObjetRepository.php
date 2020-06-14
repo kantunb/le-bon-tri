@@ -55,7 +55,18 @@ class ObjetRepository extends ServiceEntityRepository
             ->orderBy('a.id', 'DESC')
             ->setMaxResults(100)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
+    }
+    /**
+     *  @return Objet[] Retourne résultat de la recherche
+     */
+    public function findBySearchString($data)
+    {
+        return $this->createQueryBuilder('b')
+            ->andWhere('b.name LIKE :objetName')
+            ->orderBy('b.name', 'ASC')
+            ->setParameter('objetName', $data . '%')
+            ->getQuery()
+            ->getResult();
     }
 }

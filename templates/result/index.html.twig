@@ -10,9 +10,7 @@
 		<div class="row">
 
 			{% if consignesTriByMaterial.devenir is not null and consignesTriByMaterial.devenir is defined %}
-				
-			{% endif %}
-			<div class="card mb-3" style="max-width: 540px;">
+				<div class="card mb-3" style="max-width: 540px;">
 				<div class="row no-gutters">
 					<div class="col-md-4">
 						<img src="{{ asset('/assets/img/dechetterie.jpeg') }}" class="card-img" alt="...">
@@ -20,16 +18,18 @@
 					<div class="col-md-8">
 						<div class="card-body">
 							<h5 class="card-title">
-								Material.devenir : {{ consignesTriByMaterial.devenir }}</h5>
-							<p class="card-text">Si votre objet "get objet" est hors d'usage, géolocalisez-vous pour trouvez la déchetterie la plus proche</p>
+								Consigne de tri: {{ consignesTriByMaterial.devenir }}</h5>
+							<p class="card-text">Si votre {{names}} en {{consignesTriByMaterial.name}} est hors d'usage, géolocalisez-vous pour trouvez la déchetterie la plus proche</p>
 							<a href="{{ path('map') }}" class="btn btn-success">Géolocalisez moi!</a>
 						</div>
 					</div>
 				</div>
 			</div>
+			{% endif %}
+			
 			{% if consignesTriByUse.devenir is not null and consignesTriByUse.devenir is defined %}
 								
-			{% endif %}
+			
 			<div class="card mb-3" style="max-width: 540px;">
 				<div class="row no-gutters">
 					<div class="col-md-4">
@@ -38,8 +38,8 @@
 					<div class="col-md-8">
 						<div class="card-body">
 							<h5 class="card-title">
-								Tribyuse.devenir : {{ consignesTriByUse.devenir }}</h5>
-							<p class="card-text">Si votre objet "get objet" peut encore servir, géolocalisez-vous pour trouvez un endroit où lui donner une seconde vie</p>
+								Et si on valorisait autrement : {{ consignesTriByUse.devenir }}</h5>
+							<p class="card-text">Si votre {{names}} peut encore servir, géolocalisez-vous pour trouvez un endroit où lui donner une seconde vie</p>
 							<a href="{{ path('map') }}" class="btn btn-success">Géolocalisez moi!</a>
 						</div>
 					</div>
@@ -47,7 +47,7 @@
 			</div>
 		</div>
 	</div>
-
+{% endif %}
 
 	{# This friendly message is coming from:
 	    <ul>

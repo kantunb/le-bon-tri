@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
+use App\Entity\Material;
 use App\Entity\Objet;
 use App\Form\AppType;
 use App\Repository\ObjetRepository;
@@ -18,60 +20,73 @@ class AppController extends AbstractController
      * @Route("/", name="app_index")
      */
     public function index(ObjetRepository $objetRepository)
-    {   
-      // $objet = $this->getDoctrine()->getRepository(Objet::class)->findAll();
-      
+    {
         return $this->render('app/index.html.twig', [
             'controller_name' => 'AppController',
             'objets' => $objetRepository->findAll()
-            //json_encode($objet)
+
         ]);
     }
 
-/**
- *@Route("/ajaxsearch", name="app_json")
- */
-public function jsonOfAllObjects(Request $request){
-   $search = $request->query->get('name');
-
-    $objets = $this->getDoctrine()->getRepository(Objet::class)->findBy($search);
- //   dd($objets);
+    /**
+     *@Route("/ajaxsearch", name="app_json")
+     */
+    public function jsonOfAllObjects(Request $request)
+    {
+        //récupère la valeur du champ au fur et à mesure de la frappe
+        $search = $request->query->get('name');
+        //génère les résultats de la recherche au fur et à mesure de la frappe en fonction du nom de l'objet
+        $objets = $this->getDoctrine()->getRepository(Objet::class)->findBySearchString($search);
+        //prépare le tableau de résultat
         $objetsList = [];
-    
-foreach($objets as $objet){
-        $objet =['name' => $objet->getName()];
-        $objetsList[] = $objet;
-    }
-    return new JsonResponse($objetsList);
-}
+        //Remplit le tableau de tous les objets compatibles avec la frappe
+        foreach ($objets as $objet) {
+            $name= $objet->getName();
+            $material =  $objet->getMaterialId()->getName();
+            $category = $objet->getUseId()->getName();
+            $concat = $name . " (".$material. ", ".$category.")";
+            $objet =    [
+                'name' => $concat,
+            ];
+            $objetsList[] = $objet;
+        }
 
-/**
-* @Route("/search", name="app_search", methods={"GET"})
-* @param Request $request
-*/
-public function search(Request $request) {
-    // On récupère l'input de recherche du formulaire, le name=objetName
-    $searchObjet = $request->query->get('objetName');
-
-    // On recherche un objet par son nom
-    $objet = $this->getDoctrine()->getRepository(Objet::class)->findOneBy(["name" => $searchObjet]);
-
-
-    // Si un objet est trouvé
-    if ($objet) {
-
-        $consignesTriByMaterial = $objet->getMaterialId();
-        $consignesTriByUse = $objet->getUseId();
-
-        return $this->render('result/index.html.twig', [
-            'consignesTriByMaterial' => $consignesTriByMaterial,
-            'consignesTriByUse' => $consignesTriByUse,
-        ]);
+        //dd($objetsList);
+        //dd(new JsonResponse($objetsList));
+        //retourne au format json le tableau de résultat
+       
+        return new JsonResponse($objetsList);
+       
     }
 
-    // Sinon, on redirige en page d'accueil
-    return $this->redirectToRoute("app_index");
-}
+    /**
+     * @Route("/search", name="app_search", methods={"GET"})
+     * @param Request $request
+     */
+    public function search(Request $request)
+    {
+        // On récupère l'input de recherche du formulaire, le name=objetName
+        $searchObjet = $request->query->get('objetName');
+
+        // On recherche un objet par son nom
+        $objet = $this->getDoctrine()->getRepository(Objet::class)->findOneBy(["name" => $searchObjet]);
 
 
+        // Si un objet est trouvé
+        if ($objet) {
+
+            $consignesTriByMaterial = $objet->getMaterialId();
+            $consignesTriByUse = $objet->getUseId();
+            $names = $objet->getName();
+
+            return $this->render('result/index.html.twig', [
+                'consignesTriByMaterial' => $consignesTriByMaterial,
+                'consignesTriByUse' => $consignesTriByUse,
+                'names' => $names
+            ]);
+        }
+
+        // Sinon, on redirige en page d'accueil
+        return $this->redirectToRoute("app_index");
+    }
 }

@@ -1,18 +1,43 @@
 #map {
-  width: 100vw;
+  width: 100%;
   height: 100%;
+  position: relative;
 }
+
+#localisationContainer {
+  margin: 0;
+  padding: 0;
+  height: 70vh;
+  width: 70vw;
+  margin: auto;
+}
+
+#buttonsContainer {
+  position: absolute;
+  top: 2em;
+  right: 2em;
+  display: flex;
+  flex-direction: column;
+  z-index: 800;
+}
+
 
 button {
-  width: 100px;
+  width: auto;
 }
 
-.pin-effect {
+button .selected {
+  background-color: blue;
+}
+.pinGeolocalisation {
+  background-color: rgb(72, 142, 241);
+  border: 2px solid white;
   border-radius: 50%;
 }
 
-#localisation_container {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
+.pinGeolocalisationBack {
+  background-color: rgba(72, 142, 241, 0.3);
+  border: none;
+  border-radius: 50%;
 }
+
