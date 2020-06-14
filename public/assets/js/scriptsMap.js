@@ -16,14 +16,21 @@ window.onload = function () {
         });
 
     function onLocationFound(e) {
-        const localisationIcon = L.icon({
-            iconUrl: 'https://media.giphy.com/media/AwoDg0wJImOjK/giphy.gif',
-            iconSize: [60, 60],
-            className: 'pin-effect'
+        const localisationIconBack = L.divIcon({
+            className: 'pinGeolocalisationBack',
+            iconSize: [24, 24]
+        })
+        L.marker(e.latlng, {
+            icon: localisationIconBack,
+        }).addTo(map)
+        const localisationIcon = L.divIcon({
+            className: 'pinGeolocalisation',
+            iconSize: [14, 14]
         })
         L.marker(e.latlng, {
             icon: localisationIcon
         }).addTo(map)
+
     }
 
     map.on('locationfound', onLocationFound);
@@ -127,7 +134,7 @@ window.onload = function () {
                 buttonCategory.appendChild(labelButton); // Ajouter le texte au bouton
                 buttonsDiv.appendChild(buttonCategory);
                 buttonCategory.id = idCategory;
-                buttonCategory.className = "btn btn-success m-1";
+                buttonCategory.className = "btn btn-success m-1 selected";
 
                 layers.push(markersClusterCategory);
 

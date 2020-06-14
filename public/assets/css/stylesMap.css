@@ -1,17 +1,26 @@
 #map {
   width: 100%;
   height: 100%;
+  position: relative;
 }
 
 button {
-  width: 100px;
+  width: auto;
 }
 
-.pin-effect {
+.pinGeolocalisation {
+  background-color: rgb(72, 142, 241);
+  border: 2px solid white;
   border-radius: 50%;
 }
 
-#localisation_container {
+.pinGeolocalisationBack {
+  background-color: rgba(72, 142, 241, 0.3);
+  border: none;
+  border-radius: 50%;
+}
+
+#localisationContainer {
   margin: 0;
   padding: 0;
   height: 70vh;
