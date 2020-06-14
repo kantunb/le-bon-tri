@@ -47,12 +47,10 @@ li {
     display: inline-block;
 }
 
-
-/* footer {
-    position: absolute;
-    display: outside;
-    bottom: 100px;
-} */
+footer {
+    position: fixed;
+    bottom: 10px;
+}
 
 .label {
     font-family: 'Roboto', sans-serif;
