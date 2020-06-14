@@ -126,15 +126,15 @@ window.onload = function () {
 
                 // Créer automatiquement un bouton avec un id qui utilise lyonJSON.categorie et le texte lyonJSON.name
 
-                const buttonsDiv = document.getElementById('buttons');
+                const buttonsContainer = document.getElementById('buttonsContainer');
 
 
                 const buttonCategory = document.createElement("BUTTON"); // Créer un élément <button>
                 const labelButton = document.createTextNode(lyonJSON.name); // Créer un noeud textuel
                 buttonCategory.appendChild(labelButton); // Ajouter le texte au bouton
-                buttonsDiv.appendChild(buttonCategory);
+                buttonsContainer.appendChild(buttonCategory);
                 buttonCategory.id = idCategory;
-                buttonCategory.className = "btn btn-success m-1 selected";
+                buttonCategory.className = "mapButton btn m-1 btn-success btn-sm";
 
                 layers.push(markersClusterCategory);
 
@@ -142,34 +142,45 @@ window.onload = function () {
 
                 $(`#${idCategory}`).click(function () {
                     if (map.hasLayer(markersClusterCategory)) {
-                        $(this).removeClass('selected');
+                        $(this).removeClass('btn-success');
                         map.removeLayer(markersClusterCategory);
                     } else {
                         map.addLayer(markersClusterCategory);
-                        $(this).addClass('selected');
+                        $(this).addClass('btn-success');
                     }
                 })
-                console.log(layers);
-
             });
-
-
         }
 
         // Gestion des boutons All et Remove grace aux IDs, peut être relier l'ID au layer
 
-        $("#all").on("click", function () {
-            for (layer of layers) {
-                map.addLayer(layer)
-            }
-        });
+        // $("#all").on("click", function () {
+        //     for (layer of layers) {
+        //         map.addLayer(layer)
+        //     }
+        // });
 
 
-        $("#remove").on("click", function () {
+        // $("#remove").on("click", function () {
+        //     for (const layer of layers) {
+        //         map.removeLayer(layer)
+        //     }
+        // });
+
+        $("#addAll").click(function () {
             for (const layer of layers) {
-                map.removeLayer(layer)
+                map.addLayer(layer);
+                $(".mapButton").addClass('btn-success');
             }
-        });
+        })
+
+        $("#removeAll").click(function () {
+            for (const layer of layers) {
+                map.removeLayer(layer);
+                $(".mapButton").removeClass('btn-success');
+            }
+        })
+
 
     }
 }

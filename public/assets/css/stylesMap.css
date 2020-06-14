@@ -4,10 +4,31 @@
   position: relative;
 }
 
+#localisationContainer {
+  margin: 0;
+  padding: 0;
+  height: 70vh;
+  width: 70vw;
+  margin: auto;
+}
+
+#buttonsContainer {
+  position: absolute;
+  top: 2em;
+  right: 2em;
+  display: flex;
+  flex-direction: column;
+  z-index: 800;
+}
+
+
 button {
   width: auto;
 }
 
+button .selected {
+  background-color: blue;
+}
 .pinGeolocalisation {
   background-color: rgb(72, 142, 241);
   border: 2px solid white;
@@ -20,10 +41,3 @@ button {
   border-radius: 50%;
 }
 
-#localisationContainer {
-  margin: 0;
-  padding: 0;
-  height: 70vh;
-  width: 70vw;
-  margin: auto;
-}
