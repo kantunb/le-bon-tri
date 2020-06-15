@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/page")
@@ -16,6 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PageController extends AbstractController
 {
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/", name="page_index", methods={"GET"})
      */
     public function index(PageRepository $pageRepository): Response
@@ -26,6 +28,7 @@ class PageController extends AbstractController
     }
     
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/new", name="page_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
@@ -59,6 +62,7 @@ class PageController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/{id}/edit", name="page_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Page $page): Response
@@ -79,6 +83,7 @@ class PageController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/{id}", name="page_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Page $page): Response
