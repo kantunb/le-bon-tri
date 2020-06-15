@@ -35,17 +35,14 @@ class CategoryController extends AbstractController
         $categoryName = $category->getName();
         $categoryId = $category->getId();
         $collectionPointType = $this->getDoctrine()->getRepository(CollectionPointType::class)->find($categoryId)->getType();
-        $response='<input data-category="'.$categoryName.'" data-collectionPointType="'.$collectionPointType.'" id="datas" type="hidden"/>';
-       //$response = [];
-       //$result = [
-       //    'category' => $categoryName,
-       //    'collectionPointType' => $collectionPointType
-       //];
+       
+        $response = [];
+        $result = [
+            'category' => $categoryName,
+            'collectionPointType' => $collectionPointType
+        ];
 
-       //$response[] = $result;
-       // $json = new JsonResponse($response);
-        //dd($json);
-        // return new JsonResponse($response);
+        $response[] = $result;
         return $this->render ('map/index.html.twig', [
             'response' => $response
         ]);

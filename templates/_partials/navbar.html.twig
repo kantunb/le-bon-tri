@@ -28,15 +28,37 @@
 					<a class="nav-link" href="{{ path('app_index') }}">A propos</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="{{ path('app_index') }}">Contact</a>
+					<a class="nav-link" href="{{ path('contact') }}">Contact</a>
 				</li>
+
 				{% if app.user %}
-					<li>
-						<a class="nav-link" href="/logout">Déconnexion</a>
+
+					<li class="nav-item dropdown">
+
+						<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button">Espace Admin</a>
+
+						<div class="dropdown-menu">
+
+							<a class="dropdown-item" href="{{path('page_index')}}">Articles</a>
+
+							<a class="dropdown-item" href="{{path('category_index')}}">Catégories</a>
+
+							<a class="dropdown-item" href="{{path('objet_index')}}">Objets</a>
+
+							<a class="dropdown-item" href="{{path('material_index')}}">Matériaux</a>
+
+							<a class="dropdown-item" href="{{path('tag_index')}}">Tags</a>
+
+							<div class="dropdown-divider"></div>
+
+							<a class="dropdown-item" href="/logout">Déconnexion</a>
+
+						</div>
+
 					</li>
+					
 				{% endif %}
 			</ul>
-
 		</div>
 	</nav>
 </header>
