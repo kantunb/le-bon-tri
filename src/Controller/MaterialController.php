@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
+use App\Entity\CollectionPointType;
 use App\Entity\Material;
 use App\Form\MaterialType;
 use App\Repository\MaterialRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,8 +28,24 @@ class MaterialController extends AbstractController
         ]);
     }
 
-    
+    /**
+     * @Route("/{id}/search", name="material_search")
+     */
+    public function search(Material $material, Request $request)
+    {
+        $materialName = $material->getName();
+        $materialId = $material->getId();
+        $collectionPointType = $this->getDoctrine()->getRepository(CollectionPointType::class)->find($materialId)->getType();
+        $response = [];
+        $result = [
+            'material' => $materialName,
+            'collectionPointType' => $collectionPointType
+        ];
 
+        $response[] = $result;
+
+        return new JsonResponse($response);
+    }
 
     /**
      * @Route("/new", name="material_new", methods={"GET","POST"})
@@ -86,7 +105,7 @@ class MaterialController extends AbstractController
      */
     public function delete(Request $request, Material $material): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$material->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $material->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($material);
             $entityManager->flush();
