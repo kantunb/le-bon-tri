@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/objet")
@@ -19,7 +20,7 @@ class ObjetController extends AbstractController
 {
     /**
      * Return invalid object ordered by id desc
-     *
+     *@IsGranted("ROLE_USER")
      * @Route("/invalidObjects", name="objet_invalidObjects", methods={"GET", "POST"})
      */
     public function invalidObjects(ObjetRepository $objetRepository): Response
@@ -31,8 +32,7 @@ class ObjetController extends AbstractController
 
 
     /**
-     * 
-     *
+     * @IsGranted("ROLE_USER")
      * @Route("/", name="objet_index", methods={"GET"})
      */
     public function index(ObjetRepository $objetRepository): Response
@@ -44,8 +44,8 @@ class ObjetController extends AbstractController
 
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/validateAllChecked", name="objet_validateAllChecked", methods={"GET","POST"})
-     *
      */
     public function validateAllChecked(Request $request, ObjetRepository $objetRepository)
 
@@ -101,6 +101,7 @@ class ObjetController extends AbstractController
 
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/{id}/validateObjects", name="objet_validate", methods={"GET"})
      */
     public function validateObject(Request $request, Objet $objet)
@@ -175,6 +176,7 @@ class ObjetController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/{id}", name="objet_show", methods={"GET"})
      */
     public function show(Objet $objet): Response
@@ -185,6 +187,7 @@ class ObjetController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/{id}/edit", name="objet_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Objet $objet): Response
@@ -205,6 +208,7 @@ class ObjetController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/{id}", name="objet_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Objet $objet): Response

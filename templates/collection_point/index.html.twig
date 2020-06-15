@@ -1,57 +1,59 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}iste des points de collect{% endblock %}
+{% block title %}Liste des points de collecte
+{% endblock %}
 
 {% block body %}
-    <h1>Liste des points de collecte</h1>
+	<h1>Liste des points de collecte</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Numéro de la voie</th>
-                <th>Nom de la voie</th>
-                <th>Ville</th>
-                <th>Code Postal</th>
-                <th>Latitude</th>
-                <th>Longitude</th>
-                <th>Horaires d'ouverture</th>
-                <th>Commentaires</th>
-                <th>Téléphone</th>
-                <th>Site Web</th>
-                <th>Email</th>
-               {# <th>actions</th>#}
-            </tr>
-        </thead>
-        <tbody>
-        {% for collection_point in collection_points %}
-            <tr>
-                <td>{{ collection_point.id }}</td>
-                <td>{{ collection_point.name }}</td>
-                <td>{{ collection_point.streetNumber }}</td>
-                <td>{{ collection_point.streetName }}</td>
-                <td>{{ collection_point.city }}</td>
-                <td>{{ collection_point.zipCode }}</td>
-                <td>{{ collection_point.coordinateX }}</td>
-                <td>{{ collection_point.coordinateY }}</td>
-                <td>{{ collection_point.openingTime }}</td>
-                <td>{{ collection_point.review }}</td>
-                <td>{{ collection_point.phone }}</td>
-                <td>{{ collection_point.website }}</td>
-                <td>{{ collection_point.email }}</td>
-                <td>
-                    <a href="{{ path('collection_point_show', {'id': collection_point.id}) }}">Voir</a>
-                    <a href="{{ path('collection_point_edit', {'id': collection_point.id}) }}">Mettre à jour</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="14">Aucun point de collecte trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nom</th>
+				<th>Numéro de la voie</th>
+				<th>Nom de la voie</th>
+				<th>Ville</th>
+				<th>Code Postal</th>
+				<th>Latitude</th>
+				<th>Longitude</th>
+				<th>Horaires d'ouverture</th>
+				<th>Commentaires</th>
+				<th>Téléphone</th>
+				<th>Site Web</th>
+				<th>Email</th>
+				{# <th>actions</th>#}
+			</tr>
+		</thead>
+		<tbody>
+			{% for collection_point in collection_points %}
+				<tr>
+					<td>{{ collection_point.id }}</td>
+					<td>{{ collection_point.name }}</td>
+					<td>{{ collection_point.streetNumber }}</td>
+					<td>{{ collection_point.streetName }}</td>
+					<td>{{ collection_point.city }}</td>
+					<td>{{ collection_point.zipCode }}</td>
+					<td>{{ collection_point.coordinateX }}</td>
+					<td>{{ collection_point.coordinateY }}</td>
+					<td>{{ collection_point.openingTime }}</td>
+					<td>{{ collection_point.review }}</td>
+					<td>{{ collection_point.phone }}</td>
+					<td>{{ collection_point.website }}</td>
+					<td>{{ collection_point.email }}</td>
+					<td>
+						<a href="{{ path('collection_point_show', {'id': collection_point.id}) }}">Voir</a>
+						<a href="{{ path('collection_point_edit', {'id': collection_point.id}) }}">Mettre à jour</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="14">Aucun point de collecte trouvé</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
-    <a href="{{ path('collection_point_new') }}">Ajouter un point de collecte</a>
+		<a href="{{ path('collection_point_new') }}">Ajouter un point de collecte</a>
+
 {% endblock %}
