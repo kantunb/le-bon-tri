@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Entity\CollectionPointType;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,6 +25,32 @@ class CategoryController extends AbstractController
         return $this->render('category/index.html.twig', [
             'categories' => $categoryRepository->findAll(),
         ]);
+    }
+
+    /**
+     * @Route("/{id}/searchCategoryPoint", name="category_search", methods={"GET"})
+     */
+    public function searchCollectionPointTypeByMaterial(Category $category, Request $request)
+    {
+        $categoryName = $category->getName();
+        $categoryId = $category->getId();
+        $collectionPointType = $this->getDoctrine()->getRepository(CollectionPointType::class)->find($categoryId)->getType();
+        $response='<input data-category="'.$categoryName.'" data-collectionPointType="'.$collectionPointType.'" id="datas" type="hidden"/>';
+       //$response = [];
+       //$result = [
+       //    'category' => $categoryName,
+       //    'collectionPointType' => $collectionPointType
+       //];
+
+       //$response[] = $result;
+       // $json = new JsonResponse($response);
+        //dd($json);
+        // return new JsonResponse($response);
+        return $this->render ('map/index.html.twig', [
+            'response' => $response
+        ]);
+    
+    
     }
 
     /**
@@ -83,7 +111,7 @@ class CategoryController extends AbstractController
      */
     public function delete(Request $request, Category $category): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$category->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $category->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($category);
             $entityManager->flush();

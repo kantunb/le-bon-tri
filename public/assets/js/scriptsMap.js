@@ -107,88 +107,94 @@ window.onload = function () {
             }
         ];
 
+        
         for (let lyonJSON of lyonJSONs) {
 
-            const categoryIcon = new L.Icon({
-                iconUrl: lyonJSON.icon,
-                // shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
-                iconSize: [30, 41],
-                // shadowSize: [41, 41],
-                iconAnchor: [12, 41],
-                popupAnchor: [1, -34],
-            });
+            const datas = $('#datas');
 
-            let idCategory = lyonJSON.categorie;
-
-            // Import depuis les API du contenu des popups
-            function onEachFeature(feature, layer) {
-                if (feature.properties &&
-                    feature.properties.type_decheterie &&
-                    feature.properties.type_decheterie != null) {
-                    layer.bindPopup(feature.properties.type_decheterie);
-                } else if (
-                    feature.properties &&
-                    feature.properties.observation &&
-                    feature.properties.observation != null) {
-                    layer.bindPopup(feature.properties.observation);
-                } else {
-                    layer.bindPopup("Pas d'information");
-                }
-            }
-
-            const promise = $.getJSON(lyonJSON.url);
-
-            promise.then(function (data) {
-
-                lyonJSON.categorie = L.geoJson(data, {
-
-                    onEachFeature: onEachFeature,
-
-                    pointToLayer: function (feature, latlng) {
-                        return L.marker(latlng, {
-                            icon: categoryIcon
-                        })
-                    },
+            if(datas.attr("data-collectionpointtype") == lyonJSON.name) {
+                
+                const categoryIcon = new L.Icon({
+                    iconUrl: lyonJSON.icon,
+                    // shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+                    iconSize: [30, 41],
+                    // shadowSize: [41, 41],
+                    iconAnchor: [12, 41],
+                    popupAnchor: [1, -34],
                 });
-
-                /* Regroupement des type de lieux par cluster */
-                const markersClusterCategory = new L.MarkerClusterGroup();
-
-                markersClusterCategory.addLayer(lyonJSON.categorie);
-
-                markersClusterCategory.addTo(map);
-
-                // Création des boutons avec un id qui utilise lyonJSON.categorie et le texte lyonJSON.name
-
-                const buttonsContainer = document.getElementById('buttonsContainer');
-
-                const buttonCategory = document.createElement('BUTTON'); // Créer un élément <button>
-                const labelButton = document.createTextNode(lyonJSON.name); // Créer un noeud textuel
-                const checkboxCategory = document.createElement('input'); // Créer un élément <button>
-                checkboxCategory.type = 'checkbox';
-
-                buttonCategory.appendChild(labelButton); // Ajouter le texte au bouton
-                buttonsContainer.appendChild(buttonCategory);
-                buttonCategory.appendChild(checkboxCategory);
-                buttonCategory.id = idCategory;
-                buttonCategory.className = "mapButton";
-                checkboxCategory.className = "mapButton";
-                checkboxCategory.checked = true;
-
-                layers.push(markersClusterCategory);
-
-                // Gestion des boutons grace aux IDs, peut être relier l'ID au layer
-
-                $(`#${idCategory}`).click(function () {
-                    if (map.hasLayer(markersClusterCategory)) {
-                        $(this).children().prop("checked", false)
-                        map.removeLayer(markersClusterCategory);
+    
+                let idCategory = lyonJSON.categorie;
+    
+                // Import depuis les API du contenu des popups
+                function onEachFeature(feature, layer) {
+                    if (feature.properties &&
+                        feature.properties.type_decheterie &&
+                        feature.properties.type_decheterie != null) {
+                        layer.bindPopup(feature.properties.type_decheterie);
+                    } else if (
+                        feature.properties &&
+                        feature.properties.observation &&
+                        feature.properties.observation != null) {
+                        layer.bindPopup(feature.properties.observation);
                     } else {
-                        map.addLayer(markersClusterCategory);
-                        $(this).children().prop("checked", true)
+                        layer.bindPopup("Pas d'information");
                     }
-                })
-            });
+                }
+    
+                const promise = $.getJSON(lyonJSON.url);
+    
+                promise.then(function (data) {
+    
+                    lyonJSON.categorie = L.geoJson(data, {
+    
+                        onEachFeature: onEachFeature,
+    
+                        pointToLayer: function (feature, latlng) {
+                            return L.marker(latlng, {
+                                icon: categoryIcon
+                            })
+                        },
+                    });
+    
+                    /* Regroupement des type de lieux par cluster */
+                    const markersClusterCategory = new L.MarkerClusterGroup();
+    
+                    markersClusterCategory.addLayer(lyonJSON.categorie);
+    
+                    markersClusterCategory.addTo(map);
+    
+                    // Création des boutons avec un id qui utilise lyonJSON.categorie et le texte lyonJSON.name
+    
+                    const buttonsContainer = document.getElementById('buttonsContainer');
+    
+                    const buttonCategory = document.createElement('BUTTON'); // Créer un élément <button>
+                    const labelButton = document.createTextNode(lyonJSON.name); // Créer un noeud textuel
+                    const checkboxCategory = document.createElement('input'); // Créer un élément <button>
+                    checkboxCategory.type = 'checkbox';
+    
+                    buttonCategory.appendChild(labelButton); // Ajouter le texte au bouton
+                    buttonsContainer.appendChild(buttonCategory);
+                    buttonCategory.appendChild(checkboxCategory);
+                    buttonCategory.id = idCategory;
+                    buttonCategory.className = "mapButton";
+                    checkboxCategory.className = "mapButton";
+                    checkboxCategory.checked = true;
+    
+                    layers.push(markersClusterCategory);
+    
+                    // Gestion des boutons grace aux IDs, peut être relier l'ID au layer
+    
+                    $(`#${idCategory}`).click(function () {
+                        if (map.hasLayer(markersClusterCategory)) {
+                            $(this).children().prop("checked", false)
+                            map.removeLayer(markersClusterCategory);
+                        } else {
+                            map.addLayer(markersClusterCategory);
+                            $(this).children().prop("checked", true)
+                        }
+                    })
+                });
+            }
         }
 
         // Gestion du bouton #addRemoveAll
