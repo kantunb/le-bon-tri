@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit CollectionPoint{% endblock %}
+{% block title %}Mise à jour du point de collecte{% endblock %}
 
 {% block body %}
-    <h1>Edit CollectionPoint</h1>
+    <h1>Mise à jour du point de collecte</h1>
 
     {{ include('collection_point/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('collection_point_index') }}">back to list</a>
+    <a href="{{ path('collection_point_index') }}">Retour à la liste de Point de Collecte</a>
 
     {{ include('collection_point/_delete_form.html.twig') }}
 {% endblock %}

@@ -2,23 +2,26 @@
 
 namespace App\Form;
 
+use App\Entity\Material;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AppType extends AbstractType
+class MaterialType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('field_name')
+            ->add('name')
+            ->add('devenir')
+            ->add('collectionPoints')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            // Configure your form options here
+            'data_class' => Material::class,
         ]);
     }
 }

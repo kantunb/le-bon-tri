@@ -29,9 +29,21 @@ class CollectionPointType
      */
     private $collectionPoint_id;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Material::class, mappedBy="collectionPointType")
+     */
+    private $materials;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Category::class, mappedBy="collectionPointType")
+     */
+    private $categories;
+
     public function __construct()
     {
         $this->collectionPoint_id = new ArrayCollection();
+        $this->materials = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -76,6 +88,68 @@ class CollectionPointType
             // set the owning side to null (unless already changed)
             if ($collectionPointId->getCollectionPointType() === $this) {
                 $collectionPointId->setCollectionPointType(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Material[]
+     */
+    public function getMaterials(): Collection
+    {
+        return $this->materials;
+    }
+
+    public function addMaterial(Material $material): self
+    {
+        if (!$this->materials->contains($material)) {
+            $this->materials[] = $material;
+            $material->setCollectionPointType($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMaterial(Material $material): self
+    {
+        if ($this->materials->contains($material)) {
+            $this->materials->removeElement($material);
+            // set the owning side to null (unless already changed)
+            if ($material->getCollectionPointType() === $this) {
+                $material->setCollectionPointType(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Category[]
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+            $category->setCollectionPointType($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        if ($this->categories->contains($category)) {
+            $this->categories->removeElement($category);
+            // set the owning side to null (unless already changed)
+            if ($category->getCollectionPointType() === $this) {
+                $category->setCollectionPointType(null);
             }
         }
 

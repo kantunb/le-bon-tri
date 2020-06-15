@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200611075035 extends AbstractMigration
+final class Version20200615104353 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,7 +22,9 @@ final class Version20200611075035 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE collection_point CHANGE coordinate_x coordinate_x DOUBLE PRECISION DEFAULT NULL, CHANGE coordinate_y coordinate_y DOUBLE PRECISION DEFAULT NULL, CHANGE phone phone VARCHAR(45) DEFAULT NULL, CHANGE email email VARCHAR(255) DEFAULT NULL');
+        $this->addSql('ALTER TABLE material ADD collection_point_type_id INT DEFAULT NULL');
+        $this->addSql('ALTER TABLE material ADD CONSTRAINT FK_7CBE7595A9B99F90 FOREIGN KEY (collection_point_type_id) REFERENCES collection_point_type (id)');
+        $this->addSql('CREATE INDEX IDX_7CBE7595A9B99F90 ON material (collection_point_type_id)');
     }
 
     public function down(Schema $schema) : void
@@ -30,6 +32,8 @@ final class Version20200611075035 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE collection_point CHANGE coordinate_x coordinate_x DOUBLE PRECISION DEFAULT \'NULL\', CHANGE coordinate_y coordinate_y DOUBLE PRECISION DEFAULT \'NULL\', CHANGE phone phone VARCHAR(45) CHARACTER SET utf8mb4 DEFAULT \'NULL\' COLLATE `utf8mb4_unicode_ci`, CHANGE email email VARCHAR(255) CHARACTER SET utf8mb4 DEFAULT \'NULL\' COLLATE `utf8mb4_unicode_ci`');
+        $this->addSql('ALTER TABLE material DROP FOREIGN KEY FK_7CBE7595A9B99F90');
+        $this->addSql('DROP INDEX IDX_7CBE7595A9B99F90 ON material');
+        $this->addSql('ALTER TABLE material DROP collection_point_type_id');
     }
 }

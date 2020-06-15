@@ -1,0 +1,51 @@
+{
+    "type": "FeatureCollection",
+    "name": "Le_relais",
+    "features": [{
+        "type": "Feature",
+        "properties": {
+            "name": "BRIGNAIS - Ecole du sitom",
+            "id": "2106",
+            "inactif": false,
+            "idPA": "A2106",
+            "picto_lci": null,
+            "nbSousTraitants": "0",
+            "content": "<div class=\"lci_bubble\" data-id=\"A2106\">\n    <div class=\"lci_content\">\n        <h3>BRIGNAIS - Ecole du sitom<\/h3>\n        <div class=\"lci_address\">\n              <br>\n                        69530 BRIGNAIS<br><br>\n        <\/div>\n                <span class=\"lci_bold\">Etat :<\/span><span class=\"lci_value\"> Disponible<br><br><\/span>\n        <span class=\"lci_bold\">Latitude :<\/span><span class=\"lci_value\"> 45.686036<br \/><\/span>\n        <span class=\"lci_bold\">Longitude :<\/span><span class=\"lci_value\"> 4.767620<br \/><br \/><\/span>\n                        <span class=\"lci_hardly_visible\">A2106<\/span>\n    <\/div>\n<\/div>\n    <a href=\"#\" id=\"reclamation_link\" onClick=\"getReclamations('A2106'); return false;\" style=\"font-size:13px;\">R\u00e9clamations<\/a>\n"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [4.767620, 45.686036]
+        }
+
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name": "BRON - D\u00e9cathlon 2",
+            "id": "7042",
+            "inactif": false,
+            "idPA": "A7042",
+            "picto_lci": null,
+            "nbSousTraitants": "0",
+            "content": "<div class=\"lci_bubble\" data-id=\"A7042\">\n    <div class=\"lci_content\">\n        <h3>BRON - D\u00e9cathlon 2<\/h3>\n        <div class=\"lci_address\">\n            332 avenue G\u00e9n\u00e9ral De Gaulle<br>\n                        69500 BRON<br><br>\n        <\/div>\n                <span class=\"lci_bold\">Etat :<\/span><span class=\"lci_value\"> Disponible<br><br><\/span>\n        <span class=\"lci_bold\">Latitude :<\/span><span class=\"lci_value\"> 45.726556<br \/><\/span>\n        <span class=\"lci_bold\">Longitude :<\/span><span class=\"lci_value\"> 4.928968<br \/><br \/><\/span>\n                        <span class=\"lci_hardly_visible\">A7042<\/span>\n    <\/div>\n<\/div>\n    <a href=\"#\" id=\"reclamation_link\" onClick=\"getReclamations('A7042'); return false;\" style=\"font-size:13px;\">R\u00e9clamations<\/a>\n"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [4.928968, 45.726556]
+        }
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name": "CHAMPAGNE AU MONT D'OR - Bonobo",
+            "id": "6010",
+            "inactif": false,
+            "idPA": "A6010",
+            "picto_lci": null,
+            "nbSousTraitants": "0",
+            "content": "<div class=\"lci_bubble\" data-id=\"A6010\">\n    <div class=\"lci_content\">\n        <h3>CHAMPAGNE AU MONT D'OR - Bonobo<\/h3>\n        <div class=\"lci_address\">\n            28 avenue G\u00e9n\u00e9ral de Gaulle<br>\n                        69410 CHAMPAGNE-AU-MONT-D'OR<br><br>\n        <\/div>\n                <span class=\"lci_bold\">Etat :<\/span><span class=\"lci_value\"> Disponible<br><br><\/span>\n        <span class=\"lci_bold\">Latitude :<\/span><span class=\"lci_value\"> 45.806184<br \/><\/span>\n        <span class=\"lci_bold\">Longitude :<\/span><span class=\"lci_value\"> 4.781746<br \/><br \/><\/span>\n                        <span class=\"lci_hardly_visible\">A6010<\/span>\n    <\/div>\n<\/div>\n    <a href=\"#\" id=\"reclamation_link\" onClick=\"getReclamations('A6010'); return false;\" style=\"font-size:13px;\">R\u00e9clamations<\/a>\n"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [4.781746, 45.806184]
+        }
+    }]
+}

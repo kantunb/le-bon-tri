@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des usages{% endblock %}
+
+{% block body %}
+    <h1>Liste des usages</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Usage</th>
+                <th>Devenir</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.name }}</td>
+                <td>{{ category.devenir }}</td>
+                <td>
+                    <a href="{{ path('category_show', {'id': category.id}) }}">Voir</a>
+                    <a href="{{ path('category_edit', {'id': category.id}) }}">Mettre à jour</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucun usage trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('category_new') }}">Ajouter un usage</a>
+{% endblock %}

@@ -13,6 +13,11 @@ html {
     overflow-x: hidden;
 }
 
+nav {
+    background-image: url(../img/fleur.png);
+    background-size: cover;
+}
+
 h1:hover {
     color: green;
 }
@@ -50,6 +55,8 @@ li {
 footer {
     position: fixed;
     bottom: 10px;
+    background-image: url(../img/fleur.png);
+    background-size: cover;
 }
 
 .label {
@@ -98,4 +105,21 @@ footer {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+#localisationContainer {
+    min-width: 100%;
+    height: calc(100vh - 137px);
+}
+
+@media screen and (max-width: 375px) {
+    p {
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (min-width: 970px) {
+    html {
+        font-size: 1.5rem;
+    }
 }

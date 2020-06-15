@@ -1,24 +1,58 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ResultController!{% endblock %}
+{% block title %}Consigne de tri
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-{% if consignesTriByMaterial.devenir is not null and consignesTriByMaterial.devenir is defined %}
-    <h1>Consigne de tri par Matériaux: {{ consignesTriByMaterial.devenir }}! </h1>
+
+	<div class="container">
+		<div class="row">
+
+			{% if consignesTriByMaterial.devenir is not null and consignesTriByMaterial.devenir is defined %}
+				<div class="card mb-3" style="max-width: 540px;">
+				<div class="row no-gutters">
+					<div class="col-md-4">
+						<img src="{{ asset('/assets/img/dechetterie.jpeg') }}" class="card-img" alt="...">
+					</div>
+					<div class="col-md-8">
+						<div class="card-body">
+							<h5 class="card-title">
+								Consigne de tri: {{ consignesTriByMaterial.devenir }}</h5>
+							<p class="card-text">Si votre {{names}} en {{consignesTriByMaterial.name}} est hors d'usage, géolocalisez-vous pour trouvez la déchetterie la plus proche</p>
+							<a href="{{ path('map') }}" class="btn btn-success">Géolocalisez moi!</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% endif %}
+			
+			{% if consignesTriByUse.devenir is not null and consignesTriByUse.devenir is defined %}
+								
+			
+			<div class="card mb-3" style="max-width: 540px;">
+				<div class="row no-gutters">
+					<div class="col-md-4">
+						<img src="{{ asset('/assets/img/symbolerecyclage.jpeg') }}" class="card-img" alt="...">
+					</div>
+					<div class="col-md-8">
+						<div class="card-body">
+							<h5 class="card-title">
+								Et si on valorisait autrement : {{ consignesTriByUse.devenir }}</h5>
+							<p class="card-text">Si votre {{names}} peut encore servir, géolocalisez-vous pour trouvez un endroit où lui donner une seconde vie</p>
+							<a href="{{ path('map') }}" class="btn btn-success">Géolocalisez moi!</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endif %}
-{% if consignesTriByUse.devenir is not null and consignesTriByUse.devenir is defined %}
-    <h1>Consigne de tri par Usage: {{ consignesTriByUse.devenir }}! </h1>
-{% endif %}
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Olivier/Downloads/WF3Formation/Projet de fin/le-bon-tri/src/Controller/ResultController.php'|file_link(0) }}">src/Controller/ResultController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Olivier/Downloads/WF3Formation/Projet de fin/le-bon-tri/templates/result/index.html.twig'|file_link(0) }}">templates/result/index.html.twig</a></code></li>
-    </ul>
-</div>
+
+	{# This friendly message is coming from:
+	    <ul>
+	        <li>Your controller at <code><a href="{{ 'C:/Users/Olivier/Downloads/WF3Formation/Projet de fin/le-bon-tri/src/Controller/ResultController.php'|file_link(0) }}">src/Controller/ResultController.php</a></code></li>
+	        <li>Your template at <code><a href="{{ 'C:/Users/Olivier/Downloads/WF3Formation/Projet de fin/le-bon-tri/templates/result/index.html.twig'|file_link(0) }}">templates/result/index.html.twig</a></code></li>
+	    </ul>
+	</div> #}
 {% endblock %}

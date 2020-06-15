@@ -1,55 +1,71 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}invalid Objets {% endblock %}
+{% block title %}invalid Objets
+{% endblock %}
 
 {% block body %}
-    <h1>Objet index</h1>
-<form action="{{ path('objet_validateAllChecked') }}" method="post">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom de l'objet</th>
-               {# <th>Comment éviter sa production</th>#}
-               <th>Matériaux</th>
-               <th>Usage</th>
-                <th>Valide</th>
-                <th>Valider</th>
-                <th>Supprimer</th>
-               {# <th>actions</th>#}
-            </tr>
-        </thead>
-        <tbody>
-        {% for objet in objets %}
-            <tr>
-                <td>{{ objet.id }}</td>
-                <td>{{ objet.name }}</td>
-                <td>{{ objet.materialId.name }}</td>
-                <td>{{ objet.useId.name }}</td>
-                <td>{{ objet.avoidProduction }}</td>
-                <td>{{ objet.valide ? 'Yes' : 'No' }}</td>
-                <td>{#<a href="{{ path('objet_validate', {'id': objet.id}) }}">#}<input type="checkbox" name="objetValidation[]" value={{ objet.id }} id="">
-               {# Valider ces objets</a>#}</td>
-                <td>{#<a href="{{ path('objet_delete', {'id': objet.id}) }}">#}<input type="checkbox" name="objetDelete[]" value={{ objet.id }} id="">
-               {# Supprimer tout</a>#}</td>
-                <td>
-                    <a href="{{ path('objet_show', {'id': objet.id}) }}">show</a>
-                    <a href="{{ path('objet_edit', {'id': objet.id}) }}">edit</a>
-                   
-                </td>	
-                <td>{#{{ include('objet/_delete_form.html.twig') }}#}</td>
-            </tr>   
-          
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        
-        </tbody>
-    </table>
-   <button class="btn" type="submit">Valider</button>
-</form>
-    <a href="{{ path('objet_new') }}">Ajouter un objet</a>
-    
+	<h1>Objet index</h1>
+
+	{% for message in app.flashes('danger') %}
+		<div class="alert alert-danger">
+			{{ message }}
+		</div>
+	{% endfor %}
+	<form action="{{ path('objet_validateAllChecked') }}" method="post">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nom de l'objet</th>
+					{# <th>Comment éviter sa production</th>#}
+					<th>Matériaux</th>
+					<th>Usage</th>
+					<th>Valide</th>
+					<th>Valider</th>
+					<th>Supprimer</th>
+					{# <th>actions</th>#}
+				</tr>
+			</thead>
+			<tbody>
+				{% for objet in objets %}
+					<tr>
+						<td>{{ objet.id }}</td>
+						<td>{{ objet.name }}</td>
+						<td>{{ objet.materialId.name }}</td>
+						<td>{{ objet.useId.name }}</td>
+						{# <td>{{ objet.avoidProduction }}</td> #}
+						<td>{{ objet.valide ? 'Yes' : 'No' }}</td>
+						<td>{#<a href="{{ path('objet_validate', {'id': objet.id}) }}">#}<input
+							type="checkbox" name="objetValidation[]" value={{ objet.id }} id="objetValidation{{ objet.id }}">{# Valider ces objets</a>#}
+						</td>
+						<td>{#<a href="{{ path('objet_delete', {'id': objet.id}) }}">#}<input
+							type="checkbox" name="objetDelete[]" value={{ objet.id }} id="objetDelete{{ objet.id }}">{# Supprimer tout</a>#}
+						</td>
+						<td>
+							<a href="{{ path('objet_show', {'id': objet.id}) }}">show</a>
+							<a href="{{ path('objet_edit', {'id': objet.id}) }}">edit</a>
+
+						</td>
+						<td>{#{{ include('objet/_delete_form.html.twig') }}#}</td>
+					</tr>
+
+				{% else %}
+					<tr>
+						<td colspan="5">no records found</td>
+					</tr>
+				{% endfor %}
+
+			</tbody>
+		</table>
+		<button class="btn" type="submit">Valider</button>
+	</form>
+	<a href="{{ path('objet_new') }}">Ajouter un objet</a>
+
+{% endblock %}
+
+{% block javascripts %}
+	<script>
+		var assetsBaseDir = "{{ asset('assets/') }}"
+	</script>
+	<script src="{{ asset('/assets/js/invalidObjects.js') }}"></script>
 {% endblock %}

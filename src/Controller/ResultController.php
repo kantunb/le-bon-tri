@@ -14,6 +14,7 @@ class ResultController extends AbstractController
     {
         return $this->render('result/index.html.twig', [
             'controller_name' => 'ResultController',
+            
         ]);
     }
 }
