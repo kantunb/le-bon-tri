@@ -13,19 +13,28 @@
 }
 
 #buttonsContainer {
+  padding-inline-start: 1em;
   position: absolute;
   top: 2em;
   right: 2em;
   display: flex;
   flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 0px, solid;
+  border-radius: 5px;
   z-index: 800;
 }
 
 
 .mapButton {
   width: auto;
-  margin: 0.4em;
-  text-align: right;
+  margin: 0.1em;
+  background-color: transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;  text-align: right;
 }
 
 .pinGeolocalisation {
