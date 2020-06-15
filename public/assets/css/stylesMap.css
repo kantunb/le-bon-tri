@@ -21,6 +21,7 @@
   z-index: 800;
 }
 
+
 .mapButton {
   width: auto;
   margin: 0.4em;
@@ -37,8 +38,11 @@
   background-color: rgba(72, 142, 241, 0.3);
   border: none;
   border-radius: 50%;
+
 }
 
 #centerButton {
   background-image: url(../img/icon/1x/center-icon.png);
+
 }
+

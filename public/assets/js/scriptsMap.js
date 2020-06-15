@@ -1,6 +1,8 @@
 window.onload = function () {
 
 
+
+
     const mapboxTiles = L.tileLayer(
         "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}.png", {
             attribution: '<a href="https://carto.com" target="_blank">Tiles source : CARTO</a>',
@@ -13,7 +15,9 @@ window.onload = function () {
         .setView([45.7673014, 4.8315513], 12)
         .locate({
             setView: true,
+
             maxZoom: 17
+
         });
 
     function onLocationFound(e) {

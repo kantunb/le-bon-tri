@@ -44,26 +44,18 @@ class AppController extends AbstractController
             $name= $objet->getName();
             $material =  $objet->getMaterialId()->getName();
             $category = $objet->getUseId()->getName();
-           // $concat = $name . " (".$material. ", ".$category.")";
             $objet =    [
                 'name' => $name,
                 'material' => $material,
                 'category' => $category,
-                ]   
-           ;   
-           
-       
+                ];   
+                  
             $objetsList[] = $objet;
-
         }
 
         //dd($objetsList);
-      //  dd(new JsonResponse($objetsList));
-        //retourne au format json le tableau de résultat
-     //  $response = new JsonResponse($objetsList);
-
-       
-     //  return $response.  " (".$material. ", ".$category.")";
+        //dd(new JsonResponse($objetsList));
+    
        return new JsonResponse($objetsList);
        
     }

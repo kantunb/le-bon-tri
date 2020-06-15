@@ -25,7 +25,8 @@ class CollectionPointController extends AbstractController
         ]);
     }
 
-    /**
+
+   /**
      * @Route("/new", name="collection_point_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response

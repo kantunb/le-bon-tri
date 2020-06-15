@@ -9,6 +9,7 @@
 /Migrations/
 /public/assets/plugin
 /public/assets/img/icon/baseFiles/
+
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
@@ -28,6 +29,7 @@
 
 # Icon must end with two \r
 # Icon
+
 
 # Thumbnails
 ._*
