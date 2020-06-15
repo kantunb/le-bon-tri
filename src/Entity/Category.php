@@ -39,6 +39,11 @@ class Category
      */
     private $collectionPoints;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=CollectionPointType::class, inversedBy="categories")
+     */
+    private $collectionPointType;
+
     public function __construct()
     {
         $this->objets = new ArrayCollection();
@@ -129,6 +134,18 @@ class Category
             $this->collectionPoints->removeElement($collectionPoint);
             $collectionPoint->removeCategoryHasCollectionPoint($this);
         }
+
+        return $this;
+    }
+
+    public function getCollectionPointType(): ?CollectionPointType
+    {
+        return $this->collectionPointType;
+    }
+
+    public function setCollectionPointType(?CollectionPointType $collectionPointType): self
+    {
+        $this->collectionPointType = $collectionPointType;
 
         return $this;
     }
