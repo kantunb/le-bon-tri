@@ -41,23 +41,22 @@ class AppController extends AbstractController
         $objetsList = [];
         //Remplit le tableau de tous les objets compatibles avec la frappe
         foreach ($objets as $objet) {
-            $name= $objet->getName();
+            $name = $objet->getName();
             $material =  $objet->getMaterialId()->getName();
             $category = $objet->getUseId()->getName();
             $objet =    [
                 'name' => $name,
                 'material' => $material,
                 'category' => $category,
-                ];   
-                  
+            ];
+
             $objetsList[] = $objet;
         }
 
         //dd($objetsList);
         //dd(new JsonResponse($objetsList));
-    
-       return new JsonResponse($objetsList);
-       
+
+        return new JsonResponse($objetsList);
     }
 
     /**
@@ -86,7 +85,7 @@ class AppController extends AbstractController
                 'consignesTriByMaterial' => $consignesTriByMaterial,
                 'consignesTriByUse' => $consignesTriByUse,
                 'names' => $names,
-                'id' =>$id
+                'id' => $id
             ]);
         }
 
