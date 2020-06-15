@@ -19,7 +19,8 @@ class ObjetType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => "Nom de l'objet"
+                'label' => "Nom de l'objet", 
+             //   'pattern' => "^[a-z0-9_-]{2,50}$"
             ])
 
             //->add('avoidProduction')

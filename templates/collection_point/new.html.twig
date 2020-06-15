@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New CollectionPoint{% endblock %}
+{% block title %}Nouveau Point de collecte{% endblock %}
 
 {% block body %}
-    <h1>Create new CollectionPoint</h1>
-
+    <h1>Ajoutez un nouveau point de collecte</h1>
+	{% for message in app.flashes('invalid') %}
+		<div class="alert alert-danger">
+			{{ message }}
+		</div>
+	{% endfor %}
     {{ include('collection_point/_form.html.twig') }}
 
-    <a href="{{ path('collection_point_index') }}">back to list</a>
+    <a href="{{ path('app_index') }}">Retour à l'accueil</a>
 {% endblock %}

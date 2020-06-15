@@ -44,18 +44,27 @@ class AppController extends AbstractController
             $name= $objet->getName();
             $material =  $objet->getMaterialId()->getName();
             $category = $objet->getUseId()->getName();
-            $concat = $name . " (".$material. ", ".$category.")";
+           // $concat = $name . " (".$material. ", ".$category.")";
             $objet =    [
-                'name' => $concat,
-            ];
+                'name' => $name,
+                'material' => $material,
+                'category' => $category,
+                ]   
+           ;   
+           
+       
             $objetsList[] = $objet;
+
         }
 
         //dd($objetsList);
-        //dd(new JsonResponse($objetsList));
+      //  dd(new JsonResponse($objetsList));
         //retourne au format json le tableau de résultat
+     //  $response = new JsonResponse($objetsList);
+
        
-        return new JsonResponse($objetsList);
+     //  return $response.  " (".$material. ", ".$category.")";
+       return new JsonResponse($objetsList);
        
     }
 
@@ -67,6 +76,7 @@ class AppController extends AbstractController
     {
         // On récupère l'input de recherche du formulaire, le name=objetName
         $searchObjet = $request->query->get('objetName');
+        //dd($searchObjet);
 
         // On recherche un objet par son nom
         $objet = $this->getDoctrine()->getRepository(Objet::class)->findOneBy(["name" => $searchObjet]);
