@@ -19,18 +19,9 @@ class ObjetType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => "Nom de l'objet", 
-             //   'pattern' => "^[a-z0-9_-]{2,50}$"
+                'label' => "Nom de l'objet",
+                'required' => true,
             ])
-
-            //->add('avoidProduction')
-           // ->add('valide') 
-            //BooleanType::class, [
-             //   'value' => false
-            //])
-            // ->add('Material_id')
-            // ->add('Use_id')
-            //
             ->add('Material_id', EntityType::class, [
                 'class' => Material::class,
                 'label' => 'Matériaux',
@@ -40,9 +31,6 @@ class ObjetType extends AbstractType
                 'class' => Category::class,
                 'label' => 'Usage',
                 'choice_label' => 'name',
-              // 'multiple' => true,
-              // 'expanded' => true
-
             ]);
     }
 

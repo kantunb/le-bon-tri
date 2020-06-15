@@ -41,23 +41,22 @@ class AppController extends AbstractController
         $objetsList = [];
         //Remplit le tableau de tous les objets compatibles avec la frappe
         foreach ($objets as $objet) {
-            $name= $objet->getName();
+            $name = $objet->getName();
             $material =  $objet->getMaterialId()->getName();
             $category = $objet->getUseId()->getName();
             $objet =    [
                 'name' => $name,
                 'material' => $material,
                 'category' => $category,
-                ];   
-                  
+            ];
+
             $objetsList[] = $objet;
         }
 
         //dd($objetsList);
         //dd(new JsonResponse($objetsList));
-    
-       return new JsonResponse($objetsList);
-       
+
+        return new JsonResponse($objetsList);
     }
 
     /**
@@ -80,11 +79,13 @@ class AppController extends AbstractController
             $consignesTriByMaterial = $objet->getMaterialId();
             $consignesTriByUse = $objet->getUseId();
             $names = $objet->getName();
+            $id = $objet->getId();
 
             return $this->render('result/index.html.twig', [
                 'consignesTriByMaterial' => $consignesTriByMaterial,
                 'consignesTriByUse' => $consignesTriByUse,
-                'names' => $names
+                'names' => $names,
+                'id' => $id
             ]);
         }
 
