@@ -15,7 +15,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
- * @IsGranted("ROLE_USER")
  * @Route("/material")
  */
 class MaterialController extends AbstractController
@@ -37,8 +36,8 @@ class MaterialController extends AbstractController
     public function searchCollectionPointTypeByMaterial(Material $material, Request $request)
     {
         $materialName = $material->getName();
-        $materialId = $material->getId();
-        $collectionPointType = $this->getDoctrine()->getRepository(CollectionPointType::class)->find($materialId)->getType();
+        $collectionPointTypeId= $material -> getCollectionPointType();
+        $collectionPointType = $this->getDoctrine()->getRepository(CollectionPointType::class)->find($collectionPointTypeId)->getType();
 
        
         $response = [

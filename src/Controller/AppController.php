@@ -80,11 +80,13 @@ class AppController extends AbstractController
             $consignesTriByMaterial = $objet->getMaterialId();
             $consignesTriByUse = $objet->getUseId();
             $names = $objet->getName();
+            $id = $objet->getId();
 
             return $this->render('result/index.html.twig', [
                 'consignesTriByMaterial' => $consignesTriByMaterial,
                 'consignesTriByUse' => $consignesTriByUse,
-                'names' => $names
+                'names' => $names,
+                'id' =>$id
             ]);
         }
 
