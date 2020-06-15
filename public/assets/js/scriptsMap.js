@@ -1,8 +1,5 @@
 window.onload = function () {
 
-
-
-
     const mapboxTiles = L.tileLayer(
         "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}.png", {
             attribution: '<a href="https://carto.com" target="_blank">Tiles source : CARTO</a>',
@@ -20,35 +17,67 @@ window.onload = function () {
 
         });
 
+    /*********** If localisation ok, add a marker and add a position button ***********/
+
     function onLocationFound(e) {
+
         const localisationIconBack = L.divIcon({
             className: 'pinGeolocalisationBack',
             iconSize: [24, 24]
         })
-        L.marker(e.latlng, {
-            icon: localisationIconBack,
-        }).addTo(map)
+
         const localisationIcon = L.divIcon({
             className: 'pinGeolocalisation',
             iconSize: [14, 14]
         })
+
+        const centerButton = L.control({
+            position: 'topleft'
+        });
+
+        L.marker(e.latlng, {
+            icon: localisationIconBack,
+        }).addTo(map)
+        
         L.marker(e.latlng, {
             icon: localisationIcon
         }).addTo(map)
 
+        centerButton.onAdd = function (map) {
+            this.div = L.DomUtil.create('div', 'leaflet-control-geocoder leaflet-bar leaflet-control');
+            const positionButton = "<button id=\"centerButton\"class=\"leaflet-control-geocoder-icon\"></button>";
+            this.div.innerHTML = positionButton;
+            return this.div;
+        };
+
+        centerButton.addTo(map);
+
+        const centerBtn = $("#centerButton")
+
+        centerBtn.on("click", function (e) {
+            // Fonction pour retrouver la latitude et la longitude, puis centrer la carte :
+            navigator.geolocation.getCurrentPosition(function (location) {
+                var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
+                // localisationIcon.setLatLng(latlng);
+                // localisationIconBack.setLatLng(latlng);
+                map.flyTo(latlng, 17);
+            });
+        })
     }
 
     map.on('locationfound', onLocationFound);
 
     function onLocationError(e) {
-        alert(e.message);
+        centerBtn.style.display = "none";
+        const message = "Nous n'avons pas pu vous localiser";
+        alert(message);
     }
 
-    // map.on('locationerror', onLocationError);
+    map.on('locationerror', onLocationError);
 
     showLayers();
 
-    // Geocoding by adress
+    /*********** Geocoding by adress ***********/
 
     const searchGeocoder = L.Control.geocoder({
             defaultMarkGeocode: false,
@@ -60,22 +89,7 @@ window.onload = function () {
         })
         .addTo(map);
 
-    // Geocoding by button
-
-    var centerButton = L.control({
-        position: 'topleft'
-    });
-
-    centerButton.onAdd = function (map) {
-        this._div = L.DomUtil.create('div', 'leaflet-control-geocoder leaflet-bar leaflet-control');
-        var img_log = "<button id=\"centerButton\"class=\"leaflet-control-geocoder-icon\"></button>";
-        this._div.innerHTML = img_log;
-        return this._div;
-    }
-
-    centerButton.addTo(map);
-
-    $("#centerButton").on("click", /*TODO : add function*/ )
+    /*********** Layers builder ***********/
 
     function showLayers() {
 
@@ -83,13 +97,13 @@ window.onload = function () {
 
         const lyonJSONs = [{
                 name: "Silos",
-                categorie: "silos",
+                categorie: "silo",
                 url: "https://download.data.grandlyon.com/wfs/grandlyon?SERVICE=WFS&VERSION=2.0.0&request=GetFeature&typename=gic_collecte.gicsiloverre&outputFormat=application/json; subtype=geojson&SRSNAME=EPSG:4171&startIndex=0",
                 icon: assetsBaseDir + "/img/icon/1x/verre-pin.png",
             },
             {
                 name: "Déchèteries",
-                categorie: "dechet",
+                categorie: "decheterie",
                 url: "https://download.data.grandlyon.com/wfs/grandlyon?SERVICE=WFS&VERSION=2.0.0&request=GetFeature&typename=gip_proprete.gipdecheterie_3_0_0&outputFormat=application/json;%20subtype=geojson&SRSNAME=EPSG:4171&startIndex=0",
                 icon: assetsBaseDir + "/img/icon/1x/decheterie-pin.png",
             },
@@ -107,13 +121,13 @@ window.onload = function () {
             }
         ];
 
-        
+
         for (let lyonJSON of lyonJSONs) {
 
             const datas = $('#datas');
 
-            if(datas.attr("data-collectionpointtype") == lyonJSON.name) {
-                
+            if (datas.attr("data-collectionpointtype") == lyonJSON.categorie) {
+
                 const categoryIcon = new L.Icon({
                     iconUrl: lyonJSON.icon,
                     // shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
@@ -122,9 +136,9 @@ window.onload = function () {
                     iconAnchor: [12, 41],
                     popupAnchor: [1, -34],
                 });
-    
+
                 let idCategory = lyonJSON.categorie;
-    
+
                 // Import depuis les API du contenu des popups
                 function onEachFeature(feature, layer) {
                     if (feature.properties &&
@@ -140,50 +154,50 @@ window.onload = function () {
                         layer.bindPopup("Pas d'information");
                     }
                 }
-    
+
                 const promise = $.getJSON(lyonJSON.url);
-    
+
                 promise.then(function (data) {
-    
+
                     lyonJSON.categorie = L.geoJson(data, {
-    
+
                         onEachFeature: onEachFeature,
-    
+
                         pointToLayer: function (feature, latlng) {
                             return L.marker(latlng, {
                                 icon: categoryIcon
                             })
                         },
                     });
-    
-                    /* Regroupement des type de lieux par cluster */
+
+                    /**** Regroupement des type de lieux par cluster ****/
                     const markersClusterCategory = new L.MarkerClusterGroup();
-    
+
                     markersClusterCategory.addLayer(lyonJSON.categorie);
-    
+
                     markersClusterCategory.addTo(map);
-    
-                    // Création des boutons avec un id qui utilise lyonJSON.categorie et le texte lyonJSON.name
-    
+
+                    /**** Création des boutons avec un id qui utilise lyonJSON.categorie et le texte lyonJSON.name ****/
+
                     const buttonsContainer = document.getElementById('buttonsContainer');
-    
-                    const buttonCategory = document.createElement('BUTTON'); // Créer un élément <button>
-                    const labelButton = document.createTextNode(lyonJSON.name); // Créer un noeud textuel
-                    const checkboxCategory = document.createElement('input'); // Créer un élément <button>
+
+                    const buttonCategory = document.createElement('BUTTON');
+                    const labelButton = document.createTextNode(lyonJSON.name);
+                    const checkboxCategory = document.createElement('input');
                     checkboxCategory.type = 'checkbox';
-    
-                    buttonCategory.appendChild(labelButton); // Ajouter le texte au bouton
+
+                    buttonCategory.appendChild(labelButton);
                     buttonsContainer.appendChild(buttonCategory);
                     buttonCategory.appendChild(checkboxCategory);
                     buttonCategory.id = idCategory;
                     buttonCategory.className = "mapButton";
                     checkboxCategory.className = "mapButton";
                     checkboxCategory.checked = true;
-    
+
                     layers.push(markersClusterCategory);
-    
-                    // Gestion des boutons grace aux IDs, peut être relier l'ID au layer
-    
+
+                    /**** Gestion des boutons grace aux IDs, peut être relier l'ID au layer ****/
+
                     $(`#${idCategory}`).click(function () {
                         if (map.hasLayer(markersClusterCategory)) {
                             $(this).children().prop("checked", false)
@@ -197,7 +211,7 @@ window.onload = function () {
             }
         }
 
-        // Gestion du bouton #addRemoveAll
+        /**** Gestion du bouton #addRemoveAll ****/
 
         $("#addRemoveAll").click(function () {
             $(this).toggleClass("selected");
