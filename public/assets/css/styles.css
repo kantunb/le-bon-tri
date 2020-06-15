@@ -13,6 +13,10 @@ html {
     overflow-x: hidden;
 }
 
+.container-fluid {
+    padding: 0;
+}
+
 nav {
     background-image: url(../img/fleur.png);
     background-size: cover;
@@ -53,8 +57,6 @@ li {
 }
 
 footer {
-    position: fixed;
-    bottom: 10px;
     background-image: url(../img/fleur.png);
     background-size: cover;
 }
@@ -99,18 +101,37 @@ footer {
     font-size: 20px;
 }
 
-.wrap {
-    width: 50%;
-    position: absolute;
+
+/* .wrap {
+    width: 70%;
+    position: relative;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+} */
+
+main {
+    min-height: calc(100vh - 139px);
 }
 
+
+/* container index map */
+
 #localisationContainer {
-    min-width: 100%;
-    height: calc(100vh - 137px);
+    min-width: 100vw;
+    min-height: calc(100vh - 139px);
 }
+
+
+/* Blog-index */
+
+h3 {
+    font-family: 'roboto';
+    font-style: italic;
+}
+
+
+/* media query */
 
 @media screen and (max-width: 375px) {
     p {
