@@ -47,11 +47,10 @@ class AppController extends AbstractController
            // $concat = $name . " (".$material. ", ".$category.")";
             $objet =    [
                 'name' => $name,
-                'caract'=> [
-                    'material' => $material,
-                     'category' => $category,
-                ]   ,
-           ];   
+                'material' => $material,
+                'category' => $category,
+                ]   
+           ;   
            
        
             $objetsList[] = $objet;

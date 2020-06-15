@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
+use App\Entity\Material;
 use App\Entity\Objet;
 use App\Form\ObjetType;
 use App\Repository\ObjetRepository;
@@ -127,15 +129,18 @@ class ObjetController extends AbstractController
             $newName = $newObjet->getName();
             $newUseId = $newObjet->getUseId();
             $newMaterialId = $newObjet->getMaterialId();
-            //dd($newName);
+            $material = $this->getDoctrine()->getRepository(Material::class)->find($newMaterialId)->getName(); 
+            $category= $this->getDoctrine()->getRepository(Category::class)-> find($newUseId)->getName(); 
+            $newName= $newName. ' ('.$material. ', '.$category. ')';
+           // dd($newName);
             foreach ($objets as $objet) {
 
-                $name = $objet->getName();
+                
                 $materialId = $objet->getMaterialId();
-                $useId = $objet->getUseId();
-
+                $useId = $objet->getUseId();                
+                $name = $objet->getName();
+              
                 // dd($newName, $newMaterialId, $materialId);
-
 
                 if ($name == $newName && $materialId == $newMaterialId && $useId == $newUseId) {
 
@@ -147,7 +152,10 @@ class ObjetController extends AbstractController
                     return $this->redirectToRoute('objet_new');
                 }
             }
+            $newObjet -> setName($newName);
 
+            
+            //dd($newObjet);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($newObjet);

@@ -33,10 +33,10 @@ class CollectionPointType extends AbstractType
             ->add('zipCode', TextType::class,[
                 'label' => 'Code Postal'
             ])
-            ->add('coordinateX', FloatType::class, [
+            ->add('coordinateX', TextType::class, [
                 'label' => 'Coordonnées GPS latitude'
             ])
-            ->add('coordinateY', FloatType::class, [
+            ->add('coordinateY', TextType::class, [
                 'label' => 'Coordonnées GPS longitude'
             ])
             ->add('openingTime', TextType::class, [

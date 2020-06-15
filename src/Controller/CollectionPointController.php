@@ -39,7 +39,11 @@ class CollectionPointController extends AbstractController
             $entityManager->persist($collectionPoint);
             $entityManager->flush();
 
-            return $this->redirectToRoute('collection_point_index');
+            $this->addFlash(
+                'success',
+                "Votre Point de collecte a bien été enregistré. Il sera validé par nos équipes dès que possible."
+            );
+            return $this->redirectToRoute('app_index');
         }
 
         return $this->render('collection_point/new.html.twig', [
