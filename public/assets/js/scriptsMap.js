@@ -1,5 +1,6 @@
 window.onload = function () {
 
+
     const mapboxTiles = L.tileLayer(
         "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}.png", {
             attribution: '<a href="https://carto.com" target="_blank">Tiles source : CARTO</a>',
@@ -62,15 +63,15 @@ window.onload = function () {
     });
 
     centerButton.onAdd = function (map) {
-            this._div = L.DomUtil.create('div', 'leaflet-control-geocoder leaflet-bar leaflet-control');
-            var img_log = "<button id=\"centerButton\"class=\"leaflet-control-geocoder-icon\"></button>";
-            this._div.innerHTML = img_log;
-            return this._div;
-        }
-        
+        this._div = L.DomUtil.create('div', 'leaflet-control-geocoder leaflet-bar leaflet-control');
+        var img_log = "<button id=\"centerButton\"class=\"leaflet-control-geocoder-icon\"></button>";
+        this._div.innerHTML = img_log;
+        return this._div;
+    }
+
     centerButton.addTo(map);
 
-    $("#centerButton").on("click", /*TODO : add function*/)
+    $("#centerButton").on("click", /*TODO : add function*/ )
 
     function showLayers() {
 
@@ -186,36 +187,23 @@ window.onload = function () {
             });
         }
 
-        // Gestion des boutons All et Remove grace aux IDs, peut être relier l'ID au layer
+        // Gestion du bouton #addRemoveAll
 
-        // $("#all").on("click", function () {
-        //     for (layer of layers) {
-        //         map.addLayer(layer)
-        //     }
-        // });
-
-
-        // $("#remove").on("click", function () {
-        //     for (const layer of layers) {
-        //         map.removeLayer(layer)
-        //     }
-        // });
-        
-        $("#addAll").click(function () {
-            for (const layer of layers) {
-                map.addLayer(layer);
-                $(".mapButton").prop("checked", true);
+        $("#addRemoveAll").click(function () {
+            $(this).toggleClass("selected");
+            if ($(this).hasClass("selected")) {
+                $(this).children("#titleButton").text("Tout masquer");
+                for (const layer of layers) {
+                    map.addLayer(layer);
+                    $(".mapButton").prop("checked", true);
+                }
+            } else {
+                for (const layer of layers) {
+                    $(this).children("#titleButton").text("Tout afficher");
+                    map.removeLayer(layer);
+                    $(".mapButton").prop("checked", false);
+                }
             }
         })
-
-
-
-        $("#removeAll").click(function () {
-            for (const layer of layers) {
-                map.removeLayer(layer);
-                $(".mapButton").prop("checked", false);
-            }
-        })
-
     }
 }
