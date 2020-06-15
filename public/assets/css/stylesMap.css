@@ -22,13 +22,12 @@
 }
 
 
-button {
+.mapButton {
   width: auto;
+  margin: 0.4em;
+  text-align: right;
 }
 
-button .selected {
-  background-color: blue;
-}
 .pinGeolocalisation {
   background-color: rgb(72, 142, 241);
   border: 2px solid white;
@@ -39,5 +38,11 @@ button .selected {
   background-color: rgba(72, 142, 241, 0.3);
   border: none;
   border-radius: 50%;
+
+}
+
+#centerButton {
+  background-image: url(../img/icon/1x/center-icon.png);
+
 }
 
