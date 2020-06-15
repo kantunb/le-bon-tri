@@ -39,13 +39,11 @@ class MaterialController extends AbstractController
         $collectionPointType = $this->getDoctrine()->getRepository(CollectionPointType::class)->find($materialId)->getType();
 
        
-        $response = [];
-        $result = [
+        $response = [
             'material' => $materialName,
             'collectionPointType' => $collectionPointType
         ];
 
-        $response[] = $result;
        
         return $this->render('map/index.html.twig', [
             'response' => $response
