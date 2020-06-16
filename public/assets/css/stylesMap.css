@@ -12,17 +12,32 @@
   margin: auto;
 }
 
-#buttonsContainer {
-  padding: 1em;
+#buttonsContainer,
+#showHideButton {
   position: absolute;
-  top: 2em;
-  left: 2em;
-  display: flex;
+  z-index: 800;
+}
+
+#buttonsContainer,
+#showHideButton {
+  top: 10px;
+  left: 10px;
+}
+
+#showHideButton {
+  background-color: rgb(249, 249, 249);
+  border-color: rgb(200, 200, 200);
+  border-width: 2px;
+}
+
+#buttonsContainer {
+  display: none;
+  padding: 1em;
   flex-direction: column;
   background-color: rgba(255, 255, 255, 0.9);
   border: 0px, solid;
   border-radius: 5px;
-  z-index: 800;
+
 }
 
 .mapButton {
@@ -43,12 +58,18 @@
   font-size: 1.3em;
 }
 
-#addRemoveAll{
+#addRemoveAll,
+#showHideButton {
   font-size: 1.3em;
 }
 
 #addRemoveAll input {
   display: none;
+}
+
+#closeLegend {
+  margin: auto;
+  margin-bottom: 10px;
 }
 
 .pinGeolocalisation {
@@ -66,7 +87,6 @@
 
 #centerButton {
   background-image: url(../img/icon/1x/center-icon.png);
-
 }
 
 .legendIcon {
@@ -92,7 +112,27 @@ table {
   padding-left: 0;
 }
 
-.tableMap th, .tableMap td {
+.tableMap th,
+.tableMap td {
   vertical-align: top;
   padding-bottom: 0.7em;
+}
+
+/* Media queries */
+
+@media (min-width: 992px) {
+
+  #showHideButton {
+    display: none;
+  }
+
+  #buttonsContainer {
+    display: flex;
+  }
+
+  .fa-times {
+    display: none;
+  }
+
+
 }
