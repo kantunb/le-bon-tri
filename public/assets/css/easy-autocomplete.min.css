@@ -8,11 +8,7 @@
  */
 
 .easy-autocomplete {
-    width: 70%;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative
 }
 
 .easy-autocomplete input {
@@ -417,7 +413,7 @@
 .eac-icon-right .eac-item img {
     margin-left: 4px;
     max-height: 30px;
-    position: relative;
+    position: absolute;
     right: -4px;
     top: -8px
 }
