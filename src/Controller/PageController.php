@@ -17,7 +17,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class PageController extends AbstractController
 {
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/", name="page_index", methods={"GET"})
      */
     public function index(PageRepository $pageRepository): Response
@@ -28,7 +28,7 @@ class PageController extends AbstractController
     }
     
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/new", name="page_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
@@ -62,7 +62,7 @@ class PageController extends AbstractController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/{id}/edit", name="page_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Page $page): Response
@@ -83,7 +83,7 @@ class PageController extends AbstractController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/{id}", name="page_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Page $page): Response

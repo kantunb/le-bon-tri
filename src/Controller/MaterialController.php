@@ -20,7 +20,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class MaterialController extends AbstractController
 {
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/", name="material_index", methods={"GET"})
      */
     public function index(MaterialRepository $materialRepository): Response
@@ -53,7 +53,7 @@ class MaterialController extends AbstractController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/new", name="material_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
@@ -77,7 +77,7 @@ class MaterialController extends AbstractController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/{id}", name="material_show", methods={"GET"})
      */
     public function show(Material $material): Response
@@ -88,7 +88,7 @@ class MaterialController extends AbstractController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/{id}/edit", name="material_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Material $material): Response
@@ -109,7 +109,7 @@ class MaterialController extends AbstractController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/{id}", name="material_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Material $material): Response
