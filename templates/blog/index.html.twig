@@ -9,16 +9,14 @@
 	<div id="blog" class="row pt-5">
 		{% for blog in blogs %}
 
-
-
 {% set tagName = "" %}
 {% for tag in blog.blogHasTag %} 
 {% set tagName = tagName ~ ' ' ~ tag.name %}
 {% endfor %}
 
 
-			<div class="card mb-3 {{ tagName }}">
-				<img class="card-img-top" src="{{ asset('/assets/img/dechets.jpg') }}" alt="Card image cap">
+			<div class="card m-3 col-5 {{ tagName }}">
+				<img class="card-img-top mt-1" src="{{ asset('/assets/img/dechets.jpg') }}" alt="Card image cap">
 				<div class="card-body">
 					<h5 class="card-title">{{ blog.title }}</h5>
 					<p class="card-text">{{ blog.shortContent }}</p>
