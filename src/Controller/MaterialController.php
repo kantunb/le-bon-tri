@@ -37,24 +37,19 @@ class MaterialController extends AbstractController
     public function searchCollectionPointTypeByMaterial(Material $material, Request $request)
     {
         $materialName = $material->getName();
-        $materialId = $material->getId();
-        $collectionPointType = $this->getDoctrine()->getRepository(CollectionPointType::class)->find($materialId)->getType();
-        $response='<input data-material="'.$materialName.'" data-collectionPointType="'.$collectionPointType.'" id="datas" type="hidden"/>';
-      //  $response = [];
-      //  $result = [
-      //      'material' => $materialName,
-      //      'collectionPointType' => $collectionPointType
-      //  ];
-//
-      //  $response[] = $result;
-      //  $json = new JsonResponse($response);
-      //  //dd($json);
-//
-        //return new JsonResponse($response);
-        return $this->render ('map/index.html.twig', [
+        $collectionPointTypeId= $material -> getCollectionPointType();
+        $collectionPointType = $this->getDoctrine()->getRepository(CollectionPointType::class)->find($collectionPointTypeId)->getType();
+
+       
+        $response = [
+            'material' => $materialName,
+            'collectionPointType' => $collectionPointType
+        ];
+
+       
+        return $this->render('map/index.html.twig', [
             'response' => $response
         ]);
-    
     }
 
     /**

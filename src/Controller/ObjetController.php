@@ -59,7 +59,6 @@ class ObjetController extends AbstractController
                 'danger',
                 "Attention à ne cocher qu'une case par objet: valider ou supprimer!"
             );
-            
         } else {
 
             if (isset($_POST['objetValidation'])) {
@@ -130,17 +129,17 @@ class ObjetController extends AbstractController
             $newName = $newObjet->getName();
             $newUseId = $newObjet->getUseId();
             $newMaterialId = $newObjet->getMaterialId();
-            $material = $this->getDoctrine()->getRepository(Material::class)->find($newMaterialId)->getName(); 
-            $category= $this->getDoctrine()->getRepository(Category::class)-> find($newUseId)->getName(); 
-            $newName= $newName. ' ('.$material. ', '.$category. ')';
-           // dd($newName);
+            $material = $this->getDoctrine()->getRepository(Material::class)->find($newMaterialId)->getName();
+            $category = $this->getDoctrine()->getRepository(Category::class)->find($newUseId)->getName();
+            $newName = $newName . ' (' . $material . ', ' . $category . ')';
+            // dd($newName);
             foreach ($objets as $objet) {
 
-                
+
                 $materialId = $objet->getMaterialId();
-                $useId = $objet->getUseId();                
+                $useId = $objet->getUseId();
                 $name = $objet->getName();
-              
+
                 // dd($newName, $newMaterialId, $materialId);
 
                 if ($name == $newName && $materialId == $newMaterialId && $useId == $newUseId) {
@@ -153,9 +152,9 @@ class ObjetController extends AbstractController
                     return $this->redirectToRoute('objet_new');
                 }
             }
-            $newObjet -> setName($newName);
+            $newObjet->setName($newName);
 
-            
+
             //dd($newObjet);
 
             $entityManager = $this->getDoctrine()->getManager();
@@ -196,8 +195,8 @@ class ObjetController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
 
+            $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('objet_index');
         }
 

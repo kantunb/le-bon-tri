@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\CollectionPointType;
 use App\Entity\Material;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,7 +16,12 @@ class MaterialType extends AbstractType
         $builder
             ->add('name')
             ->add('devenir')
-            ->add('collectionPoints')
+            ->add('collectionPointType', EntityType::class, [
+                'class' => CollectionPointType::class,
+                'label' => 'Type de point de Collecte',
+                'choice_label' => 'type'
+            ])
+        ;
         ;
     }
 

@@ -35,24 +35,17 @@ class CategoryController extends AbstractController
     public function searchCollectionPointTypeByMaterial(Category $category, Request $request)
     {
         $categoryName = $category->getName();
-        $categoryId = $category->getId();
-        $collectionPointType = $this->getDoctrine()->getRepository(CollectionPointType::class)->find($categoryId)->getType();
-        $response='<input data-category="'.$categoryName.'" data-collectionPointType="'.$collectionPointType.'" id="datas" type="hidden"/>';
-       //$response = [];
-       //$result = [
-       //    'category' => $categoryName,
-       //    'collectionPointType' => $collectionPointType
-       //];
+        $collectionPointTypeId = $category->getCollectionPointType();
+        $collectionPointType = $this->getDoctrine()->getRepository(CollectionPointType::class)->find($collectionPointTypeId)->getType();
 
-       //$response[] = $result;
-       // $json = new JsonResponse($response);
-        //dd($json);
-        // return new JsonResponse($response);
-        return $this->render ('map/index.html.twig', [
+        $response = [
+            'material' => $categoryName,
+            'collectionPointType' => $collectionPointType
+        ];
+
+        return $this->render('map/index.html.twig', [
             'response' => $response
         ]);
-    
-    
     }
 
     /**
