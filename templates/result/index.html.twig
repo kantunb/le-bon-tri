@@ -19,8 +19,10 @@
 						<div class="card-body">
 							<h5 class="card-title">
 								Consigne de tri: {{ consignesTriByMaterial.devenir }}</h5>
-							<p class="card-text">Si votre {{names}} en {{consignesTriByMaterial.name}} est hors d'usage, géolocalisez-vous pour trouver la déchetterie la plus proche</p>
-							<a href="{{ path('map') }}" class="btn btn-success">Géolocalisez moi!</a>
+
+							<p class="card-text">Si votre {{names}} en {{consignesTriByMaterial.name}} est hors d'usage, géolocalisez-vous pour trouvez la déchetterie la plus proche</p>
+							<a href="{{path('material_search', {'id' : consignesTriByMaterial.id})}}" class="btn btn-success">Géolocalisez moi!</a>
+
 						</div>
 					</div>
 				</div>
@@ -39,8 +41,10 @@
 						<div class="card-body">
 							<h5 class="card-title">
 								Et si on valorisait autrement : {{ consignesTriByUse.devenir }}</h5>
-							<p class="card-text">Si votre {{names}} peut encore servir, géolocalisez-vous pour trouver un endroit où lui donner une seconde vie</p>
-							<a href="{{ path('map') }}" class="btn btn-success">Géolocalisez moi!</a>
+
+							<p class="card-text">Si votre {{names}} peut encore servir, géolocalisez-vous pour trouvez un endroit où lui donner une seconde vie</p>
+							<a href="{{path('category_search', {'id' : consignesTriByUse.id})}}" class="btn btn-success">Géolocalisez moi!</a>
+
 						</div>
 					</div>
 				</div>

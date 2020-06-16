@@ -13,22 +13,30 @@
 }
 
 #buttonsContainer {
+  padding-inline-start: 1em;
   position: absolute;
   top: 2em;
   right: 2em;
   display: flex;
   flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 0px, solid;
+  border-radius: 5px;
   z-index: 800;
 }
 
 
-button {
+.mapButton {
   width: auto;
+  margin: 0.1em;
+  background-color: transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;  text-align: right;
 }
 
-button .selected {
-  background-color: blue;
-}
 .pinGeolocalisation {
   background-color: rgb(72, 142, 241);
   border: 2px solid white;
@@ -39,5 +47,11 @@ button .selected {
   background-color: rgba(72, 142, 241, 0.3);
   border: none;
   border-radius: 50%;
+
+}
+
+#centerButton {
+  background-image: url(../img/icon/1x/center-icon.png);
+
 }
 

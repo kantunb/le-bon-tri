@@ -9,8 +9,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 /**
+ * @IsGranted("ROLE_USER")
  * @Route("/collection/point")
  */
 class CollectionPointController extends AbstractController
@@ -25,7 +28,8 @@ class CollectionPointController extends AbstractController
         ]);
     }
 
-    /**
+
+   /**
      * @Route("/new", name="collection_point_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response

@@ -8,6 +8,8 @@
 /vendor/
 /Migrations/
 /public/assets/plugin
+/public/assets/img/icon/baseFiles/
+
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
@@ -26,7 +28,8 @@
 .LSOverride
 
 # Icon must end with two \r
-Icon
+# Icon
+
 
 # Thumbnails
 ._*

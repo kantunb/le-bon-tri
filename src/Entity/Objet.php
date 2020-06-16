@@ -6,6 +6,7 @@ use App\Repository\ObjetRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ObjetRepository::class)
@@ -21,6 +22,13 @@ class Objet
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex(
+     *     pattern     = "/^[a-zA-Z0-9()_, -]{3,255}+$/i",
+     *     htmlPattern = "^[a-zA-Z0-9()_, -]{3,255}+$",
+     *     match=true,
+     *     message="Votre objet peut contenir des lettres majusccules, minuscules, des chiffres, des parenthèses, - , _ , des virgules ou des 
+     *      espaces"
+     * )
      */
     private $name;
 

@@ -6,11 +6,10 @@ use App\Entity\Page;
 use App\Form\PageType;
 use App\Repository\PageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/page")
@@ -18,6 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PageController extends AbstractController
 {
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/", name="page_index", methods={"GET"})
      */
     public function index(PageRepository $pageRepository): Response
@@ -27,26 +27,8 @@ class PageController extends AbstractController
         ]);
     }
     
- /**
-     * @Route("/contact", name="contact")
-     */
-    // public function sendEmail(MailerInterface $mailer)
-    // {
-    //     $email = (new Email())
-    //         ->from('hello@example.com')
-    //         ->to('you@example.com')
-    //         //->cc('cc@example.com')
-    //         //->bcc('bcc@example.com')
-    //         //->replyTo('fabien@example.com')
-    //         //->priority(Email::PRIORITY_HIGH)
-    //         ->subject('Time for Symfony Mailer!')
-    //         ->text('Sending emails is fun again!')
-    //         ->html('<p>See Twig integration for better HTML integration!</p>');
-
-    //     $mailer->send($email);
-    // }
-
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/new", name="page_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
@@ -80,6 +62,7 @@ class PageController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/{id}/edit", name="page_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Page $page): Response
@@ -100,6 +83,7 @@ class PageController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/{id}", name="page_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Page $page): Response
