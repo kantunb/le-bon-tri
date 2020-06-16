@@ -1,11 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Page{% endblock %}
+{% block title %}
+Nouvel article
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Page</h1>
+	<h1>Créer un nouvel article</h1>
 
-    {{ include('page/_form.html.twig') }}
+	{{ include('page/_form.html.twig') }}
 
-    <a href="{{ path('page_index') }}">back to list</a>
+	<br>
+	<a href="{{ path('page_index') }}">Retour à la liste</a>
+{% endblock %}
+
+{% block css %}
+
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css" rel="stylesheet">
+
+{% endblock %}
+
+{% block javascripts %}
+
+	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
+	<script>
+		$(document).ready(function () {
+            $('#summernote').summernote();
+        });
+    </script>
+    
 {% endblock %}
