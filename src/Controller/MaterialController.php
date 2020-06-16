@@ -42,7 +42,7 @@ class MaterialController extends AbstractController
 
        
         $response = [
-            'material' => $materialName,
+            'materialOrUsage' => $materialName,
             'collectionPointType' => $collectionPointType
         ];
 

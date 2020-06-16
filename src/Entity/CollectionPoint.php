@@ -38,7 +38,7 @@ class CollectionPoint
      *     pattern     = "/^[a-zA-Z0-9 ]{3,255}+$/i",
      *     htmlPattern = "^[a-zA-Z0-9 ]{3,255}+$",
      *     match=true,
-     *     message="Le nom du point de collecte peut contenir des lettres majusccules, minuscules et des chiffres"
+     *     message="Le nom du point de collecte peut contenir des lettres majusccules, minuscules et des chiffres")
      * 
      */
     private $streetNumber;
