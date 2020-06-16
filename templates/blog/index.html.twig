@@ -14,9 +14,10 @@
 					<h5 class="card-title">{{ blog.title }}</h5>
 					<p class="card-text">{{ blog.shortContent }}</p>
 					<p class="card-text">
-						<small class="text-muted">posté le : {{ blog.createdAt ? blog.createdAt|date('Y-m-d') : '' }}</small>
+						<small class="text-muted">posté le :
+							{{ blog.createdAt ? blog.createdAt|date('Y-m-d') : '' }}</small>
 					</p>
-                    <a href="{{ path('blog_show', {'id': blog.id}) }}" class="btn btn-success">Lire l'article</a>
+					<a href="{{ path('blog_show', {'id': blog.id}) }}" class="btn btn-success">Lire l'article</a>
 				</div>
 			</div>
 		</div>
@@ -33,7 +34,9 @@
 				<th>Short_content</th>
 				<th>Content</th>
 				<th>CreatedAt</th>
-				<th>actions</th>
+				{% if app.user %}
+					<th>actions</th>
+				{% endif %}
 			</tr>
 		</thead>
 		<tbody>
@@ -44,10 +47,12 @@
 					<td>{{ blog.shortContent }}</td>
 					<td>{{ blog.content }}</td>
 					<td>{{ blog.createdAt ? blog.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-					<td>
-						<a href="{{ path('blog_show', {'id': blog.id}) }}">show</a>
-						<a href="{{ path('blog_edit', {'id': blog.id}) }}">edit</a>
-					</td>
+					{% if app.user %}
+						<td>
+							<a href="{{ path('blog_show', {'id': blog.id}) }}">show</a>
+							<a href="{{ path('blog_edit', {'id': blog.id}) }}">edit</a>
+						</td>
+					{% endif %}
 				</tr>
 			{% else %}
 				<tr>
