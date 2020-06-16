@@ -39,7 +39,7 @@ class CategoryController extends AbstractController
         $collectionPointType = $this->getDoctrine()->getRepository(CollectionPointType::class)->find($collectionPointTypeId)->getType();
 
         $response = [
-            'material' => $categoryName,
+            'materialOrUsage' => $categoryName,
             'collectionPointType' => $collectionPointType
         ];
 
