@@ -8,7 +8,14 @@
 	<div id="blog" class="row pt-5">
 		<h3>Nos derniers articles :</h3>
 		{% for blog in blogs %}
-			<div class="card mb-3">
+
+{% set tagName = "" %}
+{% for tag in blog.blogHasTag %} 
+{% set tagName = tagName ~ ' ' ~ tag.name %}
+{% endfor %}
+
+
+			<div class="card mb-3 {{ tagName }}">
 				<img class="card-img-top" src="{{ asset('/assets/img/dechets.jpg') }}" alt="Card image cap">
 				<div class="card-body">
 					<h5 class="card-title">{{ blog.title }}</h5>
@@ -20,12 +27,12 @@
 					<a href="{{ path('blog_show', {'id': blog.id}) }}" class="btn btn-success">Lire l'article</a>
 				</div>
 			</div>
-		</div>
 	{% else %}
 		<tr>
 			<td colspan="6">no records found</td>
 		</tr>
 	{% endfor %}
+		</div>
 	<table class="table">
 		<thead>
 			<tr>

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Blog;
+use App\Entity\Tag;
 use App\Form\BlogType;
 use App\Repository\BlogRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,10 +22,12 @@ class BlogController extends AbstractController
      */
     public function index(BlogRepository $blogRepository): Response
     {
+        
         return $this->render('blog/index.html.twig', [
             'blogs' => $blogRepository->findAll(),
         ]);
     }
+
 
     /**
      * @IsGranted("ROLE_ADMIN")
@@ -87,7 +90,7 @@ class BlogController extends AbstractController
      */
     public function delete(Request $request, Blog $blog): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$blog->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $blog->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($blog);
             $entityManager->flush();
