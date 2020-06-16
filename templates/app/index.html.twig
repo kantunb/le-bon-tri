@@ -1,42 +1,55 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-		{% include "flash_messages.html.twig" %}
-
-	<main>
-		<section id="presentation" class="container-fluid pt-3 pt-md-5">
-			<div class="container">
-				<div class="row">
-					<header class="col-12 text-center pb-3">
-						{% for message in app.flashes('success') %}
-							<div class="alert alert-success">
-								{{ message }}
-							</div>
-						{% endfor %}
-						<h1 class="pb-4">L'appli pour trier comme il faut</h1>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, aliquid iusto, animi similique fugit voluptate laborum dicta ullam itaque cumque blanditiis repellat. Itaque quas sapiente eius a esse fuga consequatur?</p>
-					</header>
+	{% include "flash_messages.html.twig" %}
 
 
-					<div class="col-12 text-center">
-						
+	<section id="presentation">
 
-							<form action="{{ path('app_search') }}" method="get">
-								<div class="search d-flex justify-content-center">
-
-									<input type="text" name="objetName" id="provider-remote" class="searchTerm" placeholder="Entrez l'article à recycler!">
-									<button
-										type="submit" class="searchButton fa fa-search">{#<a class="fa fa-search" href="{{ path('app_search') }}"></a>#}
-									</button>
-								</div>
-
-							</form>
-						
+		<div class="row">
+			<header class="col-12 text-center pb-3">
+				{% for message in app.flashes('success') %}
+					<div class="alert alert-success">
+						{{ message }}
 					</div>
-				</div>
-			</div>
+				{% endfor %}
+				<h1 class="pb-4">L'appli pour trier comme il faut</h1>
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, aliquid iusto, animi similique fugit voluptate laborum dicta ullam itaque cumque blanditiis repellat. Itaque quas sapiente eius a esse fuga consequatur?</p>
+			</header>
 
+			<div class="container justify-content-center">
+				<div class="col-12 text-center">
+
+
+					<form action="{{ path('app_search') }}" method="get">
+						<div class="search d-flex justify-content-center">
+
+							<input type="text" name="objetName" id="provider-remote" class="searchTerm" placeholder="Entrez l'article à recycler!">
+							<button
+								type="submit" class="searchButton fa fa-search btn btn-success ">{#<a class="fa fa-search" href="{{ path('app_search') }}"></a>#}
+							</button>
+						</div>
+
+					</form>
+
+				</div>
+
+				<div class="col-12 text-center">
+					<form action="{{ path('objet_new') }}" method="get">
+						<div class="newobjet mt-5 py-2 ">
+							<p>
+								Vous ne trouvez pas l'objet que vous recherchez?</p>
+
+							<button type="submit" class="btn btn-success btn-sm">Ajoutez le!</button>
+
+						</div>
+
+					</form>
+
+				</div>
+
+			</div>
 		</section>
 
-	</main>
-{% endblock %}
+
+	{% endblock %}
