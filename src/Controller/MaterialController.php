@@ -15,12 +15,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
- * @IsGranted("ROLE_USER")
  * @Route("/material")
  */
 class MaterialController extends AbstractController
 {
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/", name="material_index", methods={"GET"})
      */
     public function index(MaterialRepository $materialRepository): Response
@@ -58,6 +58,7 @@ class MaterialController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/new", name="material_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
@@ -81,6 +82,7 @@ class MaterialController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/{id}", name="material_show", methods={"GET"})
      */
     public function show(Material $material): Response
@@ -91,6 +93,7 @@ class MaterialController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/{id}/edit", name="material_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Material $material): Response
@@ -111,6 +114,7 @@ class MaterialController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/{id}", name="material_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Material $material): Response
