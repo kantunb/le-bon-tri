@@ -100,7 +100,7 @@ class ObjetController extends AbstractController
 
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/{id}/validateObjects", name="objet_validate", methods={"GET"})
      */
     public function validateObject(Request $request, Objet $objet)
