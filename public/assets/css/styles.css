@@ -92,7 +92,7 @@ footer {
     width: 40px;
     height: 40px;
     border: 1px solid #1e6319;
-    background: #1e6319;
+    /* background: #1e6319; */
     text-align: center;
     color: #fff;
     border-radius: 0 5px 5px 0;
@@ -106,6 +106,15 @@ footer {
     width: 100%;
     padding: 15px;
 }
+
+/* app index create objet */
+
+.newobjet {
+    border: 3px solid green;
+    border-radius: 3px;
+    width: 70%;
+}
+
 
 /* 
 .wrap {
