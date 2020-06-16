@@ -5,62 +5,75 @@
 
 {% block body %}
 
+	<h3 class="mt-5">Nos derniers articles :</h3>
 	<div id="blog" class="row pt-5">
-		<h3>Nos derniers articles :</h3>
 		{% for blog in blogs %}
-			<div class="card mb-3">
-				<img class="card-img-top" src="{{ asset('/assets/img/dechets.jpg') }}" alt="Card image cap">
+
+{% set tagName = "" %}
+{% for tag in blog.blogHasTag %} 
+{% set tagName = tagName ~ ' ' ~ tag.name %}
+{% endfor %}
+
+
+			<div class="card m-3 col-5 {{ tagName }}">
+				<img class="card-img-top mt-1" src="{{ asset('/assets/img/dechets.jpg') }}" alt="Card image cap">
 				<div class="card-body">
 					<h5 class="card-title">{{ blog.title }}</h5>
 					<p class="card-text">{{ blog.shortContent }}</p>
 					<p class="card-text">
-						<small class="text-muted">posté le :
+						<small class="text-muted">Posté le :
 							{{ blog.createdAt ? blog.createdAt|date('Y-m-d') : '' }}</small>
 					</p>
 					<a href="{{ path('blog_show', {'id': blog.id}) }}" class="btn btn-success">Lire l'article</a>
 				</div>
 			</div>
-		</div>
-	{% else %}
-		<tr>
-			<td colspan="6">no records found</td>
-		</tr>
-	{% endfor %}
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Title</th>
-				<th>Short_content</th>
-				<th>Content</th>
-				<th>CreatedAt</th>
-				{% if app.user %}
-					<th>actions</th>
-				{% endif %}
-			</tr>
-		</thead>
-		<tbody>
-			{% for blog in blogs %}
-				<tr>
-					<td>{{ blog.id }}</td>
-					<td>{{ blog.title }}</td>
-					<td>{{ blog.shortContent }}</td>
-					<td>{{ blog.content }}</td>
-					<td>{{ blog.createdAt ? blog.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-					{% if app.user %}
-						<td>
-							<a href="{{ path('blog_show', {'id': blog.id}) }}">show</a>
-							<a href="{{ path('blog_edit', {'id': blog.id}) }}">edit</a>
-						</td>
-					{% endif %}
-				</tr>
-			{% else %}
-				<tr>
-					<td colspan="6">no records found</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+		{% else %}
 
-	<a href="{{ path('blog_new') }}">Create new</a>
+			<tr>
+				<td colspan="6">Aucun article trouvé</td>
+			</tr>
+		{% endfor %}
+	</div>
+
+	{# <table class="table">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Title</th>
+							<th>Short_content</th>
+							<th>Content</th>
+							<th>CreatedAt</th>
+							{% if app.user %}
+								<th>actions</th>
+							{% endif %}
+						</tr>
+					</thead>
+					<tbody>
+						{% for blog in blogs %}
+							<tr>
+								<td>{{ blog.id }}</td>
+								<td>{{ blog.title }}</td>
+								<td>{{ blog.shortContent }}</td>
+								<td>{{ blog.content }}</td>
+								<td>{{ blog.createdAt ? blog.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+								{% if app.user %}
+									<td>
+										<a href="{{ path('blog_show', {'id': blog.id}) }}">show</a>
+										<a href="{{ path('blog_edit', {'id': blog.id}) }}">edit</a>
+									</td>
+								{% endif %}
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="6">no records found</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table> #}
+
+	{% if app.user %}
+		<button class="btn btn-primary">
+			<a href="{{ path('blog_new') }}">Créer</a>
+		</button>
+	{% endif %}
 {% endblock %}

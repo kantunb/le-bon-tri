@@ -37,7 +37,7 @@
 
 		{#	{{ response |raw }}#}
 		{% if response is defined %}
-			<input data-material={{response.material}} data-collectionpointtype={{response.collectionPointType}} id="datas" type="hidden"/>
+			<input data-materialOrUsage={{response.materialOrUsage}} data-collectionpointtype={{response.collectionPointType}} id="datas" type="hidden"/>
 		{% else %}
 			<input id="datas" type="hidden"/>
 		{% endif %}
