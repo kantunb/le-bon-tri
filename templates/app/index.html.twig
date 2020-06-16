@@ -1,42 +1,48 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-		{% include "flash_messages.html.twig" %}
+	{% include "flash_messages.html.twig" %}
 
-	<main>
-		<section id="presentation" class="container-fluid pt-3 pt-md-5">
-			<div class="container">
-				<div class="row">
-					<header class="col-12 text-center pb-3">
-						{% for message in app.flashes('success') %}
-							<div class="alert alert-success">
-								{{ message }}
+
+	<section id="presentation" class="container-fluid pt-3 pt-md-5">
+		<div class="container">
+			<div class="row justify-content-center">
+
+				<header class="col-12 text-center pb-3">
+					{% for message in app.flashes('success') %}
+						<div class="alert alert-success">
+							{{ message }}
+						</div>
+					{% endfor %}
+					<h1 class="pb-4">L'appli pour trier comme il faut</h1>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, aliquid iusto, animi similique fugit voluptate laborum dicta ullam itaque cumque blanditiis repellat. Itaque quas sapiente eius a esse fuga consequatur?</p>
+				</header>
+
+
+				<div>
+					<div class="row justify-content-center">
+
+						<form action="{{ path('app_search') }}" method="get">
+							<div class="search d-flex">
+
+								<input type="text" name="objetName" id="provider-remote" class="searchTerm" placeholder="Entrez l'article à recycler!">
+								<button
+									type="submit" class="searchButton fa fa-search">
+								</button>
 							</div>
-						{% endfor %}
-						<h1 class="pb-4">L'appli pour trier comme il faut</h1>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, aliquid iusto, animi similique fugit voluptate laborum dicta ullam itaque cumque blanditiis repellat. Itaque quas sapiente eius a esse fuga consequatur?</p>
-					</header>
 
+						</form>
 
-					<div class="col-12 text-center">
-						
-
-							<form action="{{ path('app_search') }}" method="get">
-								<div class="search d-flex justify-content-center">
-
-									<input type="text" name="objetName" id="provider-remote" class="searchTerm" placeholder="Entrez l'article à recycler!">
-									<button
-										type="submit" class="searchButton fa fa-search">{#<a class="fa fa-search" href="{{ path('app_search') }}"></a>#}
-									</button>
-								</div>
-
-							</form>
-						
 					</div>
+
+					<div class="newobjet mt-5 py-2 text-center">
+						<p>	Vous ne trouvez pas l'objet que vous recherchez?</p>
+						<a href="{{ path('objet_new') }}" ><button type="submit" class="btn btn-success btn-sm">Ajoutez le!</button></a>
+					</div>
+
 				</div>
 			</div>
+		</div>
+	</div>
+</section>{% endblock %}
 
-		</section>
-
-	</main>
-{% endblock %}
