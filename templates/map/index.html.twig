@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'basemap.html.twig' %}
 
 {% block css %}
 
@@ -13,7 +13,8 @@
 
 
 {% block body %}
-	<main>
+	
+	<div class="container-fluid">
 		<section id="localisationContainer">
 
 			<div id="map">
@@ -29,6 +30,9 @@
 
 		</section>
 
+
+	</div>
+
 		{#	{{ response |raw }}#}
 		{% if response is defined %}
 			<input data-material={{response.material}} data-collectionpointtype={{response.collectionPointType}} id="datas" type="hidden"/>
@@ -36,6 +40,7 @@
 			<input id="datas" type="hidden"/>
 		{% endif %}
 	</main>
+
 {% endblock %}
 
 {% block javascripts %}

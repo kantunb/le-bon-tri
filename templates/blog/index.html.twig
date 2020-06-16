@@ -1,41 +1,61 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Blog index{% endblock %}
+{% block title %}Blog index
+{% endblock %}
 
 {% block body %}
-    <h1>Blog index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Short_content</th>
-                <th>Content</th>
-                <th>CreatedAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for blog in blogs %}
-            <tr>
-                <td>{{ blog.id }}</td>
-                <td>{{ blog.title }}</td>
-                <td>{{ blog.shortContent }}</td>
-                <td>{{ blog.content }}</td>
-                <td>{{ blog.createdAt ? blog.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('blog_show', {'id': blog.id}) }}">show</a>
-                    <a href="{{ path('blog_edit', {'id': blog.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<div id="blog" class="row pt-5">
+		<h3>Nos derniers articles :</h3>
+		{% for blog in blogs %}
+			<div class="card mb-3">
+				<img class="card-img-top" src="{{ asset('/assets/img/dechets.jpg') }}" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title">{{ blog.title }}</h5>
+					<p class="card-text">{{ blog.shortContent }}</p>
+					<p class="card-text">
+						<small class="text-muted">posté le : {{ blog.createdAt ? blog.createdAt|date('Y-m-d') : '' }}</small>
+					</p>
+                    <a href="{{ path('blog_show', {'id': blog.id}) }}" class="btn btn-success">Lire l'article</a>
+				</div>
+			</div>
+		</div>
+	{% else %}
+		<tr>
+			<td colspan="6">no records found</td>
+		</tr>
+	{% endfor %}
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Title</th>
+				<th>Short_content</th>
+				<th>Content</th>
+				<th>CreatedAt</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for blog in blogs %}
+				<tr>
+					<td>{{ blog.id }}</td>
+					<td>{{ blog.title }}</td>
+					<td>{{ blog.shortContent }}</td>
+					<td>{{ blog.content }}</td>
+					<td>{{ blog.createdAt ? blog.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+					<td>
+						<a href="{{ path('blog_show', {'id': blog.id}) }}">show</a>
+						<a href="{{ path('blog_edit', {'id': blog.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="6">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
-    <a href="{{ path('blog_new') }}">Create new</a>
+	<a href="{{ path('blog_new') }}">Create new</a>
 {% endblock %}
