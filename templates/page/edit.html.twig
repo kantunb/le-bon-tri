@@ -1,13 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Page{% endblock %}
+{% block title %}Editer Page{% endblock %}
 
 {% block body %}
     <h1>Edit Page</h1>
 
     {{ include('page/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('page_index') }}">back to list</a>
+    <a href="{{ path('page_index') }}">Retour à la liste</a>
 
     {{ include('page/_delete_form.html.twig') }}
+{% endblock %}
+
+{% block css %}
+
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css" rel="stylesheet">
+
+{% endblock %}
+
+{% block javascripts %}
+
+	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
+	<script>
+		$(document).ready(function () {
+            $('#summernote').summernote();
+        });
+    </script>
+    
 {% endblock %}
