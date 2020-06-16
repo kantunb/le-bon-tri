@@ -62,5 +62,7 @@
 		</tbody>
 	</table>
 
-	<a href="{{ path('blog_new') }}">Create new</a>
+	{% if app.user %}
+		<a href="{{ path('blog_new') }}">Create new</a>
+	{% endif %}
 {% endblock %}

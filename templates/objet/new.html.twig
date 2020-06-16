@@ -1,18 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nouvel objet
+{% block title %}
+	Nouvel objet
 {% endblock %}
 
 {% block body %}
-	<div class="container">
-	<h1>Créer un nouvel objet</h1>
-	{% for message in app.flashes('invalid') %}
-		<div class="alert alert-danger">
-			{{ message }}
-		</div>
-	{% endfor %}
-	{{ include('objet/_form.html.twig') }}
 
-	<a href="{{ path('objet_index') }}">Retour à la liste</a>
+	<div class="container" style="padding-top:40px">
+		<div>
+			<h1>Créer un nouvel objet</h1>
+			{% for message in app.flashes('invalid') %}
+				<div class="alert alert-danger">
+					{{ message }}
+				</div>
+			{% endfor %}
+
+			{{ include('objet/_form.html.twig') }}
+
+			<br>
+
+			<div class="text-center">
+				<a href="{{ path('objet_index') }}">
+					<button type="submit" class="btn btn-success btn-sm">Retour à la liste</button>
+				</a>
+			</div>
+		</div>
 	</div>
 {% endblock %}

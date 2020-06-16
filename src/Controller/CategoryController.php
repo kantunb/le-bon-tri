@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
- * @IsGranted("ROLE_USER")
+ * @IsGranted("ROLE_ADMIN")
  * @Route("/category")
  */
 class CategoryController extends AbstractController
@@ -39,7 +39,7 @@ class CategoryController extends AbstractController
         $collectionPointType = $this->getDoctrine()->getRepository(CollectionPointType::class)->find($collectionPointTypeId)->getType();
 
         $response = [
-            'material' => $categoryName,
+            'materialOrUsage' => $categoryName,
             'collectionPointType' => $collectionPointType
         ];
 

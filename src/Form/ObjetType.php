@@ -9,6 +9,7 @@ use App\Entity\Objet;
 use Doctrine\DBAL\Types\BooleanType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -30,7 +31,7 @@ class ObjetType extends AbstractType
             ->add('Use_id', EntityType::class, [
                 'class' => Category::class,
                 'label' => 'Usage',
-                'choice_label' => 'name',
+                'choice_label' => 'name'
             ]);
     }
 
