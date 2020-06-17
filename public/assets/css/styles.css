@@ -217,6 +217,12 @@ h3 {
     font-style: italic;
 }
 
+/****** Isotop ******/
+
+.grid-item {
+    width: 25%; 
+}
+
 /* media query */
 
 @media screen and (max-width: 576px) {
