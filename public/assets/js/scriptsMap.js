@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function (event) {
+window.onload = function(e) {
 
     const mapTiles = L.tileLayer(
         "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}.png", {
@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
             setView: true,
             maxZoom: 17
         });
+
+        map.zoomControl.setPosition('bottomright');
 
     /*********** If localisation ok, add a marker and add a position button ***********/
 
@@ -32,8 +34,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
         const centerButton = L.control({
             position: 'bottomright'
         });
-
-        map.zoomControl.setPosition('bottomright');
 
         L.marker(e.latlng, {
             icon: localisationIconBack,
@@ -91,6 +91,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 
     /*********** Layers builder ***********/
+
     const layers = [];
 
     function layersBuilders(lyonJSON) {
@@ -284,12 +285,39 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 map.addLayer(layer);
                 $(".mapButton").prop("checked", true);
             }
+            $("#addRemoveAll").removeClass('btn-success');
+            $("#addRemoveAll").addClass('btn-danger');
         } else {
             for (const layer of layers) {
                 $(this).children("#titleButton").text("Tout afficher");
                 map.removeLayer(layer);
                 $(".mapButton").prop("checked", false);
             }
+            $("#addRemoveAll").addClass('btn-success');
+            $("#addRemoveAll").removeClass('btn-danger');
+
         }
     })
-})
+    
+    /**** Show / Hide legend on mobile ****/
+
+    $('#showHideButton').click(function () {
+        $(this).css('display', $(this).css('display') === 'none' ? 'inline-block' : 'none');
+        $('#buttonsContainer').css("display", $('#buttonsContainer').css("display") === 'none' ? 'flex' : 'none')
+    })
+
+    $('#closeLegend').click(function() {
+        $('#buttonsContainer').css('display', 'none');
+        $('#showHideButton').css('display', 'inline-block');
+    })
+
+    // /**** Toggle legend on mobile ****/
+
+    // $('#showHideButton').click(() => {
+    //     $('#buttonsContainer').slideToggle(1000, function() {
+    //         if ($(this).is(':visible')) {
+    //             $(this).css('display', 'flex');
+    //         }
+    //     });
+    // })    
+}
