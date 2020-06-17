@@ -1,17 +1,10 @@
 /* General */
 
-@font-face {
-    font-family: "DKMoonlightSerenade";
-    src: url("../font/DKMoonlightSerenade.otf") format("woff");
-}
-
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Roboto&display=swap');
-
 body,
 html {
-    font-family: 'DKMoonlightSerenade', sans-serif;
-    letter-spacing: 2px;
-    color: black;
+    font-family: 'Roboto', sans-serif;
+    color: rgb(34, 31, 31);
     height: 100%;
     margin: 0;
     padding: 0;
@@ -24,30 +17,9 @@ html {
     padding: 0;
 }
 
-.titre {
-    border: 3px solid yellowgreen;
-    /* background-color: white; */
-    border: 3px solid yellowgreen;
-    border: 3px solid yellowgreen;
-    border-radius: 15px;
-    padding: 15px;
-    opacity: 80%;
-    margin-bottom: 30px;
-    box-shadow: 5px 5px 5px yellowgreen;
-}
-
-.lorem {
-    border: 3px solid #6dbfb4;
-    background-color: white;
-    border-radius: 3px;
-    width: 100%;
-    padding: 15px;
-    opacity: 90%;
-}
-
-h1 {
-    letter-spacing: 3px;
-    font-weight: bold;
+nav {
+    background-image: url(../img/fleur.png);
+    background-size: cover;
 }
 
 h1:hover {
@@ -55,7 +27,7 @@ h1:hover {
 }
 
 p:hover {
-    font-weight: bold;
+    color: green;
 }
 
 * {
@@ -68,7 +40,7 @@ a {
 
 a:hover {
     text-decoration: none;
-    font-weight: bold;
+    color: green;
 }
 
 img {
@@ -78,12 +50,6 @@ img {
 
 ul.icons {
     list-style: none;
-    padding: none;
-    font-family: 'Roboto';
-}
-
-ul.icons:hover {
-    color: green;
 }
 
 li {
@@ -91,53 +57,42 @@ li {
 }
 
 footer {
-    background: linear-gradient(#6dbfb4, #e7dc19);
+    background-image: url(../img/fleur.png);
     background-size: cover;
-    color: black;
-}
-
-footer .container {
-    height: 100%;
-}
-
-footer .row div p,
-footer .row div ul {
-    margin: 0;
 }
 
 .label {
     font-family: 'Roboto', sans-serif;
 }
 
+
 /* search bar */
 
 .search {
-    width: 500px;
+    width: 300px !important;
     position: relative;
-    opacity: 80%;
-    border: 3px solid yellowgreen;
-    /* border-radius: 25px 0 0 25px; */
 }
 
 .searchTerm {
-    width: 500px;
+    width: 100%;
     border: 3px solid #1e6319;
     border-right: none;
-    padding: 2px;
-    height: 70px;
-    background-color: white;
-    /* border-radius: 25px 0 0 25px; */
+    padding: 5px;
+    height: 40px;
+    border-radius: 5px 0 0 5px;
     outline: none;
-    color: rgb(169, 192, 124);
-    transition-delay: 2s;
-    transition-property: background-color;
-    transition-duration: 2s;
+    color: #9DBFAF;
+}
+
+.searchTerm:focus {
+    color: #1e6319;
 }
 
 .searchButton {
-    width: 70px;
-    height: 70px;
-    border: 3px solid yellowgreen;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #1e6319;
+    /* background: #1e6319; */
     text-align: center;
     color: #fff;
     border-radius: 0 5px 5px 0;
@@ -145,61 +100,35 @@ footer .row div ul {
     font-size: 20px;
 }
 
-.searchTerm:hover {
-    background-color: hotpink;
-}
-
-.searchTerm:focus {
-    color: green;
-    letter-spacing: 2px;
-    font-family: 'Roboto', sans-serif;
-}
-
-::placeholder {
-    opacity: 100%;
-    color: black;
-    letter-spacing: 1px;
-}
-
-::placeholder:hover {
-    background-color: greenyellow;
-}
-
 .newobjet {
-    margin-top: 70px;
-    border: 3px solid yellowgreen;
-    background-color: white;
-    border-radius: 15px;
+    border: 3px solid green;
+    border-radius: 3px;
     width: 100%;
     padding: 15px;
-    opacity: 90%;
-    transition-delay: 2s;
-    transition-property: background-color;
-    transition-duration: 2s;
 }
 
-.newobjet:hover {
-    background-color: hotpink;
+/* app index create objet */
+
+.newobjet {
+    border: 3px solid green;
+    border-radius: 3px;
+    width: 70%;
 }
 
-.add {
-    letter-spacing: 2px;
-}
 
 /* 
 .wrap {
-width: 300px !important;
-position: relative;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
+    width: 300px !important;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 } */
 
 main {
-    min-height: calc(100vh - 64px - 15px);
-    background-image: url(../img/backgroundmain.png);
-    background-size: cover;
+    min-height: calc(100vh - 139px);
 }
+
 
 /* container index map */
 
@@ -208,6 +137,7 @@ main {
     min-height: calc(100vh - 139px);
 }
 
+
 /* Blog-index */
 
 h3 {
@@ -215,17 +145,10 @@ h3 {
     font-style: italic;
 }
 
+
 /* media query */
 
-@media screen and (max-width: 500px) {
-    .search {
-        width: 250px;
-    }
-
-    .searchTerm {
-        width: 250px;
-    }
-
+@media screen and (max-width: 375px) {
     p {
         font-size: 0.8rem;
     }
@@ -234,10 +157,5 @@ h3 {
 @media screen and (min-width: 970px) {
     html {
         font-size: 1.5rem;
-    }
-
-    main {
-        background-image: url(../img/backgroundmain.png);
-        background-size: contain;
     }
 }
