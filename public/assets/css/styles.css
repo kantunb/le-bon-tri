@@ -50,9 +50,16 @@ h1 {
     font-family: 'DKMoonlightSerenade', sans-serif;
 }
 
-p:hover {
+h5 {
+    letter-spacing: 3px;
     font-weight: bold;
+    font-family: 'DKMoonlightSerenade', sans-serif;
 }
+
+
+/* p:hover {
+    font-weight: bold;
+} */
 
 * {
     box-sizing: border-box;
@@ -110,7 +117,6 @@ footer .row div ul {
     position: relative;
     opacity: 80%;
     border: 3px solid yellowgreen;
-    /* border-radius: 25px 0 0 25px; */
 }
 
 .searchTerm {
@@ -120,7 +126,6 @@ footer .row div ul {
     padding: 2px;
     height: 70px;
     background-color: white;
-    /* border-radius: 25px 0 0 25px; */
     outline: none;
     color: rgb(169, 192, 124);
     transition-delay: 2s;
@@ -129,9 +134,10 @@ footer .row div ul {
 }
 
 .searchButton {
-    width: 70px;
+    width: 90px;
     height: 70px;
     border: 3px solid yellowgreen;
+    border-left: none;
     text-align: center;
     color: #fff;
     border-radius: 0 5px 5px 0;
@@ -139,24 +145,26 @@ footer .row div ul {
     font-size: 20px;
 }
 
-button {
-    font-family: 'DKMoonlightSerenade', sans-serif;
-}
 
-.btn {
+/* button {
     font-family: 'DKMoonlightSerenade', sans-serif;
-}
+} */
+
+
+/* .btn {
+    font-family: 'DKMoonlightSerenade', sans-serif;
+} */
 
 .searchTerm:focus {
     color: green;
-    letter-spacing: 2px;
+    /* letter-spacing: 2px; */
     font-family: 'Anton', sans-serif;
 }
 
 ::placeholder {
-    opacity: 100%;
+    opacity: 80%;
     color: black;
-    letter-spacing: 1px;
+    /* letter-spacing: 1px; */
     font-family: 'Anton', sans-serif;
 }
 
@@ -181,11 +189,13 @@ button {
     background-color: hotpink;
 }
 
-.add {
-    letter-spacing: 2px;
+
+/* .add {
+    letter-spacing: 2px; */
+
+
 }
-
-
+*/
 /* 
 .wrap {
 width: 300px !important;
@@ -194,63 +204,56 @@ top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
 } */
-
 main {
     min-height: calc(100vh - 64px - 15px);
     background-image: url(../img/backgroundmain.png);
     background-size: cover;
 }
 
-
 /* container index map */
-
 #localisationContainer {
     min-width: 100vw;
     min-height: calc(100vh - 139px);
 }
 
-
 /* Blog-index */
-
 h3 {
     font-family: 'DKMoonlightSerenade', sans-serif;
     font-style: italic;
 }
 
-
 /* media query */
-
 @media screen and (max-width: 576px) {
     .search {
         width: 250px;
     }
+    
     .searchTerm {
         width: 250px;
     }
-    p {
-        font-size: 0.8rem;
-    }
 }
-
 @media screen and (min-width: 768px) {
     .search {
         width: 280px;
     }
+    
     .searchTerm {
         width: 280px;
     }
 }
-
 @media screen and (min-width: 992px) {
     .search {
         width: 700px;
     }
+    
     .searchTerm {
         width: 700px;
     }
+    
     html {
         font-size: 1.5rem;
     }
+    
     main {
         background-image: url(../img/backgroundmain.png);
         background-size: contain;
