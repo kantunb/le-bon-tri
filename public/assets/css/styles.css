@@ -54,11 +54,6 @@ h5 {
     font-family: 'DKMoonlightSerenade', sans-serif;
 }
 
-
-/* p:hover {
-    font-weight: bold;
-} */
-
 * {
     box-sizing: border-box;
 }
@@ -142,13 +137,11 @@ footer .row div ul {
 
 .searchTerm:focus {
     color: green;
-    font-family: 'Anton', sans-serif;
 }
 
 ::placeholder {
     opacity: 80%;
     color: black;
-    /* letter-spacing: 1px; */
     font-family: 'Anton', sans-serif;
 }
 
@@ -156,8 +149,6 @@ footer .row div ul {
     /* IE 10+ */
     opacity: 80%;
     color: black;
-    /* letter-spacing: 1px; */
-    font-family: 'Anton', sans-serif;
 }
 
 ::placeholder:hover {
