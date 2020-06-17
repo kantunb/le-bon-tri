@@ -1,225 +1,257 @@
-        /* General */
-        
-        @font-face {
-            font-family: "DKMoonlightSerenade";
-            src: url("../font/DKMoonlightSerenade.otf") format("woff");
-        }
-        
-        @import url('https://fonts.googleapis.com/css2?family=Anton&family=Roboto&display=swap');
-        body,
-        html {
-            font-family: 'DKMoonlightSerenade', sans-serif;
-            letter-spacing: 2px;
-            color: black;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            font-size: 100%;
-            overflow-x: hidden;
-        }
-        
-        .container-fluid {
-            padding: 0;
-        }
-        
-        .titre {
-            border: 3px solid yellowgreen;
-            /* background-color: white; */
-            border: 3px solid yellowgreen;
-            border: 3px solid yellowgreen;
-            border-radius: 15px;
-            padding: 15px;
-            opacity: 80%;
-            margin-bottom: 30px;
-            box-shadow: 5px 5px 5px yellowgreen;
-        }
-        
-        .lorem {
-            border: 3px solid #6dbfb4;
-            background-color: white;
-            border-radius: 3px;
-            width: 100%;
-            padding: 15px;
-            opacity: 90%;
-        }
-        
-        h1 {
-            letter-spacing: 3px;
-            font-weight: bold;
-        }
-        
-        h1:hover {
-            color: green;
-        }
-        
-        p:hover {
-            font-weight: bold;
-        }
-        
-        * {
-            box-sizing: border-box;
-        }
-        
-        a {
-            color: inherit;
-        }
-        
-        a:hover {
-            text-decoration: none;
-            font-weight: bold;
-        }
-        
-        img {
-            width: 100%;
-            height: auto;
-        }
-        
-        ul.icons {
-            list-style: none;
-            padding: none;
-            font-family: 'Roboto';
-        }
-        
-        ul.icons:hover {
-            color: green;
-        }
-        
-        li {
-            display: inline-block;
-        }
-        
-        footer {
-            background: linear-gradient( #6dbfb4, #e7dc19);
-            background-size: cover;
-            color: black;
-        }
-        
-        .label {
-            font-family: 'Roboto', sans-serif;
-        }
-        /* search bar */
-        
-        .search {
-            width: 500px;
-            position: relative;
-            opacity: 80%;
-            border: 3px solid yellowgreen;
-            /* border-radius: 25px 0 0 25px; */
-        }
-        
-        .searchTerm {
-            width: 500px;
-            border: 3px solid #1e6319;
-            border-right: none;
-            padding: 2px;
-            height: 70px;
-            background-color: white;
-            /* border-radius: 25px 0 0 25px; */
-            outline: none;
-            color: rgb(169, 192, 124);
-            transition-delay: 2s;
-            transition-property: background-color;
-            transition-duration: 2s;
-        }
-        
-        .searchButton {
-            width: 70px;
-            height: 70px;
-            border: 3px solid yellowgreen;
-            text-align: center;
-            color: #fff;
-            border-radius: 0 5px 5px 0;
-            cursor: pointer;
-            font-size: 20px;
-        }
-        
-        .searchTerm:hover {
-            background-color: hotpink;
-        }
-        
-        .searchTerm:focus {
-            color: green;
-            letter-spacing: 2px;
-            font-family: 'Roboto', sans-serif;
-        }
-        
-         ::placeholder {
-            opacity: 100%;
-            color: black;
-            letter-spacing: 1px;
-        }
-        
-         ::placeholder:hover {
-            background-color: greenyellow;
-        }
-        
-        .newobjet {
-            margin-top: 70px;
-            border: 3px solid yellowgreen;
-            background-color: white;
-            border-radius: 15px;
-            width: 100%;
-            padding: 15px;
-            opacity: 90%;
-            transition-delay: 2s;
-            transition-property: background-color;
-            transition-duration: 2s;
-        }
-        
-        .newobjet:hover {
-            background-color: hotpink;
-        }
-        
-        .add {
-            letter-spacing: 2px;
-        }
-        /* 
-.wrap {
-    width: 300px !important;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+/* General */
+
+@font-face {
+    font-family: "DKMoonlightSerenade";
+    src: url("../font/DKMoonlightSerenade.otf") format("woff");
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Roboto&display=swap');
+body,
+html {
+    font-family: 'DKMoonlightSerenade', sans-serif;
+    letter-spacing: 2px;
+    color: black;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-size: 100%;
+    overflow-x: hidden;
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+.titre {
+    border: 3px solid yellowgreen;
+    /* background-color: white; */
+    border: 3px solid yellowgreen;
+    border: 3px solid yellowgreen;
+    border-radius: 15px;
+    padding: 15px;
+    opacity: 80%;
+    margin-bottom: 30px;
+    box-shadow: 5px 5px 5px yellowgreen;
+}
+
+.lorem {
+    border: 3px solid #6dbfb4;
+    background-color: white;
+    border-radius: 3px;
+    width: 100%;
+    padding: 15px;
+    opacity: 90%;
+}
+
+h1 {
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+
+p:hover {
+    font-weight: bold;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+ul.icons {
+    list-style: none;
+    padding: none;
+    font-family: 'Roboto';
+}
+
+
+/* ul.icons:hover {
+    color: green;
 } */
-        
-        main {
-            min-height: calc(100vh - 139px);
-            background-image: url(../img/backgroundmain.png);
-            background-size: cover;
-        }
-        /* container index map */
-        
-        #localisationContainer {
-            min-width: 100vw;
-            min-height: calc(100vh - 139px);
-        }
-        /* Blog-index */
-        
-        h3 {
-            font-family: 'roboto';
-            font-style: italic;
-        }
-        /* media query */
-        
-        @media screen and (max-width: 500px) {
-            .search {
-                width: 250px;
-            }
-            .searchTerm {
-                width: 250px;
-            }
-            p {
-                font-size: 0.8rem;
-            }
-        }
-        
-        @media screen and (min-width: 970px) {
-            html {
-                font-size: 1.5rem;
-            }
-            main {
-                background-image: url(../img/backgroundmain.png);
-                background-size: contain;
-            }
-        }
+
+li {
+    display: inline-block;
+}
+
+footer {
+    background: linear-gradient(#6dbfb4, #e7dc19);
+    background-size: cover;
+    color: black;
+}
+
+footer .container {
+    height: 100%;
+}
+
+footer .row div p,
+footer .row div ul {
+    margin: 0;
+}
+
+.label {
+    font-family: 'Roboto', sans-serif;
+}
+
+
+/* search bar */
+
+.search {
+    width: 500px;
+    position: relative;
+    opacity: 80%;
+    border: 3px solid yellowgreen;
+    /* border-radius: 25px 0 0 25px; */
+}
+
+.searchTerm {
+    width: 500px;
+    border: 3px solid #1e6319;
+    border-right: none;
+    padding: 2px;
+    height: 70px;
+    background-color: white;
+    /* border-radius: 25px 0 0 25px; */
+    outline: none;
+    color: rgb(169, 192, 124);
+    transition-delay: 2s;
+    transition-property: background-color;
+    transition-duration: 2s;
+}
+
+.searchButton {
+    width: 70px;
+    height: 70px;
+    border: 3px solid yellowgreen;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+
+/* .searchTerm:hover {
+    background-color: hotpink;
+} */
+
+.searchTerm:focus {
+    color: green;
+    letter-spacing: 2px;
+    font-family: 'Roboto', sans-serif;
+}
+
+::placeholder {
+    opacity: 100%;
+    color: black;
+    letter-spacing: 1px;
+}
+
+::placeholder:hover {
+    background-color: greenyellow;
+}
+
+.newobjet {
+    margin-top: 70px;
+    border: 3px solid yellowgreen;
+    background-color: white;
+    border-radius: 15px;
+    width: 100%;
+    padding: 15px;
+    opacity: 90%;
+    transition-delay: 2s;
+    transition-property: background-color;
+    transition-duration: 2s;
+}
+
+.newobjet:hover {
+    background-color: hotpink;
+}
+
+.add {
+    letter-spacing: 2px;
+}
+
+
+/* 
+.wrap {
+width: 300px !important;
+position: relative;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+} */
+
+main {
+    min-height: calc(100vh - 64px - 15px);
+    background-image: url(../img/backgroundmain.png);
+    background-size: cover;
+}
+
+
+/* container index map */
+
+#localisationContainer {
+    min-width: 100vw;
+    min-height: calc(100vh - 139px);
+}
+
+
+/* Blog-index */
+
+h3 {
+    font-family: 'roboto';
+    font-style: italic;
+}
+
+
+/* media query */
+
+@media screen and (max-width: 576px) {
+    .search {
+        width: 250px;
+    }
+    .searchTerm {
+        width: 250px;
+    }
+    p {
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .search {
+        width: 300px;
+    }
+    .searchTerm {
+        width: 300px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .search {
+        width: 700px;
+    }
+    .searchTerm {
+        width: 700px;
+    }
+    html {
+        font-size: 1.5rem;
+    }
+    main {
+        background-image: url(../img/backgroundmain.png);
+        background-size: contain;
+    }
+}

@@ -3,18 +3,19 @@
 {% block body %}
 	{% include "flash_messages.html.twig" %}
 
+
 	<section id="presentation" class="container-fluid pt-3 pt-md-5">
 		<div class="container">
 			<div class="row justify-content-center">
 
-				<header class="pres col-12 text-center pb-3 mb-5">
+				<header class="col-12 text-center pb-3">
 					{% for message in app.flashes('success') %}
 						<div class="alert alert-success">
 							{{ message }}
 						</div>
 					{% endfor %}
-					<h1 class="titre pb-4">Bien trier dans<br> le Grand Lyon!</h1>
-					{# <p class="lorem">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, aliquid iusto, animi similique fugit voluptate laborum dicta ullam itaque cumque blanditiis repellat. Itaque quas sapiente eius a esse fuga consequatur?</p> #}
+					<h1 class="pb-4">L'appli pour trier comme il faut</h1>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, aliquid iusto, animi similique fugit voluptate laborum dicta ullam itaque cumque blanditiis repellat. Itaque quas sapiente eius a esse fuga consequatur?</p>
 				</header>
 
 
@@ -25,7 +26,8 @@
 							<div class="search d-flex">
 
 								<input type="text" name="objetName" id="provider-remote" class="searchTerm" placeholder="Entrez l'article à recycler!">
-								<button type="submit" class="searchButton fa fa-search btn btn-success ">
+								<button
+									type="submit" class="searchButton fa fa-search">
 								</button>
 							</div>
 
@@ -33,10 +35,9 @@
 
 					</div>
 
-					<div class="newobjet py-2 text-center">
-						<p>
-							Vous ne trouvez pas l'objet que vous recherchez?</p>
-						<a href="{{ path('objet_new') }}" ><button type="submit" class="add btn btn-success btn-xl">Ajoutez le!</button></a>
+					<div class="newobjet mt-5 py-2 text-center">
+						<p>	Vous ne trouvez pas l'objet que vous recherchez?</p>
+						<a href="{{ path('objet_new') }}" ><button type="submit" class="btn btn-success btn-sm">Ajoutez le!</button></a>
 					</div>
 
 				</div>
@@ -44,3 +45,4 @@
 		</div>
 	</div>
 </section>{% endblock %}
+
