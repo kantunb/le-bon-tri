@@ -20,7 +20,7 @@ class ObjetController extends AbstractController
 {
     /**
      * Return invalid object ordered by id desc
-     *@IsGranted("ROLE_USER")
+     *
      * @Route("/invalidObjects", name="objet_invalidObjects", methods={"GET", "POST"})
      */
     public function invalidObjects(ObjetRepository $objetRepository): Response
@@ -30,9 +30,9 @@ class ObjetController extends AbstractController
         ]);
     }
 
-
+    //@IsGranted("ROLE_ADMIN")
     /**
-     * @IsGranted("ROLE_USER")
+     * 
      * @Route("/", name="objet_index", methods={"GET"})
      */
     public function index(ObjetRepository $objetRepository): Response
@@ -42,16 +42,17 @@ class ObjetController extends AbstractController
         ]);
     }
 
-
+   
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
+     * 
      * @Route("/validateAllChecked", name="objet_validateAllChecked", methods={"GET","POST"})
      */
     public function validateAllChecked(Request $request, ObjetRepository $objetRepository)
 
     {
         $objets = $objetRepository->findAll();
-        //dd($objet);
+        //dd($objets);
 
         if (isset($_POST['objetValidation']) && isset($_POST['objetDelete']) && !empty(array_intersect($_POST['objetValidation'], $_POST['objetDelete']))) {
 
@@ -175,7 +176,7 @@ class ObjetController extends AbstractController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/{id}", name="objet_show", methods={"GET"})
      */
     public function show(Objet $objet): Response
@@ -186,7 +187,7 @@ class ObjetController extends AbstractController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/{id}/edit", name="objet_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Objet $objet): Response
@@ -207,7 +208,7 @@ class ObjetController extends AbstractController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/{id}", name="objet_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Objet $objet): Response

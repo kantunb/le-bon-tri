@@ -93,12 +93,10 @@ class AppController extends AbstractController
         return $this->redirectToRoute("app_index");
     }
 
-    /**
-     * @Route("/rgpd", name="app_rgpd")
+    /** @Route("/rgpd", name="app_rgpd")
      * 
      */
-
      public function rgpd(){
-         return $this->render('app/rgpd.html.twig');
-     }
+        return $this->render('app/rgpd.html.twig');
+    }
 }

@@ -6,6 +6,7 @@
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Roboto&display=swap');
+
 body,
 html {
     font-family: 'DKMoonlightSerenade', sans-serif;
@@ -105,7 +106,6 @@ footer .row div ul {
     font-family: 'Roboto', sans-serif;
 }
 
-
 /* search bar */
 
 .search {
@@ -184,6 +184,9 @@ footer .row div ul {
     letter-spacing: 2px;
 }
 
+.add {
+    letter-spacing: 2px;
+}
 
 /* 
 .wrap {
@@ -200,7 +203,6 @@ main {
     background-size: cover;
 }
 
-
 /* container index map */
 
 #localisationContainer {
@@ -208,14 +210,12 @@ main {
     min-height: calc(100vh - 139px);
 }
 
-
 /* Blog-index */
 
 h3 {
     font-family: 'roboto';
     font-style: italic;
 }
-
 
 /* media query */
 
