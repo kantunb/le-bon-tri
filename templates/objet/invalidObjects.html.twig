@@ -35,20 +35,20 @@
 						<td>{{ objet.newName }}</td>
 						<td>{{ objet.materialId.name }}</td>
 						<td>{{ objet.useId.name }}</td>
-						{# <td>{{ objet.avoidProduction }}</td> #}
+
 						<td>{{ objet.valide ? 'Yes' : 'No' }}</td>
-						<td>{#<a href="{{ path('objet_validate', {'id': objet.id}) }}">#}<input
-							type="checkbox" name="objetValidation[]" value={{ objet.id }} id="objetValidation{{ objet.id }}">{# Valider ces objets</a>#}
+						<td>
+							<input type="checkbox" name="objetValidation[]" value={{ objet.id }} id="objetValidation{{ objet.id }}">
 						</td>
-						<td>{#<a href="{{ path('objet_delete', {'id': objet.id}) }}">#}<input
-							type="checkbox" name="objetDelete[]" value={{ objet.id }} id="objetDelete{{ objet.id }}">{# Supprimer tout</a>#}
+						<td>
+							<input type="checkbox" name="objetDelete[]" value={{ objet.id }} id="objetDelete{{ objet.id }}">
 						</td>
 						<td>
 							<a href="{{ path('objet_show', {'id': objet.id}) }}">show</a>
 							<a href="{{ path('objet_edit', {'id': objet.id}) }}">edit</a>
 
 						</td>
-						<td>{#{{ include('objet/_delete_form.html.twig') }}#}</td>
+						<td></td>
 					</tr>
 
 				{% else %}
@@ -59,7 +59,7 @@
 
 			</tbody>
 		</table>
-		<button class="btn" type="submit">Valider</button>
+		<button class="btn btn-success" type="submit">Valider</button>
 	</form>
 	<a href="{{ path('objet_new') }}">Ajouter un objet</a>
 

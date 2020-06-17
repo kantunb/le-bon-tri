@@ -1,18 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Objet index
+{% block title %}Index des objets
 {% endblock %}
 
 {% block body %}
-	<h1>Objet index</h1>
+	<h1>Index des objets</h1>
 
 	<table class="table">
 		<thead>
 			<tr>
 				<th>Id</th>
 				<th>Nom de l'objet</th>
-				<th>Nom Complet de l'objet</th>
-				{#<th>Comment éviter sa production</th>#}
+				<th>Nom Complet de l'objet</th>				
 				<th>Matériaux</th>
 				<th>Usage</th>
 				<th>Valide</th>
@@ -21,22 +20,32 @@
 		</thead>
 		<tbody>
 			{% for objet in objets %}
+			<tr>
+				<td>{{ objet.id }}</td>
+				<td>{{ objet.name }}</td>
+        <td>{{ objet.newName }}</td>
+				<td>{{ objet.materialId.name }}</td>
+				<td>{{ objet.useId.name }}</td>
+				{# <td>{{ objet.avoidProduction }}</td>#}
+				<td>{{ objet.valide ? 'Yes' : 'No' }}</td>
+				<td>
+					<a href="{{ path('objet_show', {'id': objet.id}) }}">Voir</a>
+				</td>
+		    <td>
+			<a href="{{ path('objet_edit', {'id': objet.id}) }}">Editer</a>
+      </td>
+		</tr>
+			{% else %}
 				<tr>
-					<td>{{ objet.id }}</td>
-					<td>{{ objet.name }}</td>
-					<td>{{ objet.newName }}</td>
-					<td>{{ objet.materialId.name }}</td>
-					<td>{{ objet.useId.name }}</td>
-					{# <td>{{ objet.avoidProduction }}</td>#}
-					<td>{{ objet.valide ? 'Yes' : 'No' }}</td>
-					<td>
-						<a href="{{ path('objet_show', {'id': objet.id}) }}">show</i>
-					</td>
+					<td colspan="5">Aucun objet trouvé</td>
 				</tr>
-			</a>
-			<a href="{{ path('objet_edit', {'id': objet.id}) }}">edit</i>
+			{% endfor %}
 		</tbody>
-	</a>
+	</table>
 
-</td></tr>{% else %}<tr>
-<td colspan="5">no records found</td></tr>{% endfor %}</tbody></table><a href="{{ path('objet_invalidObjects') }}">Objets non validés</i></a><a href="{{ path('objet_new')}}" style="margin-left:30px">Ajouter un objet</a>{% endblock %}
+<br>
+
+<a href="{{ path('objet_invalidObjects') }}"><button class="btn btn-success">Objets non validés</button></a>
+<a href="{{ path('objet_new')}}" style="margin-left:30px"><button class="btn btn-success">Ajouter un objet</button></a>
+
+{% endblock %}

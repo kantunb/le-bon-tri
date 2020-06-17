@@ -26,8 +26,7 @@ class CollectionPointType
      *     pattern     = "/^[a-zA-Z0-9()_, -]{3,255}+$/i",
      *     htmlPattern = "^[a-zA-Z0-9()_, -]{3,255}+$",
      *     match=true,
-     *     message="Le type du point de collecte peut contenir des lettres majusccules, minuscules, des chiffres, des parenthèses, - , _ , des virgules ou des 
-     *      espaces")
+     *     message="Le type du point de collecte peut contenir des lettres majusccules, minuscules, des chiffres, des parenthèses, - , _ , des virgules ou des espaces")
      */
     private $type;
 

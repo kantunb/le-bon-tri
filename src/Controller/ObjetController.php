@@ -19,7 +19,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class ObjetController extends AbstractController
 { 
     /**
-     * *@IsGranted("ROLE_USER")
+     * *@IsGranted("ROLE_ADMIN")
      * Return invalid object ordered by id desc   
      * @Route("/invalidObjects", name="objet_invalidObjects", methods={"GET", "POST"})
      */
@@ -30,7 +30,7 @@ class ObjetController extends AbstractController
         ]);
     }
 
-
+  
     /**
      * @IsGranted("ROLE_ADMIN")
      * @Route("/", name="objet_index", methods={"GET"})
@@ -42,7 +42,7 @@ class ObjetController extends AbstractController
         ]);
     }
 
-
+   
     /**
      * @IsGranted("ROLE_ADMIN")
      * @Route("/validateAllChecked", name="objet_validateAllChecked", methods={"GET","POST"})
@@ -51,7 +51,7 @@ class ObjetController extends AbstractController
 
     {
         $objets = $objetRepository->findAll();
-        //dd($objet);
+        //dd($objets);
 
         if (isset($_POST['objetValidation']) && isset($_POST['objetDelete']) && !empty(array_intersect($_POST['objetValidation'], $_POST['objetDelete']))) {
 
