@@ -141,13 +141,11 @@
         .searchTerm:focus {
             color: green;
             letter-spacing: 2px;
-            font-size: 1.5em;
-            /* font-family: 'Roboto', sans-serif; */
+            font-family: 'Roboto', sans-serif;
         }
         
          ::placeholder {
             opacity: 100%;
-            font-size: 1.5em;
             color: black;
             letter-spacing: 1px;
         }
