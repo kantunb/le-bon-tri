@@ -1,10 +1,9 @@
 {% extends 'base.html.twig' %}
-symfony <server:start></server:start>
-{% block title %}Objet index
+{% block title %}Index des objets
 {% endblock %}
 
 {% block body %}
-	<h1>Objet index</h1>
+	<h1>Index des objets</h1>
 
 	<table class="table">
 		<thead>
@@ -20,21 +19,32 @@ symfony <server:start></server:start>
 		</thead>
 		<tbody>
 			{% for objet in objets %}
+			<tr>
+				<td>{{ objet.id }}</td>
+				<td>{{ objet.name }}</td>
+				<td>{{ objet.materialId.name }}</td>
+				<td>{{ objet.useId.name }}</td>
+				{# <td>{{ objet.avoidProduction }}</td>#}
+				<td>{{ objet.valide ? 'Yes' : 'No' }}</td>
+				<td>
+					<a href="{{ path('objet_show', {'id': objet.id}) }}">Voir</a>
+				</td>
+			</tr>
+			<a href="{{ path('objet_edit', {'id': objet.id}) }}">Editer</a>
+	
+			{% else %}
 				<tr>
-					<td>{{ objet.id }}</td>
-					<td>{{ objet.name }}</td>
-					<td>{{ objet.materialId.name }}</td>
-					<td>{{ objet.useId.name }}</td>
-					{# <td>{{ objet.avoidProduction }}</td>#}
-					<td>{{ objet.valide ? 'Yes' : 'No' }}</td>
-					<td>
-						<a href="{{ path('objet_show', {'id': objet.id}) }}">show</i>
-					</td>
+					<td colspan="5">Aucun objet trouvé</td>
 				</tr>
-			</a>
-			<a href="{{ path('objet_edit', {'id': objet.id}) }}">edit</i>
+			{% endfor %}
 		</tbody>
-	</a>
+	</table>
 
-</td></tr>{% else %}<tr>
-<td colspan="5">no records found</td></tr>{% endfor %}</tbody></table><a href="{{ path('objet_invalidObjects') }}">Objets non validés</i></a><a href="{{ path('objet_new') }}">Ajouter un objet</a>{% endblock %}
+	<button class="btn btn-success">
+		<a href="{{ path('objet_new') }}">Ajouter un objet</a>
+	</button>
+
+	<button class="btn btn-info">
+		<a href="{{ path('objet_invalidObjects') }}">Objets non validés</a>
+	</button>
+{% endblock %}

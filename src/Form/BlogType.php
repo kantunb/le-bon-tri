@@ -16,6 +16,7 @@ class BlogType extends AbstractType
             ->add('short_content')
             ->add('content')
             ->add('createdAt')
+            ->add('blog_has_tag')
         ;
     }
 
