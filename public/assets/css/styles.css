@@ -26,8 +26,6 @@ html {
 .titre {
     border: 3px solid yellowgreen;
     /* background-color: white; */
-    border: 3px solid yellowgreen;
-    border: 3px solid yellowgreen;
     border-radius: 15px;
     padding: 15px;
     opacity: 80%;
@@ -168,6 +166,14 @@ footer .row div ul {
     font-family: 'Anton', sans-serif;
 }
 
+::-ms-input-placeholder {
+    /* IE 10+ */
+    opacity: 50%;
+    color: black;
+    /* letter-spacing: 1px; */
+    font-family: 'Anton', sans-serif;
+}
+
 ::placeholder:hover {
     background-color: greenyellow;
 }
@@ -209,6 +215,13 @@ main {
 h3 {
     font-family: 'DKMoonlightSerenade', sans-serif;
     font-style: italic;
+}
+
+
+/****** Isotop ******/
+
+.grid-item {
+    width: 25%;
 }
 
 

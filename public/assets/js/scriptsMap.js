@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 window.onload = function(e) {
+=======
+window.onload = function (e) {
+>>>>>>> 0d61068c9bd7efb2d8b565e8a5eab36121dc25a3
 
     const mapTiles = L.tileLayer(
         "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}.png", {
@@ -15,7 +19,11 @@ window.onload = function(e) {
             maxZoom: 17
         });
 
+<<<<<<< HEAD
         map.zoomControl.setPosition('bottomright');
+=======
+    map.zoomControl.setPosition('bottomright');
+>>>>>>> 0d61068c9bd7efb2d8b565e8a5eab36121dc25a3
 
     /*********** If localisation ok, add a marker and add a position button ***********/
 
@@ -96,8 +104,11 @@ window.onload = function(e) {
 
     function layersBuilders(lyonJSON) {
 
+<<<<<<< HEAD
         // console.log(lyonJSON.id_Json);
 
+=======
+>>>>>>> 0d61068c9bd7efb2d8b565e8a5eab36121dc25a3
         const categoryIcon = new L.Icon({
             iconUrl: lyonJSON.icon,
             // shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
@@ -161,11 +172,41 @@ window.onload = function(e) {
             }
         }
 
+<<<<<<< HEAD
+=======
+        /**** Convert json in geojson ****/
+
+        // function localOrDistantData() {
+        //     return new Promise((successCallback, failureCallback) => {
+        //     if (lyonJSON.location == "distant") {
+        //         $.getJSON(lyonJSON.url, function (json) {
+        //             jsonName = json.name;
+        //         });
+        //         return;
+        //     } 
+        //     else if (lyonJSON.location == "local") {
+        //         $.getJSON(assetsBaseDir + '/json/le-relais.json', function (data) {
+        //             result = GeoJSON.parse(data.features, {
+        //                 Point: ['lat', 'lng'],
+        //                 exclude: ['content']
+        //             });
+        //             return result;
+        //         });
+        //     }
+        // }
+
+        // const promise = localOrDistantData();
+
+>>>>>>> 0d61068c9bd7efb2d8b565e8a5eab36121dc25a3
         const promise = $.getJSON(lyonJSON.url, function (json) {
             jsonName = json.name;
         });
 
+<<<<<<< HEAD
         promise.then(function (data) {
+=======
+        promise.then(function test(data) {
+>>>>>>> 0d61068c9bd7efb2d8b565e8a5eab36121dc25a3
 
             lyonJSON.categorie = L.geoJson(data, {
 
@@ -180,6 +221,7 @@ window.onload = function(e) {
 
             /**** Regroupement des type de lieux par cluster ****/
             const markersClusterCategory = new L.MarkerClusterGroup();
+<<<<<<< HEAD
 
             markersClusterCategory.addLayer(lyonJSON.categorie);
 
@@ -210,6 +252,38 @@ window.onload = function(e) {
 
             layers.push(markersClusterCategory);
 
+=======
+
+            markersClusterCategory.addLayer(lyonJSON.categorie);
+
+            markersClusterCategory.addTo(map);
+
+            /**** Création des boutons avec un id qui utilise lyonJSON.categorie et le texte lyonJSON.name ****/
+
+            const buttonsContainer = document.getElementById('buttonsContainer');
+
+            const buttonCategory = document.createElement('button');
+            const labelButton = document.createTextNode(lyonJSON.name);
+            const spanLabelButton = document.createElement('span');
+            const checkboxCategory = document.createElement('input');
+            const imgCategory = document.createElement('img');
+            imgCategory.src = lyonJSON.icon;
+            checkboxCategory.type = 'checkbox';
+
+            buttonCategory.appendChild(checkboxCategory);
+            buttonCategory.appendChild(imgCategory);
+            buttonCategory.appendChild(spanLabelButton);
+            spanLabelButton.appendChild(labelButton);
+            buttonsContainer.appendChild(buttonCategory);
+            buttonCategory.id = idCategory;
+            imgCategory.className = "legendIcon";
+            buttonCategory.className = "mapButton";
+            checkboxCategory.className = "mapButton";
+            checkboxCategory.checked = true;
+
+            layers.push(markersClusterCategory);
+
+>>>>>>> 0d61068c9bd7efb2d8b565e8a5eab36121dc25a3
             /**** Gestion des boutons grace aux IDs, peut être relier l'ID au layer ****/
 
             $(`#${idCategory}`).click(function () {
@@ -230,6 +304,10 @@ window.onload = function(e) {
                 name: "Silos",
                 categorie: "silo",
                 id_Json: "gic_collecte.gicsiloverre",
+<<<<<<< HEAD
+=======
+                location: "distant",
+>>>>>>> 0d61068c9bd7efb2d8b565e8a5eab36121dc25a3
                 url: "https://download.data.grandlyon.com/wfs/grandlyon?SERVICE=WFS&VERSION=2.0.0&request=GetFeature&typename=gic_collecte.gicsiloverre&outputFormat=application/json; subtype=geojson&SRSNAME=EPSG:4171&startIndex=0",
                 icon: assetsBaseDir + "/img/icon/1x/verre-pin.png",
             },
@@ -237,6 +315,10 @@ window.onload = function(e) {
                 name: "Déchèteries",
                 categorie: "decheterie",
                 id_Json: "gip_proprete.gipdecheterie_3_0_0",
+<<<<<<< HEAD
+=======
+                location: "distant",
+>>>>>>> 0d61068c9bd7efb2d8b565e8a5eab36121dc25a3
                 url: "https://download.data.grandlyon.com/wfs/grandlyon?SERVICE=WFS&VERSION=2.0.0&request=GetFeature&typename=gip_proprete.gipdecheterie_3_0_0&outputFormat=application/json;%20subtype=geojson&SRSNAME=EPSG:4171&startIndex=0",
                 icon: assetsBaseDir + "/img/icon/1x/decheterie-pin.png",
             },
@@ -244,6 +326,10 @@ window.onload = function(e) {
                 name: "Donneries",
                 categorie: "donnerie",
                 id_Json: "gip_proprete.gipdonnerie_3_0_0",
+<<<<<<< HEAD
+=======
+                location: "distant",
+>>>>>>> 0d61068c9bd7efb2d8b565e8a5eab36121dc25a3
                 url: "https://download.data.grandlyon.com/wfs/grandlyon?SERVICE=WFS&VERSION=2.0.0&request=GetFeature&typename=gip_proprete.gipdonnerie_3_0_0&outputFormat=application/json; subtype=geojson&SRSNAME=EPSG:4171&startIndex=0",
                 icon: assetsBaseDir + "/img/icon/1x/donnerie-pin.png",
             },
@@ -251,6 +337,10 @@ window.onload = function(e) {
                 name: "Bornes Vêtements",
                 categorie: "borne",
                 id_Json: "Le_relais",
+<<<<<<< HEAD
+=======
+                location: "local",
+>>>>>>> 0d61068c9bd7efb2d8b565e8a5eab36121dc25a3
                 url: assetsBaseDir + "/json/le-relais.json",
                 icon: assetsBaseDir + "/img/icon/1x/textile-pin.png",
             }
@@ -259,6 +349,7 @@ window.onload = function(e) {
         const collectionPointType = $('#datas').attr("data-collectionpointtype");
 
         if (collectionPointType != undefined) {
+<<<<<<< HEAD
 
             for (let lyonJSON of lyonJSONs) {
 
@@ -320,4 +411,64 @@ window.onload = function(e) {
     //         }
     //     });
     // })    
+=======
+
+            for (let lyonJSON of lyonJSONs) {
+
+                if (collectionPointType == lyonJSON.categorie) {
+                    layersBuilders(lyonJSON);
+                }
+            }
+
+        } else {
+            for (let lyonJSON of lyonJSONs) {
+                layersBuilders(lyonJSON);
+            }
+        }
+    }
+
+    /**** Gestion du bouton #addRemoveAll ****/
+
+    $("#addRemoveAll").click(function () {
+
+        $(this).toggleClass("selected");
+        if ($(this).hasClass("selected")) {
+            $(this).children("#titleButton").text("Tout masquer");
+            for (const layer of layers) {
+                map.addLayer(layer);
+                $(".mapButton").prop("checked", true);
+            }
+            $("#addRemoveAll").removeClass('btn-success');
+            $("#addRemoveAll").addClass('btn-danger');
+        } else {
+            for (const layer of layers) {
+                $(this).children("#titleButton").text("Tout afficher");
+                map.removeLayer(layer);
+                $(".mapButton").prop("checked", false);
+            }
+            $("#addRemoveAll").addClass('btn-success');
+            $("#addRemoveAll").removeClass('btn-danger');
+
+        }
+    })
+
+    /**** Show / Hide legend on mobile ****/
+
+    $('#showHideButton').click(function () {
+        $(this).css('display', $(this).css('display') === 'none' ? 'inline-block' : 'none');
+        $('#buttonsContainer').css("display", $('#buttonsContainer').css("display") === 'none' ? 'flex' : 'none')
+    })
+
+    $('#closeLegend').click(function () {
+        $('#buttonsContainer').css('display', 'none');
+        $('#showHideButton').css('display', 'inline-block');
+    })
+
+    // /**** Convert json in geojson ****/
+
+    // const relaisJson = $.getJSON(assetsBaseDir + '/json/le-relais.json', function(data) {
+    //     geo = GeoJSON.parse(data.features, {Point: ['lat', 'lng'], exclude: ['content']});
+    //     console.log(geo)
+    // });
+>>>>>>> 0d61068c9bd7efb2d8b565e8a5eab36121dc25a3
 }
