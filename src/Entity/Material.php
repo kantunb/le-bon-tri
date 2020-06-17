@@ -52,6 +52,11 @@ class Material
      */
     private $collectionPointType;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $picture;
+
     public function __construct()
     {
         $this->objets = new ArrayCollection();
@@ -154,6 +159,18 @@ class Material
     public function setCollectionPointType(?CollectionPointType $collectionPointType): self
     {
         $this->collectionPointType = $collectionPointType;
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?string $picture): self
+    {
+        $this->picture = $picture;
 
         return $this;
     }

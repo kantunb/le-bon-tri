@@ -59,6 +59,11 @@ class Objet
      */
     private $valide;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $newName;
+
     public function __construct()
     {
         $this->collectionPoints = new ArrayCollection();
@@ -154,6 +159,18 @@ class Objet
     public function setValide(bool $valide): self
     {
         $this->valide = $valide;
+
+        return $this;
+    }
+
+    public function getNewName(): ?string
+    {
+        return $this->newName;
+    }
+
+    public function setNewName(?string $newName): self
+    {
+        $this->newName = $newName;
 
         return $this;
     }

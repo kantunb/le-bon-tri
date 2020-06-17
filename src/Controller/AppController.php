@@ -41,7 +41,7 @@ class AppController extends AbstractController
         $objetsList = [];
         //Remplit le tableau de tous les objets compatibles avec la frappe
         foreach ($objets as $objet) {
-            $name = $objet->getName();
+            $name = $objet->getNewName();
             $material =  $objet->getMaterialId()->getName();
             $category = $objet->getUseId()->getName();
             $objet =    [
@@ -70,7 +70,7 @@ class AppController extends AbstractController
         //dd($searchObjet);
 
         // On recherche un objet par son nom
-        $objet = $this->getDoctrine()->getRepository(Objet::class)->findOneBy(["name" => $searchObjet]);
+        $objet = $this->getDoctrine()->getRepository(Objet::class)->findOneBy(["newName" => $searchObjet]);
 
 
         // Si un objet est trouvé
@@ -78,13 +78,13 @@ class AppController extends AbstractController
 
             $consignesTriByMaterial = $objet->getMaterialId();
             $consignesTriByUse = $objet->getUseId();
-            $names = $objet->getName();
+            $name = $objet->getName();
             $id = $objet->getId();
 
             return $this->render('result/index.html.twig', [
                 'consignesTriByMaterial' => $consignesTriByMaterial,
                 'consignesTriByUse' => $consignesTriByUse,
-                'names' => $names,
+                'name' => $name,
                 'id' => $id
             ]);
         }

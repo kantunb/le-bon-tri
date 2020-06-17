@@ -17,6 +17,7 @@
 				<tr>
 					<th>Id</th>
 					<th>Nom de l'objet</th>
+					<th>Nom complet de l'objet</th>
 					{# <th>Comment éviter sa production</th>#}
 					<th>Matériaux</th>
 					<th>Usage</th>
@@ -31,6 +32,7 @@
 					<tr>
 						<td>{{ objet.id }}</td>
 						<td>{{ objet.name }}</td>
+						<td>{{ objet.newName }}</td>
 						<td>{{ objet.materialId.name }}</td>
 						<td>{{ objet.useId.name }}</td>
 						{# <td>{{ objet.avoidProduction }}</td> #}
@@ -63,7 +65,7 @@
 
 {% endblock %}
 
-{% block javascripts %}
+{% block javascript %}
 	<script>
 		var assetsBaseDir = "{{ asset('assets/') }}"
 	</script>

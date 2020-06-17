@@ -17,10 +17,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
  * @Route("/objet")
  */
 class ObjetController extends AbstractController
-{
+{ 
     /**
-     * Return invalid object ordered by id desc
-     *@IsGranted("ROLE_USER")
+     * *@IsGranted("ROLE_USER")
+     * Return invalid object ordered by id desc   
      * @Route("/invalidObjects", name="objet_invalidObjects", methods={"GET", "POST"})
      */
     public function invalidObjects(ObjetRepository $objetRepository): Response
@@ -32,7 +32,7 @@ class ObjetController extends AbstractController
 
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/", name="objet_index", methods={"GET"})
      */
     public function index(ObjetRepository $objetRepository): Response
@@ -44,7 +44,7 @@ class ObjetController extends AbstractController
 
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/validateAllChecked", name="objet_validateAllChecked", methods={"GET","POST"})
      */
     public function validateAllChecked(Request $request, ObjetRepository $objetRepository)
@@ -126,12 +126,12 @@ class ObjetController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $newName = $newObjet->getName();
+            $newFullName = $newObjet->getName();
             $newUseId = $newObjet->getUseId();
             $newMaterialId = $newObjet->getMaterialId();
             $material = $this->getDoctrine()->getRepository(Material::class)->find($newMaterialId)->getName();
             $category = $this->getDoctrine()->getRepository(Category::class)->find($newUseId)->getName();
-            $newName = $newName . ' (' . $material . ', ' . $category . ')';
+            $newFullName = $newFullName . ' (' . $material . ', ' . $category . ')';
             // dd($newName);
             foreach ($objets as $objet) {
 
@@ -139,10 +139,11 @@ class ObjetController extends AbstractController
                 $materialId = $objet->getMaterialId();
                 $useId = $objet->getUseId();
                 $name = $objet->getName();
+                $newName = $objet->getNewName();
 
                 // dd($newName, $newMaterialId, $materialId);
 
-                if ($name == $newName && $materialId == $newMaterialId && $useId == $newUseId) {
+                if ($newName == $newFullName && $materialId == $newMaterialId && $useId == $newUseId) {
 
                     $this->addFlash(
                         'invalid',
@@ -152,7 +153,7 @@ class ObjetController extends AbstractController
                     return $this->redirectToRoute('objet_new');
                 }
             }
-            $newObjet->setName($newName);
+           $newObjet->setNewName($newFullName);
 
 
             //dd($newObjet);
@@ -175,7 +176,7 @@ class ObjetController extends AbstractController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/{id}", name="objet_show", methods={"GET"})
      */
     public function show(Objet $objet): Response
@@ -186,7 +187,7 @@ class ObjetController extends AbstractController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/{id}/edit", name="objet_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Objet $objet): Response
@@ -207,7 +208,7 @@ class ObjetController extends AbstractController
     }
 
     /**
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/{id}", name="objet_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Objet $objet): Response

@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-symfony <server:start></server:start>
+
 {% block title %}Objet index
 {% endblock %}
 
@@ -11,6 +11,7 @@ symfony <server:start></server:start>
 			<tr>
 				<th>Id</th>
 				<th>Nom de l'objet</th>
+				<th>Nom Complet de l'objet</th>
 				{#<th>Comment éviter sa production</th>#}
 				<th>Matériaux</th>
 				<th>Usage</th>
@@ -23,6 +24,7 @@ symfony <server:start></server:start>
 				<tr>
 					<td>{{ objet.id }}</td>
 					<td>{{ objet.name }}</td>
+					<td>{{ objet.newName }}</td>
 					<td>{{ objet.materialId.name }}</td>
 					<td>{{ objet.useId.name }}</td>
 					{# <td>{{ objet.avoidProduction }}</td>#}
@@ -37,4 +39,4 @@ symfony <server:start></server:start>
 	</a>
 
 </td></tr>{% else %}<tr>
-<td colspan="5">no records found</td></tr>{% endfor %}</tbody></table><a href="{{ path('objet_invalidObjects') }}">Objets non validés</i></a><a href="{{ path('objet_new') }}">Ajouter un objet</a>{% endblock %}
+<td colspan="5">no records found</td></tr>{% endfor %}</tbody></table><a href="{{ path('objet_invalidObjects') }}">Objets non validés</i></a><a href="{{ path('objet_new')}}" style="margin-left:30px">Ajouter un objet</a>{% endblock %}
