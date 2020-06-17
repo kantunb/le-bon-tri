@@ -53,7 +53,7 @@ class MaterialController extends AbstractController
     }
 
     /**
-     * @IsGranted("ROLE_ADMIN")
+     *@IsGranted("ROLE_ADMIN")
      * @Route("/new", name="material_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
