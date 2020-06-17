@@ -189,71 +189,59 @@ footer .row div ul {
     background-color: hotpink;
 }
 
-
-/* .add {
-    letter-spacing: 2px; */
-
-
-}
-*/
-/* 
-.wrap {
-width: 300px !important;
-position: relative;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-} */
 main {
     min-height: calc(100vh - 64px - 15px);
     background-image: url(../img/backgroundmain.png);
     background-size: cover;
 }
 
+
 /* container index map */
+
 #localisationContainer {
     min-width: 100vw;
     min-height: calc(100vh - 139px);
 }
 
+
 /* Blog-index */
+
 h3 {
     font-family: 'DKMoonlightSerenade', sans-serif;
     font-style: italic;
 }
 
+
 /* media query */
+
 @media screen and (max-width: 576px) {
     .search {
         width: 250px;
     }
-    
     .searchTerm {
         width: 250px;
     }
 }
+
 @media screen and (min-width: 768px) {
     .search {
         width: 280px;
     }
-    
     .searchTerm {
         width: 280px;
     }
 }
+
 @media screen and (min-width: 992px) {
     .search {
         width: 700px;
     }
-    
     .searchTerm {
         width: 700px;
     }
-    
     html {
         font-size: 1.5rem;
     }
-    
     main {
         background-image: url(../img/backgroundmain.png);
         background-size: contain;
