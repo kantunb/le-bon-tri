@@ -4,7 +4,8 @@
 
 
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin=""/>
-	<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.Default.css"/>
+	<link
+	rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.Default.css"/>
 	{# Geocoding plugin #}
 	<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"/>
 
@@ -13,25 +14,26 @@
 
 
 {% block body %}
-	
+
 	<div class="container-fluid">
 		<section id="localisationContainer">
 
 			<div id="map">
 				<div id="buttonsContainer">
+					<h5>Filtrer les points de collecte</h5>
 
-					<button type="button" id="addRemoveAll" class="mapButton selected">
-						<span id="titleButton">Tout masquer</span><input class="mapButton" type="checkbox" checked="true"></button>
-					{# <button type="button" id="removeAll" class="mapButton">Masquer tout</button> #}
+						<button type="button" id="addRemoveAll" class="selected btn btn-success">
+							<span id="titleButton">Tout masquer</span><input class="mapButton" type="checkbox" checked="true"></button>
+						{# <button type="button" id="removeAll" class="mapButton">Masquer tout</button> #}
 
-					<!-- Les boutons seront générés automatiquement -->
+						<!-- Les boutons seront générés automatiquement -->
+					</div>
 				</div>
-			</div>
 
-		</section>
+			</section>
 
 
-	</div>
+		</div>
 
 		{#	{{ response |raw }}#}
 		{% if response is defined %}

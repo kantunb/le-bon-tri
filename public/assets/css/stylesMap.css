@@ -13,28 +13,42 @@
 }
 
 #buttonsContainer {
-  padding-inline-start: 1em;
+  padding: 1em;
   position: absolute;
   top: 2em;
-  right: 2em;
+  left: 2em;
   display: flex;
   flex-direction: column;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.9);
   border: 0px, solid;
   border-radius: 5px;
   z-index: 800;
 }
 
-
 .mapButton {
   width: auto;
-  margin: 0.1em;
+  margin-left: 0.5em;
+  margin-right: 1em;
+  margin-top: 1em;
   background-color: transparent;
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
   border: none;
-  cursor:pointer;
+  cursor: pointer;
   overflow: hidden;
-  outline:none;  text-align: right;
+  outline: none;
+  text-align: left;
+}
+
+.mapButton span {
+  font-size: 1.3em;
+}
+
+#addRemoveAll{
+  font-size: 1.3em;
+}
+
+#addRemoveAll input {
+  display: none;
 }
 
 .pinGeolocalisation {
@@ -55,3 +69,30 @@
 
 }
 
+.legendIcon {
+  display: inline-block;
+  width: 2em;
+  margin-right: 1em;
+}
+
+/* Popup CSS */
+
+h5 {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+table {
+  display: inline-block;
+}
+
+.tableMap {
+  list-style: square;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.tableMap th, .tableMap td {
+  vertical-align: top;
+  padding-bottom: 0.7em;
+}
