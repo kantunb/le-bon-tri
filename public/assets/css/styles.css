@@ -9,7 +9,6 @@
 body,
 html {
     font-family: 'Anton', sans-serif;
-    letter-spacing: 2px;
     color: black;
     height: 100%;
     margin: 0;
@@ -108,7 +107,7 @@ footer .row div ul {
 .search {
     width: 500px;
     position: relative;
-    opacity: 80%;
+    opacity: 70%;
     border: 3px solid yellowgreen;
 }
 
@@ -142,17 +141,13 @@ footer .row div ul {
 ::placeholder {
     opacity: 80%;
     color: black;
-    font-family: 'Anton', sans-serif;
+    font-weight: bold;
 }
 
 ::-ms-input-placeholder {
     /* IE 10+ */
-    opacity: 80%;
+    opacity: 70%;
     color: black;
-}
-
-::placeholder:hover {
-    background-color: greenyellow;
 }
 
 .newobjet {
