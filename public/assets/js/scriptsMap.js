@@ -70,7 +70,7 @@ window.onload = function(e) {
     function onLocationError(e) {
         centerBtn.style.display = "none";
         const message = "Nous n'avons pas pu vous localiser";
-        alert(message);
+        console.log(message);
     }
 
     map.on('locationerror', onLocationError);

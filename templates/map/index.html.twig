@@ -15,33 +15,29 @@
 
 {% block body %}
 
-	<div class="container-fluid">
-		<section id="localisationContainer">
+	<section id="localisationContainer">
 
-			<div id="map">
+		<div id="map">
 
-				<!-- Mobile button to slide toogle legend -->
-				<button type="button" id="showHideButton" class="btn">
-					<span>Filtrer les points de collecte</span>
+			<!-- Mobile button to slide toogle legend -->
+			<button type="button" id="showHideButton" class="btn">
+				<span>Filtrer les points de collecte</span>
+			</button>
+
+			<!-- Desktop and unwrap legend version -->
+
+			<div id="buttonsContainer">
+				<button id="closeLegend" class="mapButton"><i class="fa fa-times fa-2x" aria-hidden="true"></i></button>
+				<h5>Filtrer les points de collecte</h5>
+				<button type="button" id="addRemoveAll" class="selected btn btn-danger">
+					<span id="titleButton">Tout masquer</span><input class="mapButton" type="checkbox" checked="true">
 				</button>
-
-				<!-- Desktop and unwrap legend version -->
-
-				<div id="buttonsContainer">
-					<button id="closeLegend" class="mapButton"><i class="fa fa-times fa-2x" aria-hidden="true"></i></button>
-					<h5>Filtrer les points de collecte</h5>
-					<button type="button" id="addRemoveAll" class="selected btn btn-danger">
-						<span id="titleButton">Tout masquer</span><input class="mapButton" type="checkbox" checked="true">
-					</button>
-					<!-- Layers button are created by JS file -->
-				</div>
-
+				<!-- Layers button are created by JS file -->
 			</div>
 
-		</section>
+		</div>
 
-
-	</div>
+	</section>
 
 	{#	{{ response |raw }}#}
 	{% if response is defined %}
