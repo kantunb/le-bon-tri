@@ -256,7 +256,7 @@ h3 {
         font-size: 1.5rem;
     }
     main {
-        background-image: url(../img/backgroundmain.png);
         background-size: contain;
+        min-height: calc(100vh - 84px - 108px);
     }
 }
