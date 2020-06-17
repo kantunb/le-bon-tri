@@ -6,6 +6,7 @@ use App\Entity\Blog;
 use App\Entity\Tag;
 use App\Form\BlogType;
 use App\Repository\BlogRepository;
+use App\Repository\TagRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,11 +21,12 @@ class BlogController extends AbstractController
     /**
      * @Route("/", name="blog_index", methods={"GET"})
      */
-    public function index(BlogRepository $blogRepository): Response
+    public function index(BlogRepository $blogRepository, TagRepository $tagRepository): Response
     {
         
         return $this->render('blog/index.html.twig', [
             'blogs' => $blogRepository->findAll(),
+            'tags'  => $tagRepository->findAll()
         ]);
     }
 

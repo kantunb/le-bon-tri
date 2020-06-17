@@ -13,14 +13,16 @@
 				<div class="card mb-5" style="max-width: 800px;">
 				<div class="row no-gutters">
 					<div class="col-md-4">
-						<img src="{{ asset('/assets/img/dechetterie.jpeg') }}" class="card-img" alt="...">
+						<img src="{{ asset('/assets/img/pictoResult/' ~ consignesTriByMaterial.picture) }}" class="card-img" alt="...">
 					</div>
 					<div class="col-md-8">
 						<div class="card-body">
+
 							<h5 class="card-title">
-								Consigne de tri: {{ consignesTriByMaterial.devenir }}</h5>
-							<p class="card-text">Si votre {{names}} en {{consignesTriByMaterial.name}} est hors d'usage, géolocalisez-vous pour trouvez la déchetterie la plus proche</p>
-							<a href="{{path('material_search', {'id' : consignesTriByMaterial.id})}}" class="btn btn-success">Géolocalisez moi!</a>
+              Consigne de tri: {{ consignesTriByMaterial.devenir }}</h5>
+
+							<p class="card-text">Si votre {{name}} en {{consignesTriByMaterial.name}} est hors d'usage, géolocalisez-vous pour trouvez la déchetterie la plus proche</p>
+							<a href="{{path('material_search', {'id' : consignesTriByMaterial.id})}}" class="btn btn-success">Trouver un point de collecte</a>
 
 						</div>
 					</div>
@@ -33,7 +35,7 @@
 			<div class="card mb-5" style="max-width: 800px;">
 				<div class="row no-gutters">
 					<div class="col-md-4">
-						<img src="{{ asset('/assets/img/symbolerecyclage.jpeg') }}" class="card-img" alt="...">
+						<img src="{{ asset('/assets/img/pictoResult/donner.png') }}" class="card-img" alt="...">
 					</div>
 					<div class="col-md-8">
 						<div class="card-body">
@@ -51,10 +53,4 @@
 	</div>
 {% endif %}
 
-	{# This friendly message is coming from:
-	    <ul>
-	        <li>Your controller at <code><a href="{{ 'C:/Users/Olivier/Downloads/WF3Formation/Projet de fin/le-bon-tri/src/Controller/ResultController.php'|file_link(0) }}">src/Controller/ResultController.php</a></code></li>
-	        <li>Your template at <code><a href="{{ 'C:/Users/Olivier/Downloads/WF3Formation/Projet de fin/le-bon-tri/templates/result/index.html.twig'|file_link(0) }}">templates/result/index.html.twig</a></code></li>
-	    </ul>
-	</div> #}
 {% endblock %}

@@ -1,11 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Material{% endblock %}
+{% block title %}Ajout d'un Matériau{% endblock %}
 
 {% block body %}
-    <h1>Create new Material</h1>
+    <h1>Ajout d'un Matériau</h1>
 
     {{ include('material/_form.html.twig') }}
+    <br>
+    
+    <div class="text-center">
 
-    <a href="{{ path('material_index') }}">back to list</a>
+    <a href="{{ path('material_index') }}"> <button class="btn btn-success">Retour à la liste</button></a></div>
 {% endblock %}
