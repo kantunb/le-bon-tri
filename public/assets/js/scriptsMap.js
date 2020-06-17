@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function (event) {
+window.onload = function(e) {
 
     const mapTiles = L.tileLayer(
         "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}.png", {
@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
             setView: true,
             maxZoom: 17
         });
+
+        map.zoomControl.setPosition('bottomright');
 
     /*********** If localisation ok, add a marker and add a position button ***********/
 
@@ -32,8 +34,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
         const centerButton = L.control({
             position: 'bottomright'
         });
-
-        map.zoomControl.setPosition('bottomright');
 
         L.marker(e.latlng, {
             icon: localisationIconBack,
@@ -91,6 +91,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 
     /*********** Layers builder ***********/
+
     const layers = [];
 
     function layersBuilders(lyonJSON) {
@@ -319,4 +320,4 @@ document.addEventListener("DOMContentLoaded", function (event) {
     //         }
     //     });
     // })    
-})
+}
