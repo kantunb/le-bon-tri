@@ -9,7 +9,6 @@
 body,
 html {
     font-family: 'Anton', sans-serif;
-    letter-spacing: 2px;
     color: black;
     height: 100%;
     margin: 0;
@@ -53,11 +52,6 @@ h5 {
     font-weight: bold;
     font-family: 'DKMoonlightSerenade', sans-serif;
 }
-
-
-/* p:hover {
-    font-weight: bold;
-} */
 
 * {
     box-sizing: border-box;
@@ -113,7 +107,7 @@ footer .row div ul {
 .search {
     width: 500px;
     position: relative;
-    opacity: 80%;
+    opacity: 70%;
     border: 3px solid yellowgreen;
 }
 
@@ -126,9 +120,6 @@ footer .row div ul {
     background-color: white;
     outline: none;
     color: rgb(169, 192, 124);
-    transition-delay: 2s;
-    transition-property: background-color;
-    transition-duration: 2s;
 }
 
 .searchButton {
@@ -143,39 +134,20 @@ footer .row div ul {
     font-size: 20px;
 }
 
-
-/* button {
-    font-family: 'DKMoonlightSerenade', sans-serif;
-} */
-
-
-/* .btn {
-    font-family: 'DKMoonlightSerenade', sans-serif;
-} */
-
 .searchTerm:focus {
     color: green;
-    /* letter-spacing: 2px; */
-    font-family: 'Anton', sans-serif;
 }
 
 ::placeholder {
     opacity: 80%;
     color: black;
-    /* letter-spacing: 1px; */
-    font-family: 'Anton', sans-serif;
+    font-weight: bold;
 }
 
 ::-ms-input-placeholder {
     /* IE 10+ */
-    opacity: 80%;
+    opacity: 70%;
     color: black;
-    /* letter-spacing: 1px; */
-    font-family: 'Anton', sans-serif;
-}
-
-::placeholder:hover {
-    background-color: greenyellow;
 }
 
 .newobjet {
@@ -256,7 +228,7 @@ h3 {
         font-size: 1.5rem;
     }
     main {
-        background-image: url(../img/backgroundmain.png);
         background-size: contain;
+        min-height: calc(100vh - 84px - 108px);
     }
 }
