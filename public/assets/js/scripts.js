@@ -1,11 +1,14 @@
-var options = {
-	url: function(name) {
-	
-		//return "api/objetJson.php?phrase=" + phrase + "&format=json";
-		return "ajaxsearch?name=" + name;
-	},
+$(document).ready(function () {
+	var options = {
+		url: function (name) {
 
-	getValue: "name"
-};
+			//return "api/objetJson.php?phrase=" + phrase + "&format=json";
+			return "ajaxsearch?name=" + name;
+		},
 
-$("#provider-remote").easyAutocomplete(options);
+		getValue: "name"
+	};
+
+	$("#provider-remote").easyAutocomplete(options);
+
+})
