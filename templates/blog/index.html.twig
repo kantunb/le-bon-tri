@@ -6,7 +6,14 @@
 {% block body %}
 
 	<h3 class="mt-5">Nos derniers articles :</h3>
-	<div id="blog" class="row pt-5">
+	<div class="filter-button-group">
+		<button type"button" class="btn btn-secondary element-item" data-filter="*">Tous les articles</button>
+		{% for tag in tags %}
+			<button type"button" class="btn btn-secondary element-item" data-filter=".{{ tag.name }}">{{ tag.name }}</button>
+		{% endfor %}
+	</div>
+	<div id="blog" class="row pt-5 grid">
+
 		{% for blog in blogs %}
 
 			{% set tagName = "" %}
@@ -43,6 +50,6 @@
 {% endblock %}
 
 {% block javascript %}
-<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
-<script src="{{ asset('/assets/js/scriptsBlog.js') }}"></script>
+	<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+	<script src="{{ asset('/assets/js/scriptsBlog.js') }}"></script>
 {% endblock %}
