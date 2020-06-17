@@ -126,9 +126,6 @@ footer .row div ul {
     background-color: white;
     outline: none;
     color: rgb(169, 192, 124);
-    transition-delay: 2s;
-    transition-property: background-color;
-    transition-duration: 2s;
 }
 
 .searchButton {
@@ -143,19 +140,8 @@ footer .row div ul {
     font-size: 20px;
 }
 
-
-/* button {
-    font-family: 'DKMoonlightSerenade', sans-serif;
-} */
-
-
-/* .btn {
-    font-family: 'DKMoonlightSerenade', sans-serif;
-} */
-
 .searchTerm:focus {
     color: green;
-    /* letter-spacing: 2px; */
     font-family: 'Anton', sans-serif;
 }
 
