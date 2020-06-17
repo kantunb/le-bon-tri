@@ -2,14 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
+use App\Repository\AdminRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\Entity(repositoryClass=AdminRepository::class)
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
-class User implements UserInterface
+class Admin implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -67,13 +69,8 @@ class User implements UserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-<<<<<<< HEAD
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-=======
-        // guarantee every user at least has ROLE_USER -> ADMIN pour le moment, à changer quand on gèrera les rôles
+        // guarantee every user at least has ROLE_ADMIN
         $roles[] = 'ROLE_ADMIN';
->>>>>>> 0d61068c9bd7efb2d8b565e8a5eab36121dc25a3
 
         return array_unique($roles);
     }
