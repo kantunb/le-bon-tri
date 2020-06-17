@@ -21,7 +21,7 @@ class CategoryController extends AbstractController
 {
     /**
      *@IsGranted("ROLE_ADMIN")
-     * @Route("/", name="category_index", methods={"GET"}
+     * @Route("/", name="category_index", methods={"GET"})
      */
     public function index(CategoryRepository $categoryRepository): Response
     {
