@@ -1,4 +1,4 @@
-window.onload = function(e) {
+window.onload = function (e) {
 
     const mapTiles = L.tileLayer(
         "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}.png", {
@@ -15,7 +15,7 @@ window.onload = function(e) {
             maxZoom: 17
         });
 
-        map.zoomControl.setPosition('bottomright');
+    map.zoomControl.setPosition('bottomright');
 
     /*********** If localisation ok, add a marker and add a position button ***********/
 
@@ -96,8 +96,6 @@ window.onload = function(e) {
 
     function layersBuilders(lyonJSON) {
 
-        // console.log(lyonJSON.id_Json);
-
         const categoryIcon = new L.Icon({
             iconUrl: lyonJSON.icon,
             // shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
@@ -161,11 +159,34 @@ window.onload = function(e) {
             }
         }
 
+        /**** Convert json in geojson ****/
+
+        // function localOrDistantData() {
+        //     return new Promise((successCallback, failureCallback) => {
+        //     if (lyonJSON.location == "distant") {
+        //         $.getJSON(lyonJSON.url, function (json) {
+        //             jsonName = json.name;
+        //         });
+        //         return;
+        //     } 
+        //     else if (lyonJSON.location == "local") {
+        //         $.getJSON(assetsBaseDir + '/json/le-relais.json', function (data) {
+        //             result = GeoJSON.parse(data.features, {
+        //                 Point: ['lat', 'lng'],
+        //                 exclude: ['content']
+        //             });
+        //             return result;
+        //         });
+        //     }
+        // }
+
+        // const promise = localOrDistantData();
+
         const promise = $.getJSON(lyonJSON.url, function (json) {
             jsonName = json.name;
         });
 
-        promise.then(function (data) {
+        promise.then(function test(data) {
 
             lyonJSON.categorie = L.geoJson(data, {
 
@@ -230,6 +251,7 @@ window.onload = function(e) {
                 name: "Silos",
                 categorie: "silo",
                 id_Json: "gic_collecte.gicsiloverre",
+                location: "distant",
                 url: "https://download.data.grandlyon.com/wfs/grandlyon?SERVICE=WFS&VERSION=2.0.0&request=GetFeature&typename=gic_collecte.gicsiloverre&outputFormat=application/json; subtype=geojson&SRSNAME=EPSG:4171&startIndex=0",
                 icon: assetsBaseDir + "/img/icon/1x/verre-pin.png",
             },
@@ -237,6 +259,7 @@ window.onload = function(e) {
                 name: "Déchèteries",
                 categorie: "decheterie",
                 id_Json: "gip_proprete.gipdecheterie_3_0_0",
+                location: "distant",
                 url: "https://download.data.grandlyon.com/wfs/grandlyon?SERVICE=WFS&VERSION=2.0.0&request=GetFeature&typename=gip_proprete.gipdecheterie_3_0_0&outputFormat=application/json;%20subtype=geojson&SRSNAME=EPSG:4171&startIndex=0",
                 icon: assetsBaseDir + "/img/icon/1x/decheterie-pin.png",
             },
@@ -244,6 +267,7 @@ window.onload = function(e) {
                 name: "Donneries",
                 categorie: "donnerie",
                 id_Json: "gip_proprete.gipdonnerie_3_0_0",
+                location: "distant",
                 url: "https://download.data.grandlyon.com/wfs/grandlyon?SERVICE=WFS&VERSION=2.0.0&request=GetFeature&typename=gip_proprete.gipdonnerie_3_0_0&outputFormat=application/json; subtype=geojson&SRSNAME=EPSG:4171&startIndex=0",
                 icon: assetsBaseDir + "/img/icon/1x/donnerie-pin.png",
             },
@@ -251,6 +275,7 @@ window.onload = function(e) {
                 name: "Bornes Vêtements",
                 categorie: "borne",
                 id_Json: "Le_relais",
+                location: "local",
                 url: assetsBaseDir + "/json/le-relais.json",
                 icon: assetsBaseDir + "/img/icon/1x/textile-pin.png",
             }
@@ -298,7 +323,7 @@ window.onload = function(e) {
 
         }
     })
-    
+
     /**** Show / Hide legend on mobile ****/
 
     $('#showHideButton').click(function () {
@@ -306,18 +331,15 @@ window.onload = function(e) {
         $('#buttonsContainer').css("display", $('#buttonsContainer').css("display") === 'none' ? 'flex' : 'none')
     })
 
-    $('#closeLegend').click(function() {
+    $('#closeLegend').click(function () {
         $('#buttonsContainer').css('display', 'none');
         $('#showHideButton').css('display', 'inline-block');
     })
 
-    // /**** Toggle legend on mobile ****/
+    // /**** Convert json in geojson ****/
 
-    // $('#showHideButton').click(() => {
-    //     $('#buttonsContainer').slideToggle(1000, function() {
-    //         if ($(this).is(':visible')) {
-    //             $(this).css('display', 'flex');
-    //         }
-    //     });
-    // })    
+    // const relaisJson = $.getJSON(assetsBaseDir + '/json/le-relais.json', function(data) {
+    //     geo = GeoJSON.parse(data.features, {Point: ['lat', 'lng'], exclude: ['content']});
+    //     console.log(geo)
+    // });
 }
