@@ -19,16 +19,18 @@ class BlogType extends AbstractType
             ->add('short_content')
             ->add('content')
             // ->add('createdAt')
-            ->add('blog_has_tag', EntityType::class, [
-                'class' => Tag::class,
-                'multiple' => true,
-                'choice_label' => 'name'
-            ])
-            // ->add('blog_has_tag', ChoiceType::class, [
+            // ->add('blog_has_tag', EntityType::class, [
             //     'class' => Tag::class,
             //     'multiple' => true,
-            //     'choices' => 'blog_has_tag'
+            //     'choice_label' => 'name'
             // ])
+            ->add('blog_has_tag', EntityType::class, [
+                'class' => Tag::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+                // 'choices' => 'blog_has_tag'
+            ])
         ;
     }
 
