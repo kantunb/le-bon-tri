@@ -161,12 +161,17 @@ class ObjetController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($newObjet);
             $entityManager->flush();
-            $this->addFlash(
-                'success',
-                "Votre objet a bien été enregistré. Il sera validé par nos équipes dès que possible."
-            );
+          //  $this->addFlash(
+          //      'success',
+          //      "Votre objet est enregistré. Trouvez le dans la barre de recherche pour connaître les consignes de tri."
+           // );
 
-            return $this->redirectToRoute('app_index');
+           // return $this->redirectToRoute('app_index');
+           return $this->render('result/index.html.twig', [
+            'consignesTriByMaterial' =>$newMaterialId ,
+            'consignesTriByUse' =>$newUseId,
+            'name' => $newFullName,
+           ]);
         }
 
         return $this->render('objet/new.html.twig', [
