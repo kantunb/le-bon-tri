@@ -168,7 +168,7 @@ footer .row div ul {
 
 ::-ms-input-placeholder {
     /* IE 10+ */
-    opacity: 50%;
+    opacity: 80%;
     color: black;
     /* letter-spacing: 1px; */
     font-family: 'Anton', sans-serif;
