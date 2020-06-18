@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}invalid Objets
+{% block title %}Objets non validés
 {% endblock %}
 
 {% block body %}
-	<h1>Objet index</h1>
+	<h1>Objets non validés</h1>
 
 	{% for message in app.flashes('danger') %}
 		<div class="alert alert-danger">
@@ -18,13 +18,13 @@
 					<th>Id</th>
 					<th>Nom de l'objet</th>
 					<th>Nom complet de l'objet</th>
-					{# <th>Comment éviter sa production</th>#}
 					<th>Matériaux</th>
 					<th>Usage</th>
 					<th>Valide</th>
 					<th>Valider</th>
 					<th>Supprimer</th>
-					{# <th>actions</th>#}
+					<th></th>
+
 				</tr>
 			</thead>
 			<tbody>
@@ -44,11 +44,17 @@
 							<input type="checkbox" name="objetDelete[]" value={{ objet.id }} id="objetDelete{{ objet.id }}">
 						</td>
 						<td>
-							<a href="{{ path('objet_show', {'id': objet.id}) }}">show</a>
-							<a href="{{ path('objet_edit', {'id': objet.id}) }}">edit</a>
 
+							<a href="{{ path('objet_show', {'id': objet.id}) }}">
+								<i class="fa fa-eye" aria-hidden="true"></i>
+							</a>
+
+							<a href="{{ path('objet_edit', {'id': objet.id}) }}">
+								<i class="fa fa-pencil" aria-hidden="true"></i>
+							</a>
+							
 						</td>
-						<td></td>
+
 					</tr>
 
 				{% else %}
@@ -59,10 +65,15 @@
 
 			</tbody>
 		</table>
-		<button class="btn btn-success" type="submit">Valider</button>
-	</form>
-	<a href="{{ path('objet_new') }}">Ajouter un objet</a>
 
+		<button class="btn" type="submit">Valider</button>
+
+	</form>
+	<div class="text-center">
+		<a href="{{ path('objet_new') }}">
+			<button class="btn">Ajouter un objet</button>
+		</a>
+	</div>
 {% endblock %}
 
 {% block javascript %}
