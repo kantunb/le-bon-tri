@@ -23,8 +23,8 @@ class Objet
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Regex(
-     *     pattern     = "/^[a-zA-Z0-9()_, -]{3,255}+$/i",
-     *     htmlPattern = "^[a-zA-Z0-9()_, -]{3,255}+$",
+     *     pattern     = "/^[a-zA-Z0-9àâÂÄéèëêÊËîïÎÏôÔùûüÛÜ\/ ()_, -]{3,255}+$/i",
+     *     htmlPattern = "^[a-zA-Z0-9àâÂÄéèëêÊËîïÎÏôÔùûüÛÜ\/ ()_, -]{3,255}+$",
      *     match=true,
      *     message="Votre objet peut contenir des lettres majusccules, minuscules, des chiffres, des parenthèses, - , _ , des virgules ou des 
      *      espaces"
@@ -58,6 +58,11 @@ class Objet
      * @ORM\Column(type="boolean")
      */
     private $valide;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $newName;
 
     public function __construct()
     {
@@ -154,6 +159,18 @@ class Objet
     public function setValide(bool $valide): self
     {
         $this->valide = $valide;
+
+        return $this;
+    }
+
+    public function getNewName(): ?string
+    {
+        return $this->newName;
+    }
+
+    public function setNewName(?string $newName): self
+    {
+        $this->newName = $newName;
 
         return $this;
     }

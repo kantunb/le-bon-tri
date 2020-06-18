@@ -12,9 +12,13 @@
 	{{ form_row(form.content, {'id':'summernote', 'name':'Contenu'})}}
 </div>
 
-<div class="col">
+{# <div class="col">
 	{{ form_row(form.createdAt, {'name':'Date d\'ajout'})}}
-	</div>
+</div> #}
+
+<div class="col">
+	{{ form_row(form.blog_has_tag, {'name':'Tag' })}}
+</div>
 
 {# {{ form_widget(form) }} #}
 <button class="btn">{{ button_label|default('Créer') }}</button>

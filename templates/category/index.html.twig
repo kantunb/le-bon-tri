@@ -10,7 +10,10 @@
             <tr>
                 <th>Id</th>
                 <th>Usage</th>
-                <th>Devenir</th>
+                <th>Consigne de tri</th>
+                <th>Picto</th>
+                <th></th>
+
                
             </tr>
         </thead>
@@ -20,9 +23,10 @@
                 <td>{{ category.id }}</td>
                 <td>{{ category.name }}</td>
                 <td>{{ category.devenir }}</td>
+                <td>{{ category.picture }}</td>
                 <td>
-                    <a href="{{ path('category_show', {'id': category.id}) }}">Voir</a>
-                    <a href="{{ path('category_edit', {'id': category.id}) }}">Mettre à jour</a>
+                    <button class="btn"><a href="{{ path('category_show', {'id': category.id}) }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                    <a href="{{ path('category_edit', {'id': category.id}) }}"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>
                 </td>
             </tr>
         {% else %}
@@ -33,5 +37,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('category_new') }}">Ajouter un usage</a>
+    <a href="{{ path('category_new') }}"><button class="btn">Ajouter un usage</button></a>
 {% endblock %}

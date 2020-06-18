@@ -1,17 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Material index{% endblock %}
+{% block title %}Liste des Matériaux{% endblock %}
 
 {% block body %}
-    <h1>Material index</h1>
+    <h1>Liste des Matériaux</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
+                <th>Nom du matériau</th>
                 <th>Devenir</th>
-                <th>actions</th>
+                <th>Picto</th>
+                <th></th>
+                
             </tr>
         </thead>
         <tbody>
@@ -20,18 +22,19 @@
                 <td>{{ material.id }}</td>
                 <td>{{ material.name }}</td>
                 <td>{{ material.devenir }}</td>
+                <td>{{ material.picture }}</td>
                 <td>
-                    <a href="{{ path('material_show', {'id': material.id}) }}">show</a>
-                    <a href="{{ path('material_edit', {'id': material.id}) }}">edit</a>
+                   <button class="btn"> <a href="{{ path('material_show', {'id': material.id}) }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                    <a href="{{ path('material_edit', {'id': material.id}) }}"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Aucun matériau trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('material_new') }}">Create new</a>
+    <a href="{{ path('material_new') }}"><button class="btn">Ajouter un matériau</a></button>
 {% endblock %}

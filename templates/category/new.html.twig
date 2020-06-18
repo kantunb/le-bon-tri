@@ -1,13 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajouter un usage{% endblock %}
+{% block title %}Ajouter un usage
+{% endblock %}
 
 {% block body %}
-    <h1>Ajouter un usage</h1>
+	<h1>Ajouter un usage</h1>
 
-    {{ include('category/_form.html.twig') }}
-
-    <a href="{{ path('category_index') }}">Retour à la liste des usages</a>
-    <a href="#">Retour à la page de gestion de la BDD</a>
-    <a href="{{ path('app_index') }}">Retour à l'accueil</a>
+	{{ include('category/_form.html.twig') }}
+	<div class="text-center">
+		<a href="{{ path('category_index') }}">
+			<button class="btn">Retour à la liste des usages</button>
+		</a>
+		<a href="{{ path('app_index') }}">
+			<button class="btn" style="margin-left:30px">Retour à l'accueil</button>
+		</a>
+	</div>
 {% endblock %}

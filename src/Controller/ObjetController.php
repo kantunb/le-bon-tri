@@ -17,10 +17,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
  * @Route("/objet")
  */
 class ObjetController extends AbstractController
-{
+{ 
     /**
-     * Return invalid object ordered by id desc
-     *
+     * *@IsGranted("ROLE_ADMIN")
+     * Return invalid object ordered by id desc   
      * @Route("/invalidObjects", name="objet_invalidObjects", methods={"GET", "POST"})
      */
     public function invalidObjects(ObjetRepository $objetRepository): Response
@@ -30,9 +30,9 @@ class ObjetController extends AbstractController
         ]);
     }
 
-    //@IsGranted("ROLE_ADMIN")
+  
     /**
-     * 
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/", name="objet_index", methods={"GET"})
      */
     public function index(ObjetRepository $objetRepository): Response
@@ -45,7 +45,6 @@ class ObjetController extends AbstractController
    
     /**
      * @IsGranted("ROLE_ADMIN")
-     * 
      * @Route("/validateAllChecked", name="objet_validateAllChecked", methods={"GET","POST"})
      */
     public function validateAllChecked(Request $request, ObjetRepository $objetRepository)
@@ -127,12 +126,12 @@ class ObjetController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $newName = $newObjet->getName();
+            $newFullName = $newObjet->getName();
             $newUseId = $newObjet->getUseId();
             $newMaterialId = $newObjet->getMaterialId();
             $material = $this->getDoctrine()->getRepository(Material::class)->find($newMaterialId)->getName();
             $category = $this->getDoctrine()->getRepository(Category::class)->find($newUseId)->getName();
-            $newName = $newName . ' (' . $material . ', ' . $category . ')';
+            $newFullName = $newFullName . ' (' . $material . ', ' . $category . ')';
             // dd($newName);
             foreach ($objets as $objet) {
 
@@ -140,10 +139,11 @@ class ObjetController extends AbstractController
                 $materialId = $objet->getMaterialId();
                 $useId = $objet->getUseId();
                 $name = $objet->getName();
+                $newName = $objet->getNewName();
 
                 // dd($newName, $newMaterialId, $materialId);
 
-                if ($name == $newName && $materialId == $newMaterialId && $useId == $newUseId) {
+                if ($newName == $newFullName && $materialId == $newMaterialId && $useId == $newUseId) {
 
                     $this->addFlash(
                         'invalid',
@@ -153,7 +153,7 @@ class ObjetController extends AbstractController
                     return $this->redirectToRoute('objet_new');
                 }
             }
-            $newObjet->setName($newName);
+           $newObjet->setNewName($newFullName);
 
 
             //dd($newObjet);
@@ -161,12 +161,17 @@ class ObjetController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($newObjet);
             $entityManager->flush();
-            $this->addFlash(
-                'success',
-                "Votre objet a bien été enregistré. Il sera validé par nos équipes dès que possible."
-            );
+          //  $this->addFlash(
+          //      'success',
+          //      "Votre objet est enregistré. Trouvez le dans la barre de recherche pour connaître les consignes de tri."
+           // );
 
-            return $this->redirectToRoute('app_index');
+           // return $this->redirectToRoute('app_index');
+           return $this->render('result/index.html.twig', [
+            'consignesTriByMaterial' =>$newMaterialId ,
+            'consignesTriByUse' =>$newUseId,
+            'name' => $newFullName,
+           ]);
         }
 
         return $this->render('objet/new.html.twig', [
