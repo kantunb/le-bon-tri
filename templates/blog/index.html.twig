@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Blog index
+{% block title %}Index du blog
 {% endblock %}
 
 {% block body %}
@@ -42,7 +42,8 @@
 		{% endfor %}
 	</div>
 
-	{% if app.user %}
+	{% if is_granted('ROLE_ADMIN') %}
+	<br>
 		<button class="btn btn-primary">
 			<a href="{{ path('blog_new') }}">Créer</a>
 		</button>
