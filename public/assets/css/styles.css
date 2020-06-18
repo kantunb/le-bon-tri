@@ -169,7 +169,7 @@ footer .row div ul {
 
 main {
     min-height: calc(100vh - 64px - 15px);
-    background-image: url(../img/backgroundmain.png);
+    background-image: url(../img/background-576.png);
     background-size: cover;
 }
 
@@ -206,6 +206,13 @@ h3 {
     .searchTerm {
         width: 250px;
     }
+    p {
+        font-size: 0.8rem;
+    }
+    main {
+        background-image: url(../img/background-768.png);
+        background-size: cover;
+    }
 }
 
 @media screen and (min-width: 768px) {
@@ -215,6 +222,11 @@ h3 {
     .searchTerm {
         width: 280px;
     }
+    main {
+        background-image: url(../img/background-992.png);
+        background-size: cover;
+    }
+
 }
 
 @media screen and (min-width: 992px) {
@@ -228,7 +240,7 @@ h3 {
         font-size: 1.5rem;
     }
     main {
-        background-size: contain;
-        min-height: calc(100vh - 84px - 108px);
+        background-image: url(../img/background-1920.png);
+        background-size: cover;
     }
 }

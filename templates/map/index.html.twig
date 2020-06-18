@@ -14,9 +14,9 @@
 
 {% block body %}
 
-	<section id="localisationContainer">
+	<main id="localisationContainer">
 
-		<div id="map">
+		<section id="map">
 
 			<!-- Mobile button to slide toogle legend -->
 			<button type="button" id="showHideButton" class="btn">
@@ -34,9 +34,9 @@
 				<!-- Layers button are created by JS file -->
 			</div>
 
-		</div>
+		</section>
 
-	</section>
+	</main>
 
 	{#	{{ response |raw }}#}
 	{% if response is defined %}
