@@ -9,6 +9,7 @@
 /Migrations/
 /public/assets/plugin
 /public/assets/img/icon/baseFiles/
+/src/Migrations/
 
 ###< symfony/framework-bundle ###
 

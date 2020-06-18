@@ -199,7 +199,7 @@ transform: translate(-50%, -50%);
 
 main {
     min-height: calc(100vh - 64px - 15px);
-    background-image: url(../img/backgroundmain.png);
+    background-image: url(../img/background-576.png);
     background-size: cover;
 }
 
@@ -235,6 +235,11 @@ h3 {
     p {
         font-size: 0.8rem;
     }
+    main {
+        background-image: url(../img/background-768.png);
+        background-size: cover;
+    }
+
 }
 
 @media screen and (min-width: 768px) {
@@ -244,6 +249,11 @@ h3 {
     .searchTerm {
         width: 300px;
     }
+    main {
+        background-image: url(../img/background-992.png);
+        background-size: cover;
+    }
+
 }
 
 @media screen and (min-width: 992px) {
@@ -257,7 +267,7 @@ h3 {
         font-size: 1.5rem;
     }
     main {
-        background-image: url(../img/backgroundmain.png);
-        background-size: contain;
+        background-image: url(../img/background-1920.png);
+        background-size: cover;
     }
 }
