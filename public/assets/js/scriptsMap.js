@@ -12,10 +12,16 @@ window.onload = function (e) {
         .setView([45.7673014, 4.8315513], 12)
         .locate({
             setView: true,
-            maxZoom: 17
+            maxZoom: 16
         });
 
     map.zoomControl.setPosition('bottomright');
+
+    /*********** Zoom function on marker click ***********/
+
+    function clickZoom(e) {
+        map.setView(e.target.getLatLng());
+    }
 
     /*********** If localisation ok, add a marker and add a position button ***********/
 
@@ -63,25 +69,25 @@ window.onload = function (e) {
                 map.flyTo(latlng, 17);
             });
         })
+
+        showLayers();
+
     }
 
     map.on('locationfound', onLocationFound);
 
     function onLocationError(e) {
-        centerBtn.style.display = "none";
         const message = "Nous n'avons pas pu vous localiser";
         console.log(message);
     }
 
     map.on('locationerror', onLocationError);
 
-    showLayers();
-
     /*********** Geocoding by adress ***********/
 
     const searchGeocoder = L.Control.geocoder({
             defaultMarkGeocode: false,
-            position: "topright",
+            position: "bottomright",
             placeholder: "Code postal ou adresse...",
         })
         .on('markgeocode', function (e) {
@@ -159,34 +165,13 @@ window.onload = function (e) {
             }
         }
 
-        /**** Convert json in geojson ****/
-
-        // function localOrDistantData() {
-        //     return new Promise((successCallback, failureCallback) => {
-        //     if (lyonJSON.location == "distant") {
-        //         $.getJSON(lyonJSON.url, function (json) {
-        //             jsonName = json.name;
-        //         });
-        //         return;
-        //     } 
-        //     else if (lyonJSON.location == "local") {
-        //         $.getJSON(assetsBaseDir + '/json/le-relais.json', function (data) {
-        //             result = GeoJSON.parse(data.features, {
-        //                 Point: ['lat', 'lng'],
-        //                 exclude: ['content']
-        //             });
-        //             return result;
-        //         });
-        //     }
-        // }
-
-        // const promise = localOrDistantData();
-
         const promise = $.getJSON(lyonJSON.url, function (json) {
             jsonName = json.name;
         });
 
-        promise.then(function test(data) {
+        /**** End tets Convert json in geojson ****/
+
+        promise.then(function (data) {
 
             lyonJSON.categorie = L.geoJson(data, {
 
@@ -196,15 +181,19 @@ window.onload = function (e) {
                     return L.marker(latlng, {
                         icon: categoryIcon
                     })
+                        .on('click', clickZoom);
                 },
             });
 
-            /**** Regroupement des type de lieux par cluster ****/
+            /**** Regroupement des types de lieux par cluster ****/
+
             const markersClusterCategory = new L.MarkerClusterGroup();
 
             markersClusterCategory.addLayer(lyonJSON.categorie);
 
             markersClusterCategory.addTo(map);
+
+            layers.push(markersClusterCategory);
 
             /**** Création des boutons avec un id qui utilise lyonJSON.categorie et le texte lyonJSON.name ****/
 
@@ -229,8 +218,6 @@ window.onload = function (e) {
             checkboxCategory.className = "mapButton";
             checkboxCategory.checked = true;
 
-            layers.push(markersClusterCategory);
-
             /**** Gestion des boutons grace aux IDs, peut être relier l'ID au layer ****/
 
             $(`#${idCategory}`).click(function () {
@@ -251,7 +238,7 @@ window.onload = function (e) {
                 name: "Silos",
                 categorie: "silo",
                 id_Json: "gic_collecte.gicsiloverre",
-                location: "distant",
+                type: "geojson",
                 url: "https://download.data.grandlyon.com/wfs/grandlyon?SERVICE=WFS&VERSION=2.0.0&request=GetFeature&typename=gic_collecte.gicsiloverre&outputFormat=application/json; subtype=geojson&SRSNAME=EPSG:4171&startIndex=0",
                 icon: assetsBaseDir + "/img/icon/1x/verre-pin.png",
             },
@@ -259,7 +246,7 @@ window.onload = function (e) {
                 name: "Déchèteries",
                 categorie: "decheterie",
                 id_Json: "gip_proprete.gipdecheterie_3_0_0",
-                location: "distant",
+                type: "geojson",
                 url: "https://download.data.grandlyon.com/wfs/grandlyon?SERVICE=WFS&VERSION=2.0.0&request=GetFeature&typename=gip_proprete.gipdecheterie_3_0_0&outputFormat=application/json;%20subtype=geojson&SRSNAME=EPSG:4171&startIndex=0",
                 icon: assetsBaseDir + "/img/icon/1x/decheterie-pin.png",
             },
@@ -267,15 +254,15 @@ window.onload = function (e) {
                 name: "Donneries",
                 categorie: "donnerie",
                 id_Json: "gip_proprete.gipdonnerie_3_0_0",
-                location: "distant",
+                type: "geojson",
                 url: "https://download.data.grandlyon.com/wfs/grandlyon?SERVICE=WFS&VERSION=2.0.0&request=GetFeature&typename=gip_proprete.gipdonnerie_3_0_0&outputFormat=application/json; subtype=geojson&SRSNAME=EPSG:4171&startIndex=0",
                 icon: assetsBaseDir + "/img/icon/1x/donnerie-pin.png",
             },
             {
                 name: "Bornes Vêtements",
                 categorie: "borne",
-                id_Json: "Le_relais",
-                location: "local",
+                id_Json: "le_relais",
+                type: "json",
                 url: assetsBaseDir + "/json/le-relais.json",
                 icon: assetsBaseDir + "/img/icon/1x/textile-pin.png",
             }
