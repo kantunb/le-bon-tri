@@ -18,6 +18,7 @@ class AppController extends AbstractController
 {
     /**
      * @Route("/", name="app_index")
+     * @return [$objet] 
      */
     public function index(ObjetRepository $objetRepository)
     {
@@ -30,6 +31,7 @@ class AppController extends AbstractController
 
     /**
      *@Route("/ajaxsearch", name="app_json")
+     *@param Request $request
      */
     public function jsonOfAllObjects(Request $request)
     {
@@ -62,18 +64,19 @@ class AppController extends AbstractController
     /**
      * @Route("/search", name="app_search", methods={"GET"})
      * @param Request $request
+     * 
      */
     public function search(Request $request)
     {
-        // On récupère l'input de recherche du formulaire, le name=objetName
+        // get data from inputForm, le name=objetName
         $searchObjet = $request->query->get('objetName');
         //dd($searchObjet);
 
-        // On recherche un objet par son nom
+        // Search an object by his name
         $objet = $this->getDoctrine()->getRepository(Objet::class)->findOneBy(["newName" => $searchObjet]);
 
 
-        // Si un objet est trouvé
+        // if object is found
         if ($objet) {
 
             $consignesTriByMaterial = $objet->getMaterialId();
@@ -89,12 +92,12 @@ class AppController extends AbstractController
             ]);
         }
 
-        // Sinon, on redirige en page d'accueil
+        // else redirect to home
         return $this->redirectToRoute("app_index");
     }
 
-    /** @Route("/rgpd", name="app_rgpd")
-     * 
+    /** 
+     * @Route("/rgpd", name="app_rgpd")
      */
      public function rgpd(){
         return $this->render('app/rgpd.html.twig');
