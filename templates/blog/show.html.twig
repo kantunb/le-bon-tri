@@ -23,7 +23,7 @@
 			<a href="{{ path('blog_index') }}">Retour à la liste</a>
 		</button>
 
-		{% if app.user %}
+		{% if is_granted('ROLE_ADMIN') %}
         
 			<button class="btn btn-info">
 				<a href="{{ path('blog_edit', {'id': blog.id}) }}">Modifier</a>
