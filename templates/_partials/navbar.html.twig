@@ -19,11 +19,11 @@
 					<a class="nav-link" href="{{ path('blog_index') }}">Le recyclage</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">News</a>
+					<a class="nav-link" href="{{ path('blog_index') }}">Blog</a>
 				</li>
 				{# <li class="nav-item">
-					<a class="nav-link" href="{{ path('app_index') }}">Kids</a>
-				</li> #}
+									<a class="nav-link" href="{{ path('app_index') }}">Kids</a>
+								</li> #}
 				<li class="nav-item">
                     <a class="nav-link" href="{{ path('page_index') }}">A propos</a>
                 </li>
@@ -41,7 +41,7 @@
 
 							<a class="dropdown-item" href="{{path('page_index')}}">Articles</a>
 
-							<a class="dropdown-item" href="{{path('category_index')}}">Catégories</a>
+							<a class="dropdown-item" href="{{path('category_index')}}">Usages</a>
 
 							<a class="dropdown-item" href="{{path('objet_index')}}">Objets</a>
 
@@ -59,8 +59,8 @@
 					<li class="nav-item">
 						<a class="nav-link" href="/logout">Déconnexion</a>
 					</li>
-
 				{% endif %}
+				
 			</ul>
 		</div>
 	</nav>

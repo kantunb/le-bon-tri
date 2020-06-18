@@ -23,8 +23,8 @@ class Category
     /**
      * @ORM\Column(type="string", length=255)
      *    @Assert\Regex(
-     *     pattern     = "/^[a-zA-Z0-9()_, -]{3,255}+$/i",
-     *     htmlPattern = "^[a-zA-Z0-9()_, -]{3,255}+$",
+     *     pattern     = "/^[a-zA-Z0-9àâÂÄéèëêÊËîïÎÏôÔùûüÛÜ\/ ()_, -]{3,255}+$/i",
+     *     htmlPattern = "^[a-zA-Z0-9àâÂÄéèëêÊËîïÎÏôÔùûüÛÜ\/ ()_, -]{3,255}+$+$",
      *     match=true,
      *     message="Votre objet peut contenir des lettres majusccules, minuscules, des chiffres, des parenthèses, - , _ , des virgules ou des espaces"
      * )
@@ -50,6 +50,11 @@ class Category
      * @ORM\ManyToOne(targetEntity=CollectionPointType::class, inversedBy="categories")
      */
     private $collectionPointType;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $picture;
 
     public function __construct()
     {
@@ -153,6 +158,18 @@ class Category
     public function setCollectionPointType(?CollectionPointType $collectionPointType): self
     {
         $this->collectionPointType = $collectionPointType;
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?string $picture): self
+    {
+        $this->picture = $picture;
 
         return $this;
     }

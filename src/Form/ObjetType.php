@@ -6,6 +6,8 @@ use App\Entity\Category;
 use App\Entity\CollectionPoint;
 use App\Entity\Material;
 use App\Entity\Objet;
+use App\Repository\CategoryRepository;
+use App\Repository\MaterialRepository;
 use Doctrine\DBAL\Types\BooleanType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -26,12 +28,20 @@ class ObjetType extends AbstractType
             ->add('Material_id', EntityType::class, [
                 'class' => Material::class,
                 'label' => 'Matériaux',
+                'query_builder' => function (MaterialRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->orderBy('u.name', 'ASC');
+                },
                 'choice_label' => 'name'
             ])
             ->add('Use_id', EntityType::class, [
                 'class' => Category::class,
                 'label' => 'Usage',
-                'choice_label' => 'name'
+                'query_builder' => function (CategoryRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->orderBy('u.name', 'ASC');
+                },
+                'choice_label' => 'name',
             ]);
     }
 

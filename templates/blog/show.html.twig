@@ -11,6 +11,10 @@
 		<h3>{{ blog.title }}</h3>
 		<br>
 		{{ blog.content|raw }}
+		<br>
+		{% for tag in blog.blogHasTag %}
+			{{tag.name}}
+		{% endfor %}
 	</div>
 
 	<br>
@@ -19,7 +23,7 @@
 			<a href="{{ path('blog_index') }}">Retour à la liste</a>
 		</button>
 
-		{% if app.user %}
+		{% if is_granted('ROLE_ADMIN') %}
         
 			<button class="btn btn-info">
 				<a href="{{ path('blog_edit', {'id': blog.id}) }}">Modifier</a>

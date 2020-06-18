@@ -6,11 +6,18 @@
 {% block body %}
 	<h1>Mettre à jour cet usage</h1>
 
-	{{ include('category/_form.html.twig', {'button_label': 'Update'}) }}
-
-	<a href="{{ path('category_index') }}">Retour à la liste des usages</a>
-	<a href="#">Retour à la page de gestion de la BDD</a>
-	<a href="{{ path('app_index') }}">Retour à l'accueil</a>
+	{{ include('category/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
 	{{ include('category/_delete_form.html.twig') }}
+	<br>
+	<div class="text-center">
+		<a href="{{ path('category_index') }}">
+			<button class="btn">Retour à la liste des usages</button>
+		</a>
+
+		<a href="{{ path('app_index') }}">
+			<button class="btn">Retour à l'accueil</button>
+		</a>
+	</div>
+
 {% endblock %}

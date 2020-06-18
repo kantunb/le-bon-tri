@@ -3,9 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Blog;
+use App\Entity\Tag;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class BlogType extends AbstractType
 {
@@ -15,7 +18,19 @@ class BlogType extends AbstractType
             ->add('title')
             ->add('short_content')
             ->add('content')
-            ->add('createdAt')
+            // ->add('createdAt')
+            // ->add('blog_has_tag', EntityType::class, [
+            //     'class' => Tag::class,
+            //     'multiple' => true,
+            //     'choice_label' => 'name'
+            // ])
+            ->add('blog_has_tag', EntityType::class, [
+                'class' => Tag::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+                // 'choices' => 'blog_has_tag'
+            ])
         ;
     }
 

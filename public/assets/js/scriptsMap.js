@@ -1,4 +1,4 @@
-window.onload = function (e) {
+window.onload = function(e) {
 
     const mapTiles = L.tileLayer(
         "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}.png", {
@@ -49,7 +49,7 @@ window.onload = function (e) {
             icon: localisationIcon
         }).addTo(map)
 
-        centerButton.onAdd = function (map) {
+        centerButton.onAdd = function(map) {
             this.div = L.DomUtil.create('div', 'leaflet-control-geocoder leaflet-bar leaflet-control');
             const positionButton = "<button id=\"centerButton\"class=\"leaflet-control-geocoder-icon\"></button>";
             this.div.innerHTML = positionButton;
@@ -60,9 +60,9 @@ window.onload = function (e) {
 
         const centerBtn = $("#centerButton")
 
-        centerBtn.on("click", function (e) {
+        centerBtn.on("click", function(e) {
             // Fonction pour retrouver la latitude et la longitude, puis centrer la carte :
-            navigator.geolocation.getCurrentPosition(function (location) {
+            navigator.geolocation.getCurrentPosition(function(location) {
                 var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
                 // localisationIcon.setLatLng(latlng);
                 // localisationIconBack.setLatLng(latlng);
@@ -90,7 +90,7 @@ window.onload = function (e) {
             position: "bottomright",
             placeholder: "Code postal ou adresse...",
         })
-        .on('markgeocode', function (e) {
+        .on('markgeocode', function(e) {
             map.flyTo(e.geocode.center, 16);
         })
         .addTo(map);
@@ -101,6 +101,8 @@ window.onload = function (e) {
     const layers = [];
 
     function layersBuilders(lyonJSON) {
+
+        // console.log(lyonJSON.id_Json);
 
         const categoryIcon = new L.Icon({
             iconUrl: lyonJSON.icon,
@@ -165,19 +167,17 @@ window.onload = function (e) {
             }
         }
 
-        const promise = $.getJSON(lyonJSON.url, function (json) {
+        const promise = $.getJSON(lyonJSON.url, function(json) {
             jsonName = json.name;
         });
 
-        /**** End tets Convert json in geojson ****/
-
-        promise.then(function (data) {
+        promise.then(function(data) {
 
             lyonJSON.categorie = L.geoJson(data, {
 
                 onEachFeature: onEachFeature,
 
-                pointToLayer: function (feature, latlng) {
+                pointToLayer: function(feature, latlng) {
                     return L.marker(latlng, {
                         icon: categoryIcon
                     })
@@ -220,7 +220,7 @@ window.onload = function (e) {
 
             /**** Gestion des boutons grace aux IDs, peut être relier l'ID au layer ****/
 
-            $(`#${idCategory}`).click(function () {
+            $(`#${idCategory}`).click(function() {
                 if (map.hasLayer(markersClusterCategory)) {
                     $(this).children().prop("checked", false)
                     map.removeLayer(markersClusterCategory);
@@ -288,7 +288,7 @@ window.onload = function (e) {
 
     /**** Gestion du bouton #addRemoveAll ****/
 
-    $("#addRemoveAll").click(function () {
+    $("#addRemoveAll").click(function() {
 
         $(this).toggleClass("selected");
         if ($(this).hasClass("selected")) {
@@ -313,20 +313,23 @@ window.onload = function (e) {
 
     /**** Show / Hide legend on mobile ****/
 
-    $('#showHideButton').click(function () {
+    $('#showHideButton').click(function() {
         $(this).css('display', $(this).css('display') === 'none' ? 'inline-block' : 'none');
         $('#buttonsContainer').css("display", $('#buttonsContainer').css("display") === 'none' ? 'flex' : 'none')
     })
 
-    $('#closeLegend').click(function () {
+    $('#closeLegend').click(function() {
         $('#buttonsContainer').css('display', 'none');
         $('#showHideButton').css('display', 'inline-block');
     })
 
-    // /**** Convert json in geojson ****/
+    // /**** Toggle legend on mobile ****/
 
-    // const relaisJson = $.getJSON(assetsBaseDir + '/json/le-relais.json', function(data) {
-    //     geo = GeoJSON.parse(data.features, {Point: ['lat', 'lng'], exclude: ['content']});
-    //     console.log(geo)
-    // });
+    // $('#showHideButton').click(() => {
+    //     $('#buttonsContainer').slideToggle(1000, function() {
+    //         if ($(this).is(':visible')) {
+    //             $(this).css('display', 'flex');
+    //         }
+    //     });
+    // })    
 }

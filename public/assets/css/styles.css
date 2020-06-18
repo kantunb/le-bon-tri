@@ -6,11 +6,9 @@
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Roboto&display=swap');
-
 body,
 html {
-    font-family: 'DKMoonlightSerenade', sans-serif;
-    letter-spacing: 2px;
+    font-family: 'Anton', sans-serif;
     color: black;
     height: 100%;
     margin: 0;
@@ -27,8 +25,6 @@ html {
 .titre {
     border: 3px solid yellowgreen;
     /* background-color: white; */
-    border: 3px solid yellowgreen;
-    border: 3px solid yellowgreen;
     border-radius: 15px;
     padding: 15px;
     opacity: 80%;
@@ -48,10 +44,13 @@ html {
 h1 {
     letter-spacing: 3px;
     font-weight: bold;
+    font-family: 'DKMoonlightSerenade', sans-serif;
 }
 
-p:hover {
+h5 {
+    letter-spacing: 3px;
     font-weight: bold;
+    font-family: 'DKMoonlightSerenade', sans-serif;
 }
 
 * {
@@ -75,22 +74,18 @@ img {
 ul.icons {
     list-style: none;
     padding: none;
-    font-family: 'Roboto';
 }
-
-
-/* ul.icons:hover {
-    color: green;
-} */
 
 li {
     display: inline-block;
+    font-family: 'DKMoonlightSerenade', sans-serif;
 }
 
 footer {
     background: linear-gradient(#6dbfb4, #e7dc19);
     background-size: cover;
     color: black;
+    font-family: 'DKMoonlightSerenade', sans-serif;
 }
 
 footer .container {
@@ -103,17 +98,17 @@ footer .row div ul {
 }
 
 .label {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'DKMoonlightSerenade', sans-serif;
 }
+
 
 /* search bar */
 
 .search {
     width: 500px;
     position: relative;
-    opacity: 80%;
+    opacity: 70%;
     border: 3px solid yellowgreen;
-    /* border-radius: 25px 0 0 25px; */
 }
 
 .searchTerm {
@@ -123,18 +118,15 @@ footer .row div ul {
     padding: 2px;
     height: 70px;
     background-color: white;
-    /* border-radius: 25px 0 0 25px; */
     outline: none;
     color: rgb(169, 192, 124);
-    transition-delay: 2s;
-    transition-property: background-color;
-    transition-duration: 2s;
 }
 
 .searchButton {
-    width: 70px;
+    width: 90px;
     height: 70px;
     border: 3px solid yellowgreen;
+    border-left: none;
     text-align: center;
     color: #fff;
     border-radius: 0 5px 5px 0;
@@ -142,25 +134,20 @@ footer .row div ul {
     font-size: 20px;
 }
 
-
-/* .searchTerm:hover {
-    background-color: hotpink;
-} */
-
 .searchTerm:focus {
     color: green;
-    letter-spacing: 2px;
-    font-family: 'Roboto', sans-serif;
 }
 
 ::placeholder {
-    opacity: 100%;
+    opacity: 80%;
     color: black;
-    letter-spacing: 1px;
+    font-weight: bold;
 }
 
-::placeholder:hover {
-    background-color: greenyellow;
+::-ms-input-placeholder {
+    /* IE 10+ */
+    opacity: 70%;
+    color: black;
 }
 
 .newobjet {
@@ -180,28 +167,12 @@ footer .row div ul {
     background-color: hotpink;
 }
 
-.add {
-    letter-spacing: 2px;
-}
-
-.add {
-    letter-spacing: 2px;
-}
-
-/* 
-.wrap {
-width: 300px !important;
-position: relative;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-} */
-
 main {
     min-height: calc(100vh - 64px - 15px);
     background-image: url(../img/background-576.png);
     background-size: cover;
 }
+
 
 /* container index map */
 
@@ -210,18 +181,21 @@ main {
     min-height: calc(100vh - 139px);
 }
 
+
 /* Blog-index */
 
 h3 {
-    font-family: 'roboto';
+    font-family: 'DKMoonlightSerenade', sans-serif;
     font-style: italic;
 }
+
 
 /****** Isotop ******/
 
 .grid-item {
-    width: 25%; 
+    width: 25%;
 }
+
 
 /* media query */
 
@@ -239,15 +213,14 @@ h3 {
         background-image: url(../img/background-768.png);
         background-size: cover;
     }
-
 }
 
 @media screen and (min-width: 768px) {
     .search {
-        width: 300px;
+        width: 280px;
     }
     .searchTerm {
-        width: 300px;
+        width: 280px;
     }
     main {
         background-image: url(../img/background-992.png);
