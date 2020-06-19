@@ -10,6 +10,7 @@
   height: 70vh;
   width: 70vw;
   margin: auto;
+  height: calc(100vh -64px - 96px);
 }
 
 #buttonsContainer,
@@ -132,6 +133,10 @@ table {
 
   .fa-times {
     display: none;
+  }
+
+  #localisationContainer {
+    height: calc(100vh -84px - 108px);
   }
 
 
