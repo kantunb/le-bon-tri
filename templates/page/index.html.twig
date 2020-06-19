@@ -21,7 +21,7 @@
 				<tr>
 					<td>{{ page.id }}</td>
 					<td>{{ page.title }}</td>
-					<td>{{ page.content }}</td>
+					<td>{{ page.content|raw}}</td>
 					<td>{{ page.pageName }}</td>
 					<td>
 						<a href="{{ path('page_show', {'id': page.id}) }}">Voir</a>
