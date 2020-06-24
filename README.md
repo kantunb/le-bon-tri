@@ -8,3 +8,9 @@ A simple website to inform people on how to recycle their objects and waste.
 - Quentin Brouillet : Front (intégration de la map, fonctionnaltés de tri, utilisation de la library Leaflet)
 - Oliver Arnac : Back (fonctionnalités : authentification/blog/a propos)
 - Jean Grenouiller : Front (intégration globale html5, css, twig)
+
+![Screen Acceuil](/public/assets/img/bonTriScreenAcceuilphone.jpg)
+![Screen Acceuil](/public/assets/img/BonTriScreenMap.jpg)
+
+
+
