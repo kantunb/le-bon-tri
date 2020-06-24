@@ -168,7 +168,7 @@ footer .row div ul {
 }
 
 main {
-    min-height: calc(100vh - 64px - 15px);
+    min-height: calc(100vh - 64px - 72px);
     background-image: url(../img/background-576.png);
     background-size: cover;
 }
@@ -226,7 +226,6 @@ h3 {
         background-image: url(../img/background-992.png);
         background-size: cover;
     }
-
 }
 
 @media screen and (min-width: 992px) {
