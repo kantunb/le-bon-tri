@@ -243,3 +243,7 @@ h3 {
         background-size: cover;
     }
 }
+
+.dropdown-toggle::after {
+    display: none;
+}
