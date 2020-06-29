@@ -4,28 +4,12 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Page</h1>
 
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>Id</th>
-				<td>{{ page.id }}</td>
-			</tr>
-			<tr>
-				<th>Title</th>
-				<td>{{ page.title }}</td>
-			</tr>
-			<tr>
-				<th>Content</th>
-				<td>{{ page.content }}</td>
-			</tr>
-			<tr>
-				<th>PageName</th>
-				<td>{{ page.pageName }}</td>
-			</tr>
-		</tbody>
-	</table>
+	<h1>{{ page.title }}</h1>
+
+	{{ page.content|raw }}
+
+<div class="d-flex">
 
 	<button class="btn btn-primary">
 		<a href="{{ path('app_index') }}">Retour à l'accueil</a>
@@ -33,11 +17,13 @@
 
 	{% if app.user %}
 		<button class="btn btn-information">
-			<a href="{{ path('page_edit', {'id': page.id}) }}">edit</a>
+			<a href="{{ path('page_edit', {'id': page.id}) }}">Editer</a>
 		</button>
 
 		{{ include('page/_delete_form.html.twig') }}
 
 	{% endif %}
+
+</div>
 
 {% endblock %}

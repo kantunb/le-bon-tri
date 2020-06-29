@@ -201,7 +201,13 @@ class ObjetController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            $newName = $objet->getName();
+            $useId = $objet->getUseId();
+            $materialId = $objet->getMaterialId();
+            $category = $this->getDoctrine()->getRepository(Category::class)->find($useId)->getName();
+            $material = $this->getDoctrine()->getRepository(Material::class)->find($materialId)->getName();
+            $newName = $newName . ' (' . $material . ', ' . $category . ')';
+             $objet->setNewName($newName);
             $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('objet_index');
         }
