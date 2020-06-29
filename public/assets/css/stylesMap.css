@@ -1,17 +1,23 @@
+main {
+background-image: none;
+padding: 0;
+height: calc(100vh - 64px - 72px);
+width: 100vw;
+margin: auto;
+}
+
 #map {
   width: 100%;
   height: 100%;
   position: relative;
 }
 
-#localisationContainer {
-  margin: 0;
+/* #localisationContainer {
   padding: 0;
-  height: 70vh;
-  width: 70vw;
+  height: calc(100vh - 64px - 72px);
+  width: 100vw;
   margin: auto;
-  height: calc(100vh -64px - 96px);
-}
+} */
 
 #buttonsContainer,
 #showHideButton {
@@ -123,6 +129,10 @@ table {
 
 @media (min-width: 992px) {
 
+  main {
+    height: calc(100vh - 84px - 108px);
+  }
+
   #showHideButton {
     display: none;
   }
@@ -138,6 +148,4 @@ table {
   #localisationContainer {
     height: calc(100vh -84px - 108px);
   }
-
-
 }
