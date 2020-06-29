@@ -183,7 +183,7 @@ footer .row div ul {
 }
 
 main {
-    height: calc(100vh - 64px - 72px);
+    min-height: calc(100vh - 64px - 72px);
     background-image: url(../img/background-576.png);
     background-size: cover;
 }
@@ -246,6 +246,7 @@ h3 {
         font-size: 1.5rem;
     }
     main {
+        min-height: calc(100vh - 64px - 72px);
         background-image: url(../img/background-1920.png);
         background-size: cover;
     }

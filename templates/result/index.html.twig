@@ -6,13 +6,12 @@
 {% block body %}
 
 
-	<div class="container pt-5">
 		<div class="row">
 
 			{% if consignesTriByMaterial.devenir is not null and consignesTriByMaterial.devenir is defined %}
 				<div class="card mb-5" style="max-width: 800px;">
 				<div class="row no-gutters">
-					<div class="col-md-4">
+					<div class="col-md-3 m-auto">
 						<img src="{{ asset('/assets/img/pictoResult/' ~ consignesTriByMaterial.picture) }}" class="card-img" alt="...">
 					</div>
 					<div class="col-md-8">
@@ -21,7 +20,7 @@
 							<h5 class="card-title">
               Consigne de tri: {{ consignesTriByMaterial.devenir }}</h5>
 
-							<p class="card-text">Si votre {{name}} en {{consignesTriByMaterial.name}} est hors d'usage, géolocalisez-vous pour trouvez la déchetterie la plus proche</p>
+							<p class="card-text">Si votre {{name}} en {{consignesTriByMaterial.name}} est hors d'usage, trouvez le point de collecte la plus proche</p>
 							<a href="{{path('material_search', {'id' : consignesTriByMaterial.id})}}" class="btn btn-success">Trouver un point de collecte</a>
 
 						</div>
@@ -34,7 +33,7 @@
 			
 			<div class="card mb-5" style="max-width: 800px;">
 				<div class="row no-gutters">
-					<div class="col-md-4">
+					<div class="col-md-3 m-auto">
 						<img src="{{ asset('/assets/img/pictoResult/' ~ consignesTriByUse.picture) }}" class="card-img" alt="...">
 					</div>
 					<div class="col-md-8">
@@ -50,7 +49,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
 {% endif %}
 
 {% endblock %}
