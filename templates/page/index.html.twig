@@ -10,10 +10,9 @@
 		<thead>
 			<tr>
 				<th>Id</th>
-				<th>Title</th>
-				<th>Content</th>
-				<th>PageName</th>
-				<th>actions</th>
+				<th>Titre</th>
+				<th>Contenu</th>
+				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -21,11 +20,10 @@
 				<tr>
 					<td>{{ page.id }}</td>
 					<td>{{ page.title }}</td>
-					<td>{{ page.content }}</td>
-					<td>{{ page.pageName }}</td>
+					<td>{{ page.content|raw}}</td>
 					<td>
-						<a href="{{ path('page_show', {'id': page.id}) }}">Voir</a>
-						<a href="{{ path('page_edit', {'id': page.id}) }}">Modifier</a>
+						<a class="btn btn-success" href="{{ path('page_show', {'id': page.id}) }}">Voir</a>
+						<a class="btn btn-info" href="{{ path('page_edit', {'id': page.id}) }}">Modifier</a>
 					</td>
 				</tr>
 			{% else %}

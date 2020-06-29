@@ -145,4 +145,7 @@ table {
     display: none;
   }
 
+  #localisationContainer {
+    height: calc(100vh -84px - 108px);
+  }
 }
