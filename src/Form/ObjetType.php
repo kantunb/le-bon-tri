@@ -34,15 +34,22 @@ class ObjetType extends AbstractType
                 },
                 'choice_label' => 'name'
             ])
-            ->add('Use_id', EntityType::class, [
-                'class' => Category::class,
-                'label' => 'Usage',
-                'query_builder' => function (CategoryRepository $er) {
-                    return $er->createQueryBuilder('u')
-                        ->orderBy('u.name', 'ASC');
-                },
-                'choice_label' => 'name',
-            ]);
+           ->add('Use_id', EntityType::class, [
+               'class' => Category::class,
+               'label' => 'Usage',
+               'query_builder' => function (CategoryRepository $er) {
+                   return $er->createQueryBuilder('u')
+                       ->orderBy('u.name', 'ASC');
+               },
+               'choice_label' => 'name' 
+              ]);
+         //->add('Category', CollectionType::class,[
+         //      'entry_type'   => CategoryType::class,
+         //      'allow_add'    => true,
+         //      'allow_delete' => true
+         //    ])
+         //   
+//;
     }
 
     public function configureOptions(OptionsResolver $resolver)
